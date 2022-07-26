@@ -2,8 +2,6 @@
 
 <template>
   <div>
-    <router-view></router-view>
+    <p>test</p>
   </div>
 </template>
-
-<style scoped></style>
