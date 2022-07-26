@@ -4,9 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3000 --open",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
+    "preview-https": "serve dist",
+    "test": "vitest",
+    "test:e2e": "cypress open",
+    "test:unit": "vitest",
+    "typecheck": "vue-tsc --noEmit",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "format": "prettier .  --write",
     "prepare": "husky install"
   },
   "dependencies": {
