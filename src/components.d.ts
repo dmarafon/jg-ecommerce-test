@@ -8,6 +8,8 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Homeview: typeof import('./views/Homeview.vue')['default']
+    LoginForm: typeof import('./components/LoginForm.vue')['default']
+    LoginFormComponent: typeof import('./components/LoginFormComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
