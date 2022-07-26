@@ -1,0 +1,27 @@
+.login__container {
+  font-family: "Sora", sans-serif;
+
+  color: #000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login__input--email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login__input--password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login__input--button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

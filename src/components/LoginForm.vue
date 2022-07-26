@@ -42,3 +42,5 @@ const handleSubmit = () => {
     </form>
   </section>
 </template>
+
+<style scoped src="./LoginStyle.css"></style>
