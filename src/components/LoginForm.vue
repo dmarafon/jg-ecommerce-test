@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import useLoginFormStore from "../stores/formStore";
+
+const storeLogin = useLoginFormStore();
+
+const handleSubmit = () => {
+  const { email, password, loginPost } = storeLogin;
+
+  loginPost({ email, password });
+
+  storeLogin.$reset();
+};
+</script>
+
 <template>
   <section class="login__container">
     <div>
