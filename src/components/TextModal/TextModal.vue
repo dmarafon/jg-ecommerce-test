@@ -6,7 +6,14 @@ const props = defineProps<{
 
 <template>
   <section class="modal-text__container">
-    <p class="modal-text__paragraph">{{ textMessage }}</p>
+    <div className="modal-content">
+      <div className="modal-button">
+        <button @click="$emit('button-on-click')" class="modal-button--closed">
+          &times;
+        </button>
+        <p>{{ textMessage }}</p>
+      </div>
+    </div>
   </section>
 </template>
 

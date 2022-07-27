@@ -23,23 +23,26 @@ const {
   feedback,
   emailResponse,
   passwordResponse,
+  apiResponse,
 }: ToRefs<
   IUserInterface &
     _StoreWithGetters<{}> &
     PiniaCustomStateProperties<IUserInterface>
 > = storeToRefs(storeUI);
 
-const handleSubmit = () => {
-  const {
-    emailValidationResponse,
-    passwordValidationResponse,
-    cleanResponse,
-  }: {
-    emailValidationResponse: (response: string) => void;
-    passwordValidationResponse: (response: string) => void;
-    cleanResponse: () => void;
-  } = storeUI;
+const {
+  emailValidationResponse,
+  passwordValidationResponse,
+  responseFromApi,
+  cleanResponse,
+}: {
+  emailValidationResponse: (response: string) => void;
+  passwordValidationResponse: (response: string) => void;
+  responseFromApi(response: string): void;
+  cleanResponse: () => void;
+} = storeUI;
 
+const handleSubmit = () => {
   cleanResponse();
 
   const {
@@ -60,6 +63,7 @@ const handleSubmit = () => {
 
     storeLogin.$reset();
   } else {
+    responseFromApi(validateEmailForm);
     emailValidationResponse(validateEmailForm);
     passwordValidationResponse(validatePasswordForm);
   }
@@ -69,6 +73,13 @@ const handleSubmit = () => {
 <template>
   <Teleport to="#modal__container">
     <LoadingModal v-if="loading" />
+  </Teleport>
+  <Teleport to="#modal__container">
+    <TextModal
+      :text-message="apiResponse"
+      @button-on-click="cleanResponse"
+      v-if="apiResponse"
+    />
   </Teleport>
   <section class="login__container">
     <h2 class="login__title">SIGN IN</h2>
