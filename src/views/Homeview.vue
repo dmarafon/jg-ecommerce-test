@@ -2,6 +2,6 @@
 
 <template>
   <div>
-    <p>test</p>
+    <LoginForm />
   </div>
 </template>
