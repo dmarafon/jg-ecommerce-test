@@ -4,7 +4,15 @@ import useLoginFormStore from "../../stores/formStore";
 const storeLogin = useLoginFormStore();
 
 const handleSubmit = () => {
-  const { email, password, loginPost } = storeLogin;
+  const {
+    email,
+    password,
+    loginPost,
+  }: {
+    email: string;
+    password: string;
+    loginPost: Function;
+  } = storeLogin;
 
   loginPost({ email, password });
 

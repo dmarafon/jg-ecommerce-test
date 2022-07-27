@@ -39,7 +39,7 @@
   font-size: 30px;
   font-weight: 800;
 
-  color: #fc7c45;
+  color: #00db7f;
   text-transform: uppercase;
   text-decoration: underline;
   text-underline-offset: 13px;
@@ -51,8 +51,6 @@
   align-items: flex-start;
 
   width: 250px;
-
-  color: #fc7c45;
 }
 
 .login__input--email {
@@ -65,7 +63,7 @@
   margin-bottom: 30px;
 
   font-size: 16px;
-  color: #fd1d89;
+  color: #00db7f;
 
   border: none;
   border-bottom: 1px solid #fff;
@@ -74,7 +72,7 @@
 }
 
 .login__label--email {
-  color: #fd1d89;
+  color: #00db7f;
   font-family: "Sora", sans-serif;
   font-size: 15px;
 
@@ -95,7 +93,7 @@
 
 .login__input--email:focus {
   outline: none;
-  border-bottom: 1px solid #fd1d89;
+  border-bottom: 1px solid #00db7f;
 }
 
 .login__input--email::-webkit-input-placeholder {
@@ -126,7 +124,7 @@
   margin-bottom: 30px;
 
   font-size: 16px;
-  color: #fd1d89;
+  color: #00db7f;
 
   border: none;
   border-bottom: 1px solid #fff;
@@ -135,7 +133,7 @@
 }
 
 .login__label--password {
-  color: #fd1d89;
+  color: #00db7f;
   font-family: "Sora", sans-serif;
   font-size: 15px;
   transition: all 200ms ease-in-out;
@@ -155,7 +153,13 @@
 
 .login__input--password:focus {
   outline: none;
-  border-bottom: 1px solid #fd1d89;
+  border-bottom: 1px solid #00db7f;
+}
+
+.login__input--password::placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
 }
 
 .login__button--container {
@@ -181,19 +185,48 @@
   text-align: center;
 
   border: none;
-  background-color: #ffeba7;
-  color: #000000;
+  background-color: #000000;
+  color: #ffffff;
   box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
 
   cursor: pointer;
 }
 
 .login__button:hover {
-  background-color: rgba(252, 124, 69, 1);
-  color: #ffeba7;
+  background-color: #00db7f;
+  color: #000000;
   box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
 }
 
 .login__button:active {
   opacity: 0.4;
+}
+
+.login__text--container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  cursor: pointer;
+}
+
+.login__text--register_access_first {
+  margin-top: 20px;
+  margin-bottom: -8px;
+
+  font-family: "Sora", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+}
+
+.login__text--register_access_second {
+  font-family: "Sora", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.login__text--special_color {
+  color: #00db7f;
 }
