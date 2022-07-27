@@ -14,30 +14,38 @@ const handleSubmit = () => {
 
 <template>
   <section class="login__container">
-    <div>
-      <h1>Sign Up</h1>
-    </div>
+    <h2 class="login__title">SIGN IN</h2>
     <form noValidate autoComplete="off" @submit.prevent="handleSubmit">
-      <div class="login__input--email">
-        <label for="email">Email Address</label>
+      <div class="login__input--container">
         <input
           id="email"
           v-model="storeLogin.email"
-          type="email"
-          placeholder=" "
+          type="text"
+          required
+          placeholder="EMAIL"
+          class="login__input--email"
         />
+        <label for="email" class="login__label--email">EMAIL</label>
       </div>
       <div class="login__input--password">
-        <label for="password">Password</label>
         <input
           id="password"
           v-model="storeLogin.password"
           type="password"
-          placeholder=" "
+          required
+          placeholder="PASSWORD"
         />
+        <label for="password">PASSWORD</label>
       </div>
       <div class="login__input--button">
-        <button type="submit">Log In</button>
+        <button class="" type="submit">Log In</button>
+      </div>
+      <div class="login__text--container">
+        <p class="login__text--register_access_first">Don't have an Account?</p>
+        <p class="login__text--register_access_second">
+          Click here to
+          <span class="login__text--special_color"> sign up</span> right now
+        </p>
       </div>
     </form>
   </section>
