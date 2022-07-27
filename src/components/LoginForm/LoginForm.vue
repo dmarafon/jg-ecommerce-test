@@ -11,7 +11,7 @@ const handleSubmit = () => {
   }: {
     email: string;
     password: string;
-    loginPost: Function;
+    loginPost: any;
   } = storeLogin;
 
   loginPost({ email, password });
@@ -43,6 +43,7 @@ const handleSubmit = () => {
           type="password"
           required
           placeholder="PASSWORD"
+          maxlength="15"
         />
         <label class="login__label--password" for="password">PASSWORD</label>
       </div>
