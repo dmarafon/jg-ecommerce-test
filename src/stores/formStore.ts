@@ -28,13 +28,15 @@ const useLoginFormStore = defineStore("loginForm", {
 
         const userData: IUserToken = jwtDecode(token);
 
-        const { login } = useUserStore();
+        const { login }: { login: (userData: IUserToken) => void } =
+          useUserStore();
 
         login(userData);
 
         finishedLoadingModal();
       } catch (error: any | unknown) {
         const err = error as AxiosError;
+        console.log(error);
         finishedLoadingModal();
       }
     },

@@ -217,7 +217,7 @@
   font-family: "Sora", sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: rgb(0, 0, 0);
+  color: #000000;
 }
 
 .login__text--register_access_second {
@@ -229,4 +229,13 @@
 
 .login__text--special_color {
   color: #00db7f;
+}
+
+.login__paragraph--warning {
+  color: #db2500;
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  margin-top: -40px;
+  position: absolute;
+  z-index: 10;
 }

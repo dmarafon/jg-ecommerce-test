@@ -1,0 +1,10 @@
+.modal-text__container {
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+}
+
+.modal-text__paragraph {
+  font-size: 50px;
+}
