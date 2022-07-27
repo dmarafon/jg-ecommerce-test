@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import useLoginFormStore from "../../stores/formStore";
+import useUiStore from "../../stores/uiStore";
 
 const storeLogin = useLoginFormStore();
+
+const storeUI = useUiStore();
+
+const { loading } = storeToRefs(storeUI);
 
 const handleSubmit = () => {
   const {
@@ -21,6 +27,9 @@ const handleSubmit = () => {
 </script>
 
 <template>
+  <Teleport to="#modal__container">
+    <LoadingModal v-if="loading" />
+  </Teleport>
   <section class="login__container">
     <h2 class="login__title">SIGN IN</h2>
     <form noValidate autoComplete="off" @submit.prevent="handleSubmit">

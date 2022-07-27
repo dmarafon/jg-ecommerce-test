@@ -7,6 +7,14 @@ const useUiStore = defineStore("uiStore", {
     feedback: false,
     apiResponse: "",
   }),
+  actions: {
+    loadingModal() {
+      this.loading = true;
+    },
+    finishedLoadingModal() {
+      this.loading = false;
+    },
+  },
 });
 
 export default useUiStore;
