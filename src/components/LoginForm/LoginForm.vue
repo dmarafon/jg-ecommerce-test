@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
+import {
+  PiniaCustomStateProperties,
+  storeToRefs,
+  _StoreWithGetters,
+} from "pinia";
 import { ILogin } from "../../types/formTypes";
 import useLoginFormStore from "../../stores/formStore";
 import useUiStore from "../../stores/uiStore";
@@ -7,13 +11,23 @@ import {
   emailInputValidation,
   passwordInputValidation,
 } from "../../utils/loginFormValidation";
+import { ToRefs } from "vue";
+import { IUserInterface } from "../../types/uiTypes";
 
 const storeLogin = useLoginFormStore();
 
 const storeUI = useUiStore();
 
-const { loading, feedback, emailResponse, passwordResponse } =
-  storeToRefs(storeUI);
+const {
+  loading,
+  feedback,
+  emailResponse,
+  passwordResponse,
+}: ToRefs<
+  IUserInterface &
+    _StoreWithGetters<{}> &
+    PiniaCustomStateProperties<IUserInterface>
+> = storeToRefs(storeUI);
 
 const handleSubmit = () => {
   const {
@@ -56,7 +70,6 @@ const handleSubmit = () => {
   <Teleport to="#modal__container">
     <LoadingModal v-if="loading" />
   </Teleport>
-
   <section class="login__container">
     <h2 class="login__title">SIGN IN</h2>
     <form noValidate autoComplete="off" @submit.prevent="handleSubmit">

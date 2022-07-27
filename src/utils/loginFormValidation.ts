@@ -17,7 +17,7 @@ export const emailInputValidation = (email: string): string => {
 export const passwordInputValidation = (password: string): string => {
   switch (true) {
     case password === "":
-      return "Empty Password field";
+      return "Empty Password Field";
 
     case password.length < 5:
       return "Password Should Have 5 to 15 Char.";
