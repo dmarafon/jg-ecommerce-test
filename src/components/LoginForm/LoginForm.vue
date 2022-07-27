@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import useLoginFormStore from "../stores/formStore";
+import useLoginFormStore from "../../stores/formStore";
 
 const storeLogin = useLoginFormStore();
 
