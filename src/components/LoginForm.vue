@@ -37,8 +37,8 @@ const handleSubmit = () => {
         />
         <label for="password">PASSWORD</label>
       </div>
-      <div class="login__input--button">
-        <button class="" type="submit">Log In</button>
+      <div class="login__button--container">
+        <button class="login__button" type="submit">Log In</button>
       </div>
       <div class="login__text--container">
         <p class="login__text--register_access_first">Don't have an Account?</p>
