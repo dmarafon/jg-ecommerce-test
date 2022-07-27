@@ -18,24 +18,25 @@ const handleSubmit = () => {
     <form noValidate autoComplete="off" @submit.prevent="handleSubmit">
       <div class="login__input--container">
         <input
+          class="login__input--email"
           id="email"
           v-model="storeLogin.email"
           type="text"
           required
           placeholder="EMAIL"
-          class="login__input--email"
         />
         <label for="email" class="login__label--email">EMAIL</label>
       </div>
-      <div class="login__input--password">
+      <div class="login__input--container">
         <input
+          class="login__input--password"
           id="password"
           v-model="storeLogin.password"
           type="password"
           required
           placeholder="PASSWORD"
         />
-        <label for="password">PASSWORD</label>
+        <label class="login__label--password" for="password">PASSWORD</label>
       </div>
       <div class="login__button--container">
         <button class="login__button" type="submit">Log In</button>

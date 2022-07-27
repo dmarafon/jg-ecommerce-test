@@ -120,6 +120,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 30px;
+
+  font-size: 16px;
+  color: #fd1d89;
+
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.login__label--password {
+  color: #fd1d89;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+  transition: all 200ms ease-in-out;
+
+  position: relative;
+  pointer-events: none;
+  top: -60px;
+  transition: 0.2s ease all;
+}
+
+.login__input--password:focus ~ .login__label--password,
+.login__input--password:not(:focus):valid ~ .login__label--password {
+  top: -80px;
+  padding-bottom: 3px;
+  font-size: 10px;
+}
+
+.login__input--password:focus {
+  outline: none;
+  border-bottom: 1px solid #fd1d89;
 }
 
 .login__button--container {
