@@ -1,15 +1,20 @@
 import axios from "axios";
 import { AxiosError } from "axios";
 import { defineStore } from "pinia";
-import { LoginInterface } from "../types/formTypes";
+import { ILogin } from "../types/formTypes";
 import jwtDecode from "jwt-decode";
 import useUserStore from "./userStore";
 import { IUserToken } from "../types/userTypes";
+import useUiStore from "./uiStore";
 
 const useLoginFormStore = defineStore("loginForm", {
-  state: (): LoginInterface => ({ email: "", password: "" }),
+  state: (): ILogin => ({ email: "", password: "" }),
   actions: {
-    async loginPost(loginInformation: LoginInterface) {
+    async loginPost(loginInformation: ILogin) {
+      const { loadingModal, finishedLoadingModal } = useUiStore();
+
+      loadingModal();
+
       try {
         const route: string = `${import.meta.env.VITE_API_URL}users/login`;
         const {
@@ -23,11 +28,15 @@ const useLoginFormStore = defineStore("loginForm", {
 
         const userData: IUserToken = jwtDecode(token);
 
-        const { login } = useUserStore();
+        const { login }: { login: (userData: IUserToken) => void } =
+          useUserStore();
 
         login(userData);
+
+        finishedLoadingModal();
       } catch (error: any | unknown) {
         const err = error as AxiosError;
+        finishedLoadingModal();
       }
     },
   },

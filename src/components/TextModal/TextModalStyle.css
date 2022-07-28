@@ -1,0 +1,70 @@
+.modal-text__container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.modal-text__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 75px;
+  padding-top: 35px;
+
+  font-family: "Sora", sans-serif;
+  font-size: 3vh;
+  color: #000;
+
+  background-color: #00db7f;
+  border-radius: 10px;
+
+  @media (max-width: 387px) {
+    font-size: 2.5vh;
+    height: 28vh;
+  }
+}
+.modal-text__button--container {
+  display: flex;
+  padding-left: 200px;
+}
+
+.modal-text__button--close {
+  overflow: hidden;
+  outline: none;
+
+  margin-bottom: 15px;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+
+  font-size: 5vh;
+  text-decoration: none;
+  color: #000;
+
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+
+  cursor: pointer;
+
+  @media (max-width: 387px) {
+    font-size: 4vh;
+  }
+}
+
+.modal-text__paragraph {
+  font-size: 2.8vh;
+}

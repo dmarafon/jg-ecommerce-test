@@ -1,4 +1,4 @@
-export type LoginInterface = {
+export type ILogin = {
   email: string;
   password: string;
 };
