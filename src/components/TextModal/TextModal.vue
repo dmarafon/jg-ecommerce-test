@@ -7,7 +7,7 @@ const props = defineProps<{
 }>();
 
 defineEmits<{
-  (e: "button-on-click"): void;
+  (event: "button-on-click"): void;
 }>();
 
 onKeyStroke(["Escape", "Enter"], (event: KeyboardEvent) => {
