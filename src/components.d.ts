@@ -8,10 +8,11 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Footer: typeof import('./components/Footer/Footer.vue')['default']
-    Homeview: typeof import('./views/Homeview.vue')['default']
-    HomeView: typeof import('./views/HomeView.vue')['default']
+    Homeview: typeof import('./views/HomeView/Homeview.vue')['default']
+    HomeView: typeof import('./views/HomeView/HomeView.vue')['default']
     LoadingModal: typeof import('./components/LoadingModal/LoadingModal.vue')['default']
     LoginForm: typeof import('./components/LoginForm/LoginForm.vue')['default']
+    MarketView: typeof import('./views/MarketView/MarketView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TextModal: typeof import('./components/TextModal/TextModal.vue')['default']
