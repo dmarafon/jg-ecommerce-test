@@ -5,6 +5,7 @@
     <WelcomeText />
     <LoginForm />
   </div>
+  <Footer />
 </template>
 
-<style src="./HomeViewStyle.css"></style>
+<style scoped src="./HomeViewStyle.css"></style>
