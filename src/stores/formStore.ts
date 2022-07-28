@@ -51,7 +51,7 @@ const useLoginFormStore = defineStore("loginForm", {
         login(userData);
 
         finishedLoadingModal();
-      } catch (error: any | unknown) {
+      } catch (error) {
         const err = error as AxiosError;
 
         errorLoginValidation(err);
