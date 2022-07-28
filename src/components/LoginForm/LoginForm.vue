@@ -33,7 +33,6 @@ const {
 const {
   emailValidationResponse,
   passwordValidationResponse,
-  responseFromApi,
   cleanResponse,
 }: {
   emailValidationResponse: (response: string) => void;
@@ -63,7 +62,6 @@ const handleSubmit = () => {
 
     storeLogin.$reset();
   } else {
-    responseFromApi(validateEmailForm);
     emailValidationResponse(validateEmailForm);
     passwordValidationResponse(validatePasswordForm);
   }

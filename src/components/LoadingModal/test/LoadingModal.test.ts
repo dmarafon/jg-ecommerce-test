@@ -1,17 +1,16 @@
-import { mount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
 import LoadingModal from "../../LoadingModal/LoadingModal.vue";
+import { render, screen } from "@testing-library/vue";
+import "@testing-library/jest-dom";
 
 describe("Given a LoadingModal component", () => {
   describe("When its invoked", () => {
-    test("Then it should render a div element with the class 'loading__spinner'", () => {
-      const wrapper = mount(LoadingModal);
+    test("Then it should render a loading spinner animation inside a div element", () => {
+      render(LoadingModal);
 
-      const divElement = wrapper.find("div");
-      expect(divElement.exists()).toBe(true);
+      const divElementSpinner = screen.getByTestId("loading__spinner");
 
-      const classElement = wrapper.find(".loading__spinner");
-      expect(classElement.element.className).toBe("loading__spinner");
+      expect(divElementSpinner).toBeInTheDocument();
     });
   });
 });
