@@ -6,7 +6,7 @@
       <img
         class="welcome__image--logo"
         src="/images/jgmarket_logo_314.webp"
-        alt="trippy logo"
+        alt="jgmarket logo"
         height="230"
       />
     </div>
