@@ -60,7 +60,7 @@ const handleSubmit = () => {
   if (!validateEmailForm && !validatePasswordForm) {
     loginPost({ email, password });
 
-    storeLogin.$reset();
+    // storeLogin.$reset();
   } else {
     emailValidationResponse(validateEmailForm);
     passwordValidationResponse(validatePasswordForm);

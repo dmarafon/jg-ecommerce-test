@@ -1,17 +1,34 @@
 import axios from "axios";
 import { AxiosError } from "axios";
-import { defineStore } from "pinia";
+import { defineStore, Store } from "pinia";
 import { ILogin } from "../types/formTypes";
 import jwtDecode from "jwt-decode";
 import useUserStore from "./userStore";
 import { IUserToken } from "../types/userTypes";
 import useUiStore from "./uiStore";
+import { IUserInterface } from "../types/uiTypes";
+import errorLoginValidation from "../utils/errorValidation";
 
 const useLoginFormStore = defineStore("loginForm", {
   state: (): ILogin => ({ email: "", password: "" }),
   actions: {
     async loginPost(loginInformation: ILogin) {
-      const { loadingModal, finishedLoadingModal } = useUiStore();
+      const {
+        loadingModal,
+        finishedLoadingModal,
+      }: Store<
+        "uiStore",
+        IUserInterface,
+        {},
+        {
+          loadingModal(): void;
+          finishedLoadingModal(): void;
+          responseFromApi(response: string): void;
+          cleanResponse(): void;
+          emailValidationResponse(emailValidationResponse: string): void;
+          passwordValidationResponse(passwordValidationResponse: string): void;
+        }
+      > = useUiStore();
 
       loadingModal();
 
@@ -36,6 +53,9 @@ const useLoginFormStore = defineStore("loginForm", {
         finishedLoadingModal();
       } catch (error: any | unknown) {
         const err = error as AxiosError;
+
+        errorLoginValidation(err);
+
         finishedLoadingModal();
       }
     },
