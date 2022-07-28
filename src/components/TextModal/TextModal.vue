@@ -1,7 +1,19 @@
 <script setup lang="ts">
+import { onKeyStroke } from "@vueuse/core";
+
 const props = defineProps<{
   textMessage?: string;
+  keyEvent?: any;
 }>();
+
+const emit = defineEmits<{
+  (e: "button-on-click"): void;
+}>();
+
+onKeyStroke(["Escape", "Enter"], (e: KeyboardEvent) => {
+  props.keyEvent();
+  e.preventDefault();
+});
 </script>
 
 <template>

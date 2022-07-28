@@ -20,25 +20,21 @@ const errorLoginValidation = ({ message }: { message: string }) => {
       passwordValidationResponse(passwordValidationResponse: string): void;
     }
   > = storeUI;
+  console.log(message);
   switch (true) {
-    case message === "Request failed with status code 400" ||
-      "Request failed with status code 403":
-      debugger;
-
-      responseFromApi("Email or Password Invalid");
+    case message === "Request failed with status code 403" ||
+      "Request failed with status code 400":
+      responseFromApi("Invalid Email or Password");
       break;
 
     case message === "Request failed with status code 500":
-      debugger;
       responseFromApi(
-        "Oops... We're sorry, something went wrong with our servers, try again later"
+        "Oops... We're sorry. Something went wrong with our servers. Try again later"
       );
       break;
     case message === "Network Error":
-      debugger;
-
       responseFromApi(
-        "Oops... We're sorry, something went wrong, try again later"
+        "Oops... We're sorry, something went wrong. Try again later"
       );
       break;
   }
