@@ -20,14 +20,20 @@
   margin-left: -20px;
 }
 
-@media (min-width: 485) and (max-width: 590px) {
+@media (max-width: 590px) {
   .welcome__image--logo {
-    height: 12500px;
+    height: 180px;
   }
 }
 @media (max-width: 485px) {
   .welcome__image--logo {
-    height: 100px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 445px) {
+  .welcome__image--logo {
+    height: 130px;
   }
 }
 
@@ -158,5 +164,13 @@
   .welcome__paragraph--welcome_text {
     padding-left: 80px;
     padding-right: 80px;
+  }
+}
+
+@media (max-width: 485px) {
+  .welcome__paragraph--welcome_text {
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 23px;
   }
 }

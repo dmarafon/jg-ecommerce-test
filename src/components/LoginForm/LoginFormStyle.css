@@ -17,6 +17,7 @@
 @media (max-width: 1022px) {
   .login__container {
     margin-right: 0;
+    margin-top: 20px;
   }
 }
 
