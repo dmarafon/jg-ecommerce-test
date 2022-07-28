@@ -20,7 +20,7 @@ const errorLoginValidation = ({ message }: { message: string }) => {
       passwordValidationResponse(passwordValidationResponse: string): void;
     }
   > = storeUI;
-  console.log(message);
+
   switch (true) {
     case message === "Request failed with status code 403" ||
       "Request failed with status code 400":
