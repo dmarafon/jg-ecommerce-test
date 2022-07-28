@@ -6,13 +6,13 @@ const props = defineProps<{
   keyEvent?: any;
 }>();
 
-const emit = defineEmits<{
+defineEmits<{
   (e: "button-on-click"): void;
 }>();
 
-onKeyStroke(["Escape", "Enter"], (e: KeyboardEvent) => {
+onKeyStroke(["Escape", "Enter"], (event: KeyboardEvent) => {
   props.keyEvent();
-  e.preventDefault();
+  event.preventDefault();
 });
 </script>
 
