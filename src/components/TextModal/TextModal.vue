@@ -18,8 +18,8 @@ onKeyStroke(["Escape", "Enter"], (event: KeyboardEvent) => {
 
 <template>
   <section class="modal-text__container">
-    <div className="modal-text__content">
-      <div className="modal-text__button--container">
+    <div class="modal-text__content">
+      <div class="modal-text__button--container">
         <button
           @click="$emit('button-on-click')"
           class="modal-text__button--close"

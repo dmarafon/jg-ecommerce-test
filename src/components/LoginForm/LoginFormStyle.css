@@ -5,15 +5,17 @@
   margin-top: 120px;
   margin-right: 100px;
 
-  background: #ffffffc0;
+  background: #fff;
   box-sizing: border-box;
   box-shadow: 0 15px 25px #00000099;
   border-radius: 10px;
 
   display: inline-block;
   animation: move-left 1.5s forwards;
+}
 
-  @media (max-width: 1022px) {
+@media (max-width: 1022px) {
+  .login__container {
     margin-right: 0;
   }
 }

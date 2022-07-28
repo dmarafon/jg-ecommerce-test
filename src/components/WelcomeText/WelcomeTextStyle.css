@@ -1,37 +1,32 @@
 .welcome__text--container {
   margin-left: 100px;
-
-  @media (max-width: 1022px) {
-    margin-left: 0;
-  }
 }
 
-.welcome__image--container {
-  @media (max-width: 1022px) {
+@media (max-width: 1022px) {
+  .welcome__image--container {
     display: flex;
     justify-content: center;
   }
 }
 
 .welcome__image--logo {
-  margin-top: 40px;
+  margin-top: 100px;
   margin-left: -20px;
-  @media (min-width: 485) and (max-width: 590px) {
+}
+
+@media (min-width: 485) and (max-width: 590px) {
+  .welcome__image--logo {
     max-height: 125px;
   }
-  @media (max-width: 485px) {
+}
+@media (max-width: 485px) {
+  .welcome__image--logo {
     max-height: 100px;
   }
 }
 
 .welcome__paragraph--container {
   margin-top: 50px;
-
-  @media (max-width: 1022px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 
   animation: fadein 2s;
   -moz-animation: fadein 2s;
@@ -71,45 +66,75 @@
   }
 }
 
+@media (max-width: 1022px) {
+  .welcome__paragraph--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .welcome__paragraph--regular_text_first {
-  font-family: "Cairo", sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 700;
   color: #fff;
-  font-size: 35px;
+  font-size: 20px;
+  font-style: italic;
 
-  @media (max-width: 590px) {
+  margin-top: 90px;
+}
+
+@media (max-width: 590px) {
+  .welcome__paragraph--regular_text_first {
     font-size: 30px;
   }
-  @media (max-width: 485px) {
+}
+@media (max-width: 485px) {
+  .welcome__paragraph--regular_text_first {
     font-size: 25px;
   }
 }
 
 .welcome__paragraph--regular_text_second {
-  font-family: "Cairo", sans-serif;
+  font-family: "Sora", sans-serif;
+
   font-weight: 700;
   color: #fff;
-  font-size: 35px;
-  margin-top: -40px;
+  font-size: 20px;
+  margin-top: 60px;
+  font-style: italic;
+}
 
-  @media (max-width: 590px) {
+@media (max-width: 590px) {
+  .welcome__paragraph--regular_text_second {
     font-size: 30px;
   }
-  @media (max-width: 485px) {
+}
+
+@media (max-width: 485px) {
+  .welcome__paragraph--regular_text_second {
     font-size: 25px;
   }
 }
+
 .welcome__paragraph--regular_text_third {
-  font-family: "Cairo", sans-serif;
+  font-family: "Sora", sans-serif;
+
   font-weight: 700;
   color: #fff;
-  font-size: 35px;
-  margin-top: -40px;
+  font-size: 20px;
+  margin-top: 60px;
+  font-style: italic;
+}
 
-  @media (max-width: 590px) {
+@media (max-width: 590px) {
+  .welcome__paragraph--regular_text_third {
     font-size: 30px;
   }
-  @media (max-width: 485px) {
+}
+
+@media (max-width: 485px) {
+  .welcome__paragraph--regular_text_third {
     font-size: 25px;
   }
 }
