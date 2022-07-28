@@ -63,7 +63,7 @@
   margin-bottom: 30px;
 
   font-size: 16px;
-  color: #00db7f;
+  color: #000;
 
   border: none;
   border-bottom: 1px solid #fff;
@@ -124,7 +124,7 @@
   margin-bottom: 30px;
 
   font-size: 16px;
-  color: #00db7f;
+  color: #000;
 
   border: none;
   border-bottom: 1px solid #fff;
@@ -185,16 +185,17 @@
   text-align: center;
 
   border: none;
-  background-color: #000000;
-  color: #ffffff;
+
+  background-color: #00db7f;
+  color: #000000;
   box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
 
   cursor: pointer;
 }
 
 .login__button:hover {
-  background-color: #00db7f;
-  color: #000000;
+  background-color: #000000;
+  color: #ffffff;
   box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
 }
 

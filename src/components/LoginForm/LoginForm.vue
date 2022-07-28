@@ -77,6 +77,7 @@ const handleSubmit = () => {
       :text-message="apiResponse"
       @button-on-click="cleanResponse"
       v-if="apiResponse"
+      :key-event="cleanResponse"
     />
   </Teleport>
   <section class="login__container">
