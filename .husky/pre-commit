@@ -19,7 +19,7 @@ if git diff --cached --name-only | \
     xargs grep --with-filename -n $FORBIDDEN | \
     grep -v '//';
 then
-    echo -e "\n${red}COMMIT REJECTED!  Found console. references. Please remove them before committing.\n${no_color}"
+    echo -e "\n${red}COMMIT REJECTED!  Found console.log references. Please remove them before committing.\n${no_color}"
     exit 1;
 fi
 
@@ -36,6 +36,6 @@ then
     exit 1;
 fi
 
-echo -e "${green}No console. or debugger references found!${no_color}\n"
+echo -e "${green}No console.log or debugger references found!${no_color}\n"
 echo -e "${green}Git pre-commit hook was successful!${no_color}\n"
 exit 0;
