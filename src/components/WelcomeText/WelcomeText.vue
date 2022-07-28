@@ -11,7 +11,7 @@
       />
     </div>
     <div class="welcome__paragraph--container">
-      <p class="welcome__paragraph--regular_text_first">
+      <p class="welcome__paragraph--welcome_text">
         The Best Tech Marketplace for all your necessities in the Globe!
       </p>
     </div>

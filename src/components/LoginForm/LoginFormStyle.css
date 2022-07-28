@@ -20,6 +20,12 @@
   }
 }
 
+@media (max-width: 385px) {
+  .login__container {
+    width: 330px;
+  }
+}
+
 @keyframes move-left {
   0% {
     opacity: 0;
