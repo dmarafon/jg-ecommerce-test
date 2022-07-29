@@ -29,6 +29,12 @@ const routes: RouteRecordRaw[] = [
     component: MarketView,
     meta: { requiresAuth: true },
   },
+  {
+    path: "/cart",
+    name: "Cart",
+    component: MarketView,
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router: Router = createRouter({ history: createWebHistory(), routes });
