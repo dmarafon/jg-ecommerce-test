@@ -1,18 +1,17 @@
 import axios from "axios";
 import { AxiosError } from "axios";
-import { defineStore, Store } from "pinia";
+import { Store } from "pinia";
 import jwtDecode from "jwt-decode";
-
 import { IUserToken } from "../types/userTypes";
-
 import { IUserInterface } from "../types/uiTypes";
 import errorLoginValidation from "../utils/errorValidation";
 import router from "../router";
 import useUiStore from "../stores/uiStore";
 import useUserStore from "../stores/userStore";
 import { ILogin } from "../types/formTypes";
+import { loginRoute } from "./APIRoutes";
 
-export const loginAPICall = async (loginInformation: ILogin): Promise<void> => {
+const loginAPICall = async (loginInformation: ILogin): Promise<void> => {
   const {
     loadingModal,
     finishedLoadingModal,
@@ -33,10 +32,12 @@ export const loginAPICall = async (loginInformation: ILogin): Promise<void> => {
   loadingModal();
 
   try {
-    const route: string = `${import.meta.env.VITE_API_URL}users/login`;
     const {
       data: { token },
-    }: { data: { token: string } } = await axios.post(route, loginInformation);
+    }: { data: { token: string } } = await axios.post(
+      loginRoute,
+      loginInformation
+    );
 
     localStorage.setItem("token", token);
 
@@ -57,3 +58,5 @@ export const loginAPICall = async (loginInformation: ILogin): Promise<void> => {
     finishedLoadingModal();
   }
 };
+
+export default loginAPICall;
