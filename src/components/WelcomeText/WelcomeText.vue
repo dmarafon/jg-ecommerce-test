@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { welcomeText } from "../../utils/stringVariablesForHTML";
+
+welcomeText;
+</script>
 
 <template>
   <section class="welcome__text--container">
@@ -12,7 +16,7 @@
     </div>
     <div class="welcome__paragraph--container">
       <p class="welcome__paragraph--welcome_text">
-        The Best Marketplace for all your necessities in the Globe!
+        {{ welcomeText }}
       </p>
     </div>
   </section>

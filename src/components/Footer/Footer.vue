@@ -1,4 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {
+  footerAddress,
+  footerZipCode,
+  footerPhoneNumber,
+} from "../../utils/stringVariablesForHTML";
+
+footerAddress;
+
+footerZipCode;
+</script>
 
 <template>
   <section class="footer__section">
@@ -13,10 +23,10 @@
       </div>
       <ol class="footer__address-list">
         <li class="footer__text--listitem">
-          CARRER DEL COMTE D'URGELL, 240, BARCELONA, ES
+          {{ footerAddress }}
         </li>
-        <li class="footer__text--listitem">08036</li>
-        <li class="footer__text--listitem">+34 936 00 49 00</li>
+        <li class="footer__text--listitem">{{ footerZipCode }}</li>
+        <li class="footer__text--listitem">{{ footerPhoneNumber }}</li>
       </ol>
       <div class="footer__social-media">
         <a

@@ -8,6 +8,7 @@ const useUserStore = defineStore("userData", {
     email: "",
     logged: false,
   }),
+  persist: true,
   actions: {
     login({
       id,
