@@ -9,6 +9,7 @@
     position: sticky;
     z-index: 999;
     top: 0;
+    margin-left: 0;
   }
 }
 
@@ -27,6 +28,13 @@
 .navigation__image--logo {
   filter: invert(100%);
   width: 250px;
+}
+
+@media (max-width: 755px) {
+  .navigation__image--logo {
+    width: 200px;
+    height: 100px;
+  }
 }
 
 .menu__link--cart {
