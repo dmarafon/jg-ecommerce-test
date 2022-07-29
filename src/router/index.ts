@@ -8,6 +8,9 @@ import {
 import HomeView from "../views/HomeView/HomeView.vue";
 import MarketView from "../views/MarketView/MarketView.vue";
 import "vue-router";
+import jwtDecode from "jwt-decode";
+import { IUserToken } from "../types/userTypes";
+import useUserStore from "../stores/userStore";
 
 declare module "vue-router" {
   interface RouteMeta {
@@ -34,15 +37,29 @@ const router: Router = createRouter({ history: createWebHistory(), routes });
 router.beforeEach(
   async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
     let token: string | null = localStorage.getItem("token");
-
     if (to.meta.requiresAuth && !token) {
       return {
         path: "/",
       };
     } else if (!to.meta.requiresAuth && token) {
-      return {
-        path: "/market",
-      };
+      try {
+        const decodeToken: IUserToken = jwtDecode(token);
+
+        const { login }: { login: (decodeToken: IUserToken) => void } =
+          useUserStore();
+
+        login(decodeToken);
+
+        return {
+          path: "/market",
+        };
+      } catch (error) {
+        localStorage.clear();
+
+        return {
+          path: "/",
+        };
+      }
     }
   }
 );
