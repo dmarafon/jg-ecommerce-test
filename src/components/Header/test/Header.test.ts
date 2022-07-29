@@ -1,14 +1,22 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import Header from "../Header.vue";
-import { render, screen, within } from "@testing-library/vue";
+import { render, screen } from "@testing-library/vue";
 import "@testing-library/jest-dom";
-import { mount, shallowMount } from "@vue/test-utils";
 import { createTestingPinia } from "@pinia/testing";
-import { IUserToken } from "../../../types/userTypes";
-import useUserStore from "../../../stores/userStore";
 import router from "../../../router";
+import useUserStore from "../../../stores/userStore";
 
 describe("Given a Header Component", () => {
+  beforeEach(() => {
+    const teleportElement: HTMLDivElement = document.createElement("div");
+    teleportElement.id = "modal__container";
+    document.body.appendChild(teleportElement);
+  });
+
+  afterEach(() => {
+    document.body.outerHTML = "";
+  });
+
   describe("When its called to be rendered with a user logged in", () => {
     test("Then it should create a Header Component with 3 list components and an image", async () => {
       const storeUserInformation = {
@@ -17,33 +25,27 @@ describe("Given a Header Component", () => {
         id: "test",
       };
 
-      const totalListComponents = 3;
+      const totalListComponents: number = 3;
 
-      const totalImages = 1;
-
-      shallowMount(Header, {
-        stubs: ["router-link", "router-view"],
+      render(Header, {
         global: {
-          plugins: [createTestingPinia()],
+          plugins: [createTestingPinia(), router],
         },
       });
 
-      // const { login }: { login: (userData: IUserToken) => void } =
-      //   useUserStore();
+      const test = useUserStore();
 
-      // await login(storeUserInformation);
-      // screen.debug();
-      // const link = screen.getByRole("link", {
-      //   name: /jgmarket logo welcome jesus!/i,
-      // });
+      test.$patch({ firstName: "new name" });
 
-      // const displayImage = within(link).getByRole("img", {
-      //   name: /jgmarket logo/i,
-      // });
-      // const displayHeader = screen.getAllByRole("listitem");
+      screen.debug();
 
-      // expect(displayImage).toHaveLength(totalImages);
-      // expect(displayHeader).toHaveLength(totalListComponents);
+      const displayImage = screen.getByRole("img", {
+        name: /jgmarket logo/i,
+      });
+      const displayHeader = screen.getAllByRole("listitem");
+
+      expect(displayImage).toBeInTheDocument();
+      expect(displayHeader).toHaveLength(totalListComponents);
     });
   });
 
