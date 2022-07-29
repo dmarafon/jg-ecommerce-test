@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, Mock, test, vi } from "vitest";
 import TextModal from "../../TextModal/TextModal.vue";
 import { render, screen, waitFor } from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
@@ -9,7 +9,7 @@ describe("Given a TextModal component", () => {
     test("Then it should render a button element with the text 'x'", () => {
       render(TextModal);
 
-      const button = screen.getByRole("button", {
+      const button: HTMLElement = screen.getByRole("button", {
         name: /×/i,
       });
 
@@ -31,9 +31,12 @@ describe("Given a TextModal component", () => {
     test("Then the console.clear web API should have been called with the exact same array", async () => {
       render(TextModal, { props: { keyEvent: () => console.table([1, 2]) } });
 
-      const expectedFunction = (console.table = vi.fn());
+      const expectedFunction: Mock<
+        [tabularData: any, properties?: readonly string[] | undefined],
+        void
+      > = (console.table = vi.fn());
 
-      const expectedConsoledArray = [1, 2];
+      const expectedConsoledArray: number[] = [1, 2];
 
       userEvent.keyboard("{Escape}");
 
@@ -47,9 +50,12 @@ describe("Given a TextModal component", () => {
     test("Then the console.clear web API should have been called with the exact same array", async () => {
       render(TextModal, { props: { keyEvent: () => console.table([1, 2]) } });
 
-      const expectedFunction = (console.table = vi.fn());
+      const expectedFunction: Mock<
+        [tabularData: any, properties?: readonly string[] | undefined],
+        void
+      > = (console.table = vi.fn());
 
-      const expectedConsoledArray = [1, 2];
+      const expectedConsoledArray: number[] = [1, 2];
 
       userEvent.keyboard("{Enter}");
 

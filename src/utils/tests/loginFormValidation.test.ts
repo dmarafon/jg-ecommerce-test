@@ -45,11 +45,11 @@ describe("Given a emailInputValidation function", () => {
 describe("Given a passwordInputValidation function", () => {
   describe("When its invoked passing an empty password", () => {
     test("Then it should return a string with the text 'Empty Password Field'", () => {
-      const password = "";
+      const password: string = "";
 
-      const expectedResponse = "Empty Password Field";
+      const expectedResponse: string = "Empty Password Field";
 
-      const passwordValidation = passwordInputValidation(password);
+      const passwordValidation: string = passwordInputValidation(password);
 
       expect(passwordValidation).toBe(expectedResponse);
     });
@@ -57,11 +57,11 @@ describe("Given a passwordInputValidation function", () => {
 
   describe("When its invoked passing an invalid email address", () => {
     test("Then it should return a string with the text 'Password Should Have 5 to 15 Char.'", () => {
-      const password = "test";
+      const password: string = "test";
 
-      const expectedResponse = "Password Should Have 5 to 15 Char.";
+      const expectedResponse: string = "Password Should Have 5 to 15 Char.";
 
-      const passwordValidation = passwordInputValidation(password);
+      const passwordValidation: string = passwordInputValidation(password);
 
       expect(passwordValidation).toBe(expectedResponse);
     });
@@ -69,11 +69,11 @@ describe("Given a passwordInputValidation function", () => {
 
   describe("When its invoked passing a valid email address", () => {
     test("Then it should return an empty string", () => {
-      const password = "test1234";
+      const password: string = "test1234";
 
-      const expectedResponse = "";
+      const expectedResponse: string = "";
 
-      const passwordValidation = passwordInputValidation(password);
+      const passwordValidation: string = passwordInputValidation(password);
 
       expect(passwordValidation).toBe(expectedResponse);
     });

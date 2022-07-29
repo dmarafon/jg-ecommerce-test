@@ -32,7 +32,7 @@ footerZipCode;
         <a
           href="https://www.facebook.com/JG-Ingenieros-155817744468088/"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener"
           aria-label="Facebook"
         >
           <svg
@@ -49,7 +49,7 @@ footerZipCode;
         <a
           href="https://twitter.com/jgingenieros"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener"
           aria-label="Twitter"
         >
           <svg
@@ -66,7 +66,7 @@ footerZipCode;
         <a
           href="https://www.instagram.com/jgingenieros1970/?hl=es"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener"
           aria-label="Instagram"
         >
           <svg

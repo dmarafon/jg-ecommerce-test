@@ -1,5 +1,4 @@
-import axios from "axios";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import { Store } from "pinia";
 import jwtDecode from "jwt-decode";
 import { IUserToken } from "../types/userTypes";
