@@ -10,6 +10,15 @@ import useUiStore from "../../stores/uiStore";
 import useUserStore from "../../stores/userStore";
 import { IUserInterface } from "../../types/uiTypes";
 import { IUser } from "../../types/userTypes";
+import {
+  headerFirstLink,
+  headerSecondLink,
+  headerWelcome,
+} from "../../utils/stringVariablesForHTML";
+
+headerFirstLink;
+headerSecondLink;
+headerWelcome;
 
 const storeUI = useUiStore();
 
@@ -52,8 +61,8 @@ const submitLogOut = (): void => {
             />
             <div>
               <p class="menu__text--firstname">
-                Welcome
-                {{ firstName }}!
+                {{ headerWelcome }}
+                {{ `${firstName}!` }}
               </p>
             </div></router-link
           >
@@ -64,10 +73,10 @@ const submitLogOut = (): void => {
         </label>
         <ul class="menu__container">
           <li>
-            <router-link to="/market">Our Products</router-link>
+            <router-link to="/market">{{ headerFirstLink }}</router-link>
           </li>
           <li @click="submitLogOut">
-            <router-link to="/">Sign Out</router-link>
+            <router-link to="/">{{ headerSecondLink }}</router-link>
           </li>
           <li class="menu__logged">
             <router-link to="/cart">
