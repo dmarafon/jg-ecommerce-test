@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <p>WELCOME MARKET</p>
+  <Header />
 </template>
 
 <style scoped src="./MarketViewStyle.css"></style>

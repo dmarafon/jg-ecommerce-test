@@ -37,6 +37,7 @@ const router: Router = createRouter({ history: createWebHistory(), routes });
 router.beforeEach(
   async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
     let token: string | null = localStorage.getItem("token");
+
     if (to.meta.requiresAuth && !token) {
       return {
         path: "/",
@@ -53,7 +54,7 @@ router.beforeEach(
         return {
           path: "/market",
         };
-      } catch (error) {
+      } catch (error: any | unknown) {
         localStorage.clear();
 
         return {
