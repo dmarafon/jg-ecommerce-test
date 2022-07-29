@@ -1,5 +1,23 @@
 <script setup lang="ts">
+import {
+  PiniaCustomStateProperties,
+  storeToRefs,
+  _StoreWithGetters,
+} from "pinia";
+import { ToRefs } from "vue";
 import router from "../../router";
+import useUiStore from "../../stores/uiStore";
+import { IUserInterface } from "../../types/uiTypes";
+
+const storeUI = useUiStore();
+
+const {
+  loading,
+}: ToRefs<
+  IUserInterface &
+    _StoreWithGetters<{}> &
+    PiniaCustomStateProperties<IUserInterface>
+> = storeToRefs(storeUI);
 
 const submitLogOut = (): void => {
   localStorage.removeItem("token");
