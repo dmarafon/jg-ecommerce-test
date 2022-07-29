@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Footer: typeof import('./components/Footer/Footer.vue')['default']
+    Header: typeof import('./components/Header/Header.vue')['default']
     Homeview: typeof import('./views/HomeView/Homeview.vue')['default']
     HomeView: typeof import('./views/HomeView/HomeView.vue')['default']
     LoadingModal: typeof import('./components/LoadingModal/LoadingModal.vue')['default']

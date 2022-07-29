@@ -17,6 +17,7 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["vue", "@typescript-eslint", "import"],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   rules: {
     "no-plusplus": "off",
     "no-restricted-syntax": "off",
