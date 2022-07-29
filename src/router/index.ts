@@ -35,11 +35,13 @@ router.beforeEach(
   async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
     let token: string | null = localStorage.getItem("token");
 
-    console.log(token);
     if (to.meta.requiresAuth && !token) {
       return {
         path: "/",
-        query: { redirect: to.fullPath },
+      };
+    } else if (!to.meta.requiresAuth && token) {
+      return {
+        path: "/market",
       };
     }
   }
