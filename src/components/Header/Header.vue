@@ -1,47 +1,49 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section class="navigation__container">
-    <nav class="top-nav">
-      <div class="top-nav_img">
-        <router-link to="/"
-          ><img
-            src="/images/jgmarket_logo_314.webp"
-            alt="jgmarket logo"
-            width="250"
-            height="126.08"
-        /></router-link>
-      </div>
-      <input id="menu-toggle" type="checkbox" for="menu-toggle" />
-      <label class="menu-button-container" for="menu-toggle">
-        <div class="menu-button"></div>
-      </label>
-      <ul class="menu">
-        <li @click="submitLogOut">
-          <router-link to="/">Log Out</router-link>
-        </li>
-        <li class="menu__logged">
-          <router-link to="/">
+  <header class="navigation__header">
+    <div class="navigation__container">
+      <nav class="top-nav">
+        <div class="top-nav_img">
+          <router-link to="/"
+            ><img
+              src="/images/jgmarket_logo_314.webp"
+              alt="jgmarket logo"
+              width="200"
+              height="126.08"
+              class="navigation__image"
+            />
+            <div>
+              <p class="menu__text--firstname">Welcome JESUS</p>
+            </div></router-link
+          >
+        </div>
+        <input id="menu__toggle" type="checkbox" for="menu__toggle" />
+        <label class="menu__button--container" for="menu__toggle">
+          <div class="menu__button"></div>
+        </label>
+        <ul class="menu__container">
+          <li @click="submitLogOut">
+            <router-link to="/">Log Out</router-link>
+          </li>
+          <li class="menu__logged">
             <div class="menu__link--userprofile">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 512"
+                viewBox="0 0 576 512"
                 class="menu__svg--userlogo"
               >
                 <path
-                  d="M223.1 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 223.1 256zM274.7 304H173.3C77.61 304 0 381.7 0 477.4C0 496.5 15.52 512 34.66 512h286.4c-1.246-5.531-1.43-11.31-.2832-17.04l14.28-71.41c1.943-9.723 6.676-18.56 13.68-25.56l45.72-45.72C363.3 322.4 321.2 304 274.7 304zM371.4 420.6c-2.514 2.512-4.227 5.715-4.924 9.203l-14.28 71.41c-1.258 6.289 4.293 11.84 10.59 10.59l71.42-14.29c3.482-.6992 6.682-2.406 9.195-4.922l125.3-125.3l-72.01-72.01L371.4 420.6zM629.5 255.7l-21.1-21.11c-14.06-14.06-36.85-14.06-50.91 0l-38.13 38.14l72.01 72.01l38.13-38.13C643.5 292.5 643.5 269.7 629.5 255.7z"
+                  d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"
                 />
               </svg>
-              <div>
-                Welcome
-                <p class="menu__text--firstname">JESUS</p>
-              </div>
+              <p>0</p>
             </div>
-          </router-link>
-        </li>
-      </ul>
-    </nav>
-  </section>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 </template>
 
 <style src="./HeaderStyle.css"></style>
