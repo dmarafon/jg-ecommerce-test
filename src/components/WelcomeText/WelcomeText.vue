@@ -12,7 +12,7 @@
     </div>
     <div class="welcome__paragraph--container">
       <p class="welcome__paragraph--welcome_text">
-        The Best Tech Marketplace for all your necessities in the Globe!
+        The Best Marketplace for all your necessities in the Globe!
       </p>
     </div>
   </section>

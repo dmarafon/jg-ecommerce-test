@@ -7,9 +7,13 @@ import {
 import { ToRefs } from "vue";
 import router from "../../router";
 import useUiStore from "../../stores/uiStore";
+import useUserStore from "../../stores/userStore";
 import { IUserInterface } from "../../types/uiTypes";
+import { IUser } from "../../types/userTypes";
 
 const storeUI = useUiStore();
+
+const storeUser = useUserStore();
 
 const {
   loading,
@@ -18,6 +22,11 @@ const {
     _StoreWithGetters<{}> &
     PiniaCustomStateProperties<IUserInterface>
 > = storeToRefs(storeUI);
+
+const {
+  firstName,
+}: ToRefs<IUser & _StoreWithGetters<{}> & PiniaCustomStateProperties<IUser>> =
+  storeToRefs(storeUser);
 
 const submitLogOut = (): void => {
   localStorage.removeItem("token");
@@ -42,7 +51,7 @@ const submitLogOut = (): void => {
               class="navigation__image--logo"
             />
             <div>
-              <p class="menu__text--firstname">Welcome JESUS</p>
+              <p class="menu__text--firstname">Welcome {{ firstName }}</p>
             </div></router-link
           >
         </div>

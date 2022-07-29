@@ -17,7 +17,7 @@ describe("Given a WelcomeText component", () => {
       render(WelcomeText);
 
       const expectedText = screen.getByText(
-        /the best tech marketplace for all your necessities in the globe!/i
+        /the best marketplace for all your necessities in the globe!/i
       );
 
       expect(expectedText).toBeInTheDocument();

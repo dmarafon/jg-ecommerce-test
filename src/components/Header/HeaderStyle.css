@@ -39,7 +39,7 @@
 
 .menu__text--firstname {
   margin-top: 0;
-
+  text-transform: capitalize;
   text-align: center;
 }
 .menu__logged > a {
