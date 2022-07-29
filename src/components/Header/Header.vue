@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import router from "../../router";
+
+const submitLogOut = (): void => {
+  localStorage.removeItem("token");
+  router.push("/");
+};
+</script>
 
 <template>
   <Teleport to="#modal__container">
@@ -26,7 +33,7 @@
           <div class="menu__button"></div>
         </label>
         <ul class="menu__container">
-          <li @click="submitLogOut">
+          <li>
             <router-link to="/market">Our Products</router-link>
           </li>
           <li @click="submitLogOut">

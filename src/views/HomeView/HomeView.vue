@@ -5,7 +5,7 @@
     <WelcomeText />
     <LoginForm />
   </div>
-  <Footer1 />
+  <Footer />
 </template>
 
 <style scoped src="./HomeViewStyle.css"></style>
