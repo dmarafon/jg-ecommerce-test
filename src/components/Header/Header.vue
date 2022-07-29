@@ -41,7 +41,7 @@ const submitLogOut = (): void => {
   <header class="navigation__header">
     <div class="navigation__container">
       <nav class="navigation">
-        <div class="navigation__image">
+        <div class="navigation__image--container">
           <router-link to="/"
             ><img
               src="/images/jgmarket_logo_314.webp"
@@ -51,7 +51,10 @@ const submitLogOut = (): void => {
               class="navigation__image--logo"
             />
             <div>
-              <p class="menu__text--firstname">Welcome {{ firstName }}</p>
+              <p class="menu__text--firstname">
+                Welcome
+                {{ firstName }}!
+              </p>
             </div></router-link
           >
         </div>
@@ -64,7 +67,7 @@ const submitLogOut = (): void => {
             <router-link to="/market">Our Products</router-link>
           </li>
           <li @click="submitLogOut">
-            <router-link to="/">Log Out</router-link>
+            <router-link to="/">Sign Out</router-link>
           </li>
           <li class="menu__logged">
             <router-link to="/cart">

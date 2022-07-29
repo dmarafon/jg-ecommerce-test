@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { IUser, IUserToken } from "../types/userTypes";
+import { IUser } from "../types/userTypes";
 
 const useUserStore = defineStore("userData", {
   state: (): IUser => ({
