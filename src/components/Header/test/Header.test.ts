@@ -5,6 +5,8 @@ import "@testing-library/jest-dom";
 import { createTestingPinia } from "@pinia/testing";
 import router from "../../../router";
 import useUserStore from "../../../stores/userStore";
+import { storeToRefs, _StoreWithGetters } from "pinia";
+import { IUser } from "../../../types/userTypes";
 
 describe("Given a Header Component", () => {
   beforeEach(() => {
@@ -29,15 +31,16 @@ describe("Given a Header Component", () => {
 
       render(Header, {
         global: {
-          plugins: [createTestingPinia(), router],
+          plugins: [
+            createTestingPinia({
+              initialState: {
+                userData: { firstName: "Test Name" },
+              },
+            }),
+            router,
+          ],
         },
       });
-
-      const test = useUserStore();
-
-      test.$patch({ firstName: "new name" });
-
-      screen.debug();
 
       const displayImage = screen.getByRole("img", {
         name: /jgmarket logo/i,
