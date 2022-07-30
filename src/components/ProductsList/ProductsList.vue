@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import { storeToRefs, _StoreWithGetters } from "pinia";
 import { RouteLocationNormalizedLoaded } from "vue-router";
+import { limitForGetProducts } from "../../api/APIRoutesAndQueryVariables";
+import router from "../../router";
 import useProductStore from "../../stores/productStore";
 import useUiStore from "../../stores/uiStore";
 import { IProductStore, IProductStoreToRef } from "../../types/productTypes";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 import { calculateSkip } from "../../utils/calculatePageNavigation";
+
+const activeNavigateLeftClass: string = "products__navigate--button_first";
+
+const deactivateNavigateClass: string =
+  "products__navigate--button_deactivated_left";
+
+const activeNavigateRightClass: string = "products__navigate--button_second";
 
 const route: RouteLocationNormalizedLoaded = useRoute();
 
@@ -22,27 +31,33 @@ const { products, totalPages }: IProductStoreToRef = storeToRefs(
 const { limit, page } = route.params;
 
 watchEffect(() => {
+  const { limit, page } = route.params;
+
   const skip: string = calculateSkip(limit, page);
 
   getProducts(limit, skip);
 });
 
-const isActive = () => {
-  if (Number(page) <= 1) {
-    return false;
-  } else {
-    return true;
+watch(
+  () => route.params,
+  (toParams, previousParams) => {
+    router.go(0);
   }
-};
+);
 
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const activeNavigateLeftClass: string = "products__navigate--button_first";
+const navigateForward = () => {
+  const nextPage = Number(page) + 1;
 
-const deactivateNavigateClass: string =
-  "products__navigate--button_deactivated_left";
+  router.push(`/market/${limitForGetProducts}/${nextPage}`);
+};
 
-const activeNavigateRightClass: string = "products__navigate--button_second";
+const navigateBackwards = () => {
+  const nextPage = Number(page) - 1;
+
+  router.push(`/market/${limitForGetProducts}/${nextPage}`);
+};
 </script>
 
 <template>
@@ -117,6 +132,7 @@ const activeNavigateRightClass: string = "products__navigate--button_second";
     <div className="products__navigate--container">
       <svg
         data-testid="back-button"
+        @click="navigateBackwards"
         :class="[
           Number(page) <= 1 ? deactivateNavigateClass : activeNavigateLeftClass,
         ]"
@@ -133,6 +149,7 @@ const activeNavigateRightClass: string = "products__navigate--button_second";
         {{ page }}/ {{ totalPages }}
       </p>
       <svg
+        @click="navigateForward"
         :class="[
           Number(page) === totalPages
             ? deactivateNavigateClass
