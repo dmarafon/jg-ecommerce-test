@@ -1,17 +1,44 @@
 <script setup lang="ts">
-const route = useRoute();
-const searchQuery = computed(() => route.query);
+import {
+  PiniaCustomStateProperties,
+  storeToRefs,
+  _StoreWithGetters,
+} from "pinia";
+import { ToRefs } from "vue";
+import useProductStore from "../../stores/productStore";
+import useUiStore from "../../stores/uiStore";
+import { IUserInterface } from "../../types/uiTypes";
 
-watchEffect(() => console.log(route.params));
+const route = useRoute();
+
+const storeUI = useUiStore();
+
+const { getProducts } = useProductStore();
+// console.log(route.params)
+watchEffect(() => {
+  const { limit, skip } = route.params;
+
+  getProducts(limit, skip);
+});
+
+const {
+  loading,
+}: ToRefs<
+  IUserInterface &
+    _StoreWithGetters<{}> &
+    PiniaCustomStateProperties<IUserInterface>
+> = storeToRefs(storeUI);
 </script>
 
 <template>
+  <Teleport to="#modal__container">
+    <LoadingModal v-if="loading" />
+  </Teleport>
   <section>
     <div className="artwork__text--container">
       <p className="artwork__text--intro">
         ALL THE
-        <span className="artwork__text--colored"> {" "} DES TERRA{" "} </span>{"
-        "} ARTISTS WORKS
+        <span className="artwork__text--colored"> DES TERRA</span> ARTISTS WORKS
       </p>
     </div>
     <div className="artwork__filter--container">
