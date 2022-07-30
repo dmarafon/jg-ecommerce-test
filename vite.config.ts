@@ -26,7 +26,10 @@ export default defineConfig({
   test: {
     globals: true,
     include: ["**/*.test.ts"],
-    exclude: ["src/utils/stringVariablesForHTML.ts"],
+    exclude: [
+      "src/utils/stringVariablesForHTML.ts",
+      "src/mocks/localStorageMock.tsx",
+    ],
     environment: "jsdom",
     deps: {
       inline: ["@vue", "@vueuse", "vue-demi"],

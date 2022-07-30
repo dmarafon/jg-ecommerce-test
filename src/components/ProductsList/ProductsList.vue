@@ -22,8 +22,6 @@ const { products, totalPages }: IProductStoreToRef = storeToRefs(
 const { limit, page } = route.params;
 
 watchEffect(() => {
-  const { limit, page } = route.params;
-
   const skip: string = calculateSkip(limit, page);
 
   getProducts(limit, skip);
