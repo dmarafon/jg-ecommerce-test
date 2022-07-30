@@ -37,16 +37,15 @@ describe("Given a Header Component", () => {
     value: gettinUpLocalStorage,
   });
 
-  describe("When its invoked to be rendered with a user logged in", () => {
-    test("Then it should create a Header Component with 3 list components and an image", async () => {
-      const totalListComponents: number = 3;
-
-      render(Header, {
+  describe("When its called to be rendered and some action triggers the loading modal", () => {
+    test("Then it will render a login modal", async () => {
+      const wrapper = mount(Header, {
         global: {
           plugins: [
             createTestingPinia({
               initialState: {
                 userData: storeUserInformation,
+                uiStore: { loading: true },
               },
             }),
             router,
@@ -54,14 +53,11 @@ describe("Given a Header Component", () => {
         },
       });
 
-      const displayImage: HTMLElement = screen.getByRole("img", {
-        name: /jgmarket logo/i,
-      });
+      screen.debug();
 
-      const displayHeader: HTMLElement[] = screen.getAllByRole("listitem");
+      const divElementSpinner = wrapper.find("#loading__spinner");
 
-      expect(displayImage).toBeInTheDocument();
-      expect(displayHeader).toHaveLength(totalListComponents);
+      expect(divElementSpinner).toBeInTheDocument();
     });
   });
 
@@ -70,7 +66,7 @@ describe("Given a Header Component", () => {
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0ZUB0ZXN0ZSIsImlkIjoiMTIzNCIsImlhdCI6MTY1NDAxODg5Nn0.tYg1N6xwNhOSXGJdOHbHhyJcaU6uSTwYUKElRrh-Tbs"
     );
 
-    test("Then dispatch the logout action, changing the status of the user login payload to 'false' in the 'logged' property", async () => {
+    test("Then it will dispatch a router action sending the user back to the address '/'", async () => {
       const wrapper = mount(Header, {
         global: {
           plugins: [
@@ -86,6 +82,8 @@ describe("Given a Header Component", () => {
 
       const expectedPushNavigation = vi.spyOn(router, "push");
 
+      const expectedAddres = "/";
+
       screen.debug();
 
       const signOut = wrapper.findAll("li");
@@ -93,7 +91,7 @@ describe("Given a Header Component", () => {
       // @ts-ignore
       signOut[1].wrapperElement._vei.onClick.value();
 
-      expect(expectedPushNavigation).toHaveBeenCalledTimes(1);
+      expect(expectedPushNavigation).toHaveBeenCalledWith(expectedAddres);
     });
   });
 });
