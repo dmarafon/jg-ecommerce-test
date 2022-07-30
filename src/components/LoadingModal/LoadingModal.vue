@@ -6,4 +6,4 @@
   </section>
 </template>
 
-<style src="./LoadingModalStyle.css"></style>
+<style scoped src="./LoadingModalStyle.css"></style>

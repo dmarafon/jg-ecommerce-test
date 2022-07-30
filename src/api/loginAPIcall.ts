@@ -8,7 +8,11 @@ import router from "../router";
 import useUiStore from "../stores/uiStore";
 import useUserStore from "../stores/userStore";
 import { ILogin } from "../types/formTypes";
-import { loginRoute } from "./APIRoutes";
+import {
+  initialSkipForGetProducts,
+  limitForGetProducts,
+  loginRoute,
+} from "./APIRoutesAndQueryVariables";
 
 const loginAPICall = async (loginInformation: ILogin): Promise<void> => {
   const {
@@ -46,7 +50,7 @@ const loginAPICall = async (loginInformation: ILogin): Promise<void> => {
 
     login(userData);
 
-    router.push("/market");
+    router.push(`/market/${limitForGetProducts}/${initialSkipForGetProducts}`);
 
     finishedLoadingModal();
   } catch (error) {

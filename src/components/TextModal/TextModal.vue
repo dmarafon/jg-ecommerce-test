@@ -32,4 +32,4 @@ onKeyStroke(["Escape", "Enter"], (event: KeyboardEvent) => {
   </section>
 </template>
 
-<style src="./TextModalStyle.css"></style>
+<style scoped src="./TextModalStyle.css"></style>

@@ -3,11 +3,13 @@ import {
   footerAddress,
   footerZipCode,
   footerPhoneNumber,
+  footerCityCountry,
 } from "../../utils/stringVariablesForHTML";
 
 footerAddress;
-
+footerCityCountry;
 footerZipCode;
+footerPhoneNumber;
 </script>
 
 <template>
@@ -24,6 +26,9 @@ footerZipCode;
       <ol class="footer__address-list">
         <li class="footer__text--listitem">
           {{ footerAddress }}
+        </li>
+        <li class="footer__text--listitem">
+          {{ footerCityCountry }}
         </li>
         <li class="footer__text--listitem">{{ footerZipCode }}</li>
         <li class="footer__text--listitem">{{ footerPhoneNumber }}</li>
@@ -85,4 +90,4 @@ footerZipCode;
   </section>
 </template>
 
-<style src="./FooterStyle.css"></style>
+<style scoped src="./FooterStyle.css"></style>
