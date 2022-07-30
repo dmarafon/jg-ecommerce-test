@@ -1,12 +1,13 @@
 import { defineStore } from "pinia";
 import getProductsAPICall from "../api/getProductsAPICall";
+import { IProducts } from "../types/productTypes";
 
 const useProductStore = defineStore("productStore", {
-  state: () => ({ products: [], total: 0 }),
+  state: (): IProducts => ({ products: [], total: 0, totalPages: 0 }),
   actions: {
     async getProducts(
       limit: string | string[] | void | null | undefined,
-      skip: string | string[] | void | null | undefined
+      skip: string | void | null | undefined
     ) {
       await getProductsAPICall(limit, skip);
     },

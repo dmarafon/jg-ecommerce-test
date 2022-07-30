@@ -1,4 +1,4 @@
-.artworks__list {
+.products__list {
   list-style: none;
   margin: 0;
   display: flex;
@@ -8,7 +8,7 @@
   padding-inline-start: 0;
 }
 
-.artworks__navigate--container {
+.products__navigate--container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -16,18 +16,21 @@
   padding-inline-start: 0;
 }
 
-.artwork__filter--container {
+.products__filter--container {
   display: flex;
   margin-top: 50px;
   justify-content: center;
 }
 
-.artworks__navigate--button_first {
+.products__navigate--button_first {
   filter: invert(61%) sepia(10%) saturate(5710%) hue-rotate(335deg)
     brightness(102%) contrast(96%);
   cursor: pointer;
   width: 10vh;
   margin-right: 100px;
+}
+
+.products__navigate--button_first {
   @media (max-width: 995px) {
     position: fixed;
     left: 5%;
@@ -37,12 +40,15 @@
   }
 }
 
-.artworks__navigate--button_deactivated_left {
+.products__navigate--button_deactivated_left {
   filter: invert(100%) sepia(0%) saturate(7452%) hue-rotate(15deg)
     brightness(134%) contrast(100%);
   width: 10vh;
   margin-right: 100px;
   cursor: default;
+}
+
+.products__navigate--button_deactivated_left {
   @media (max-width: 995px) {
     position: fixed;
     left: 5%;
@@ -52,12 +58,14 @@
   }
 }
 
-.artworks__navigate--button_deactivated_right {
+.products__navigate--button_deactivated_right {
   filter: invert(100%) sepia(0%) saturate(7452%) hue-rotate(15deg)
     brightness(134%) contrast(100%);
   width: 10vh;
   margin-right: 100px;
-  @media (max-width: 995px) {
+}
+@media (max-width: 995px) {
+  .products__navigate--button_deactivated_right {
     position: fixed;
     right: 5%;
     bottom: 40%;
@@ -66,13 +74,16 @@
   }
 }
 
-.artworks__navigate--button_second {
+.products__navigate--button_second {
   filter: invert(61%) sepia(10%) saturate(5710%) hue-rotate(335deg)
     brightness(102%) contrast(96%);
   cursor: pointer;
   width: 10vh;
   margin-left: 100px;
-  @media (max-width: 995px) {
+}
+
+@media (max-width: 995px) {
+  .products__navigate--button_second {
     position: fixed;
     right: 5%;
     bottom: 40%;
@@ -81,7 +92,7 @@
   }
 }
 
-.artworks__navigate--counter {
+.products__navigate--counter {
   color: #ff701e;
   font-weight: bolder;
   font-size: 200%;
@@ -105,7 +116,10 @@
   justify-content: center;
   margin-right: 0;
   margin-left: 10%;
-  @media (max-width: 1492px) {
+}
+
+@media (max-width: 1492px) {
+  .dropdown__container--right {
     display: none;
   }
 }
@@ -117,7 +131,10 @@
   margin-left: 0;
   margin-right: 0;
   justify-content: center;
-  @media (min-width: 1492px) {
+}
+
+@media (min-width: 1492px) {
+  .dropdown__container--right_responsive {
     display: none;
   }
 }
@@ -166,7 +183,7 @@
   color: white;
 }
 
-.artwork__text--container {
+.products__text--container {
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
@@ -180,49 +197,49 @@
 }
 
 @media (min-width: 835px) and (max-width: 1023px) {
-  .artwork__text--container {
+  .products__text--container {
     margin-left: 37vw;
     margin-right: 37vw;
   }
 }
 
 @media (min-width: 683px) and (max-width: 834px) {
-  .artwork__text--container {
+  .products__text--container {
     margin-left: 35vw;
     margin-right: 35vw;
   }
 }
 
 @media (min-width: 603px) and (max-width: 682px) {
-  .artwork__text--container {
+  .products__text--container {
     margin-left: 33vw;
     margin-right: 33vw;
   }
 }
 
 @media (min-width: 568px) and (max-width: 602px) {
-  .artwork__text--container {
+  .products__text--container {
     margin-left: 32vw;
     margin-right: 32vw;
   }
 }
 
 @media (min-width: 513px) and (max-width: 567px) {
-  .artwork__text--container {
+  .products__text--container {
     margin-left: 30vw;
     margin-right: 30vw;
   }
 }
 
 @media (min-width: 465px) and (max-width: 512px) {
-  .artwork__text--container {
+  .products__text--container {
     margin-left: 28vw;
     margin-right: 28vw;
   }
 }
 
 @media (max-width: 464px) {
-  .artwork__text--container {
+  .products__text--container {
     margin-left: 25vw;
     margin-right: 25vw;
   }
@@ -310,7 +327,7 @@
   }
 }
 
-.artwork__text--intro {
+.products__text--intro {
   color: #000000;
   font-size: 100%;
   text-align: center;
@@ -320,6 +337,6 @@
   font-weight: 800;
 }
 
-.artwork__text--colored {
+.products__text--colored {
   color: #fa803b;
 }

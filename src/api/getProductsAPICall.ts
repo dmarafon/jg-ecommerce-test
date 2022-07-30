@@ -5,10 +5,11 @@ import errorLoginValidation from "../utils/errorValidation";
 import useUiStore from "../stores/uiStore";
 import { productsRoute } from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";
+import { calculateTotalPages } from "../utils/calculatePageNavigation";
 
 const getProductsAPICall = async (
   limit: string | string[] | void | null | undefined,
-  skip: string | string[] | void | null | undefined
+  skip: string | void | null | undefined
 ): Promise<void> => {
   const {
     loadingModal,
@@ -27,14 +28,7 @@ const getProductsAPICall = async (
     }
   > = useUiStore();
 
-  const productStore: Store<
-    "productStore",
-    {
-      products: never[];
-      total: number;
-    },
-    {}
-  > = useProductStore();
+  const productStore = useProductStore();
 
   loadingModal();
 
@@ -45,9 +39,12 @@ const getProductsAPICall = async (
       productsRoute(limit, skip)
     );
 
+    const totalPages: number = await calculateTotalPages(total);
+
     productStore.$patch((state) => {
       state.products.push(products);
       state.total = total;
+      state.totalPages = totalPages;
     });
 
     finishedLoadingModal();

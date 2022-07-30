@@ -1,24 +1,45 @@
 <script setup lang="ts">
 import {
   PiniaCustomStateProperties,
+  Store,
   storeToRefs,
   _StoreWithGetters,
 } from "pinia";
 import { ToRefs } from "vue";
+import { RouteLocationNormalizedLoaded } from "vue-router";
 import useProductStore from "../../stores/productStore";
 import useUiStore from "../../stores/uiStore";
 import { IUserInterface } from "../../types/uiTypes";
 import { calculateSkip } from "../../utils/calculatePageNavigation";
 
-const route = useRoute();
+const route: RouteLocationNormalizedLoaded = useRoute();
 
-const storeUI = useUiStore();
+const storeUI: Store<
+  "uiStore",
+  IUserInterface,
+  {},
+  {
+    loadingModal(): void;
+    finishedLoadingModal(): void;
+    responseFromApi(response: string): void;
+    cleanResponse(): void;
+    emailValidationResponse(emailValidationResponse: string): void;
+    passwordValidationResponse(passwordValidationResponse: string): void;
+  }
+> = useUiStore();
 
 const { getProducts } = useProductStore();
+
+const { products, totalPages } = storeToRefs(useProductStore());
+
+const state = storeToRefs(useProductStore());
+
+const { limit, page } = route.params;
+
 watchEffect(() => {
   const { limit, page } = route.params;
 
-  const skip = calculateSkip(limit, page);
+  const skip: string = calculateSkip(limit, page);
 
   getProducts(limit, skip);
 });
@@ -37,13 +58,14 @@ const {
     <LoadingModal v-if="loading" />
   </Teleport>
   <section>
-    <div className="artwork__text--container">
-      <p className="artwork__text--intro">
+    <div className="products__text--container">
+      <p className="products__text--intro">
         ALL THE
-        <span className="artwork__text--colored"> DES TERRA</span> ARTISTS WORKS
+        <span className="products__text--colored"> DES TERRA</span> ARTISTS
+        WORKS
       </p>
     </div>
-    <div className="artwork__filter--container">
+    <div className="products__filter--container">
       <div className="dropdown__container">
         <div className="dropdown">
           <button className="dropbtn">SORT BY NAME</button>
@@ -87,10 +109,12 @@ const {
         <div className="dropdown-content"></div>
       </div>
     </div>
-    <ul className="artworks__list">
-      <!-- <Artwork key="{artwork.id}" artwork="{artwork}" />; -->
+    <ul v-if="products" className="products__list">
+      <li v-for="(product, index) in products[0]" :key="index">
+        {{ product }}
+      </li>
     </ul>
-    <div className="artworks__navigate--container">
+    <div className="products__navigate--container">
       <svg
         data-testid="back-button"
         xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +126,8 @@ const {
         />
       </svg>
 
-      <p className="artworks__navigate--counter">
-        {`${currentPage}/${totalPage}`}
+      <p className="products__navigate--counter">
+        {{ page }}/ {{ totalPages }}
       </p>
       <svg
         data-testid="forward-button"
