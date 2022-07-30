@@ -1,34 +1,20 @@
 import axios, { AxiosError } from "axios";
-import { Store } from "pinia";
-import { IUserInterface } from "../types/uiTypes";
+import { IUserInterfaceStore } from "../types/uiTypes";
 import errorLoginValidation from "../utils/errorValidation";
 import useUiStore from "../stores/uiStore";
 import { productsRoute } from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";
 import { calculateTotalPages } from "../utils/calculatePageNavigation";
+import { Ilimit, IProductStore, ISkip } from "../types/productTypes";
 
 const getProductsAPICall = async (
-  limit: string | string[] | void | null | undefined,
-  skip: string | void | null | undefined
+  limit: Ilimit,
+  skip: ISkip
 ): Promise<void> => {
-  const {
-    loadingModal,
-    finishedLoadingModal,
-  }: Store<
-    "uiStore",
-    IUserInterface,
-    {},
-    {
-      loadingModal(): void;
-      finishedLoadingModal(): void;
-      responseFromApi(response: string): void;
-      cleanResponse(): void;
-      emailValidationResponse(emailValidationResponse: string): void;
-      passwordValidationResponse(passwordValidationResponse: string): void;
-    }
-  > = useUiStore();
+  const { loadingModal, finishedLoadingModal }: IUserInterfaceStore =
+    useUiStore();
 
-  const productStore = useProductStore();
+  const productStore: IProductStore = useProductStore();
 
   loadingModal();
 

@@ -1,38 +1,23 @@
 <script setup lang="ts">
-import {
-  PiniaCustomStateProperties,
-  Store,
-  storeToRefs,
-  _StoreWithGetters,
-} from "pinia";
-import { ToRefs } from "vue";
+import { storeToRefs, _StoreWithGetters } from "pinia";
 import { RouteLocationNormalizedLoaded } from "vue-router";
 import useProductStore from "../../stores/productStore";
 import useUiStore from "../../stores/uiStore";
-import { IUserInterface } from "../../types/uiTypes";
+import { IProductStore, IProductStoreToRef } from "../../types/productTypes";
+import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 import { calculateSkip } from "../../utils/calculatePageNavigation";
 
 const route: RouteLocationNormalizedLoaded = useRoute();
 
-const storeUI: Store<
-  "uiStore",
-  IUserInterface,
-  {},
-  {
-    loadingModal(): void;
-    finishedLoadingModal(): void;
-    responseFromApi(response: string): void;
-    cleanResponse(): void;
-    emailValidationResponse(emailValidationResponse: string): void;
-    passwordValidationResponse(passwordValidationResponse: string): void;
-  }
-> = useUiStore();
+const storeUI: IUserInterfaceStore = useUiStore();
 
-const { getProducts } = useProductStore();
+const { cleanResponse }: IUserInterfaceStore = storeUI;
 
-const { products, totalPages } = storeToRefs(useProductStore());
+const { getProducts }: IProductStore = useProductStore();
 
-const state = storeToRefs(useProductStore());
+const { products, totalPages }: IProductStoreToRef = storeToRefs(
+  useProductStore()
+);
 
 const { limit, page } = route.params;
 
@@ -44,18 +29,20 @@ watchEffect(() => {
   getProducts(limit, skip);
 });
 
-const {
-  loading,
-}: ToRefs<
-  IUserInterface &
-    _StoreWithGetters<{}> &
-    PiniaCustomStateProperties<IUserInterface>
-> = storeToRefs(storeUI);
+const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
 </script>
 
 <template>
   <Teleport to="#modal__container">
     <LoadingModal v-if="loading" />
+  </Teleport>
+  <Teleport to="#modal__container">
+    <TextModal
+      :text-message="apiResponse"
+      @button-on-click="cleanResponse"
+      v-if="apiResponse"
+      :key-event="cleanResponse"
+    />
   </Teleport>
   <section>
     <div className="products__text--container">

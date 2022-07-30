@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import {
-  PiniaCustomStateProperties,
-  storeToRefs,
-  _StoreWithGetters,
-} from "pinia";
-import { ToRefs } from "vue";
+import { storeToRefs, _StoreWithGetters } from "pinia";
 import {
   initialSkipForGetProducts,
   limitForGetProducts,
 } from "../../api/APIRoutesAndQueryVariables";
 import useUiStore from "../../stores/uiStore";
 import useUserStore from "../../stores/userStore";
-import { IUserInterface } from "../../types/uiTypes";
-import { IUser } from "../../types/userTypes";
+import { IStoreUIToRefs } from "../../types/uiTypes";
+import { IStoreUserToRefs } from "../../types/userTypes";
 import {
   headerFirstLink,
   headerSecondLink,
@@ -27,18 +22,9 @@ const storeUI = useUiStore();
 
 const storeUser = useUserStore();
 
-const {
-  loading,
-}: ToRefs<
-  IUserInterface &
-    _StoreWithGetters<{}> &
-    PiniaCustomStateProperties<IUserInterface>
-> = storeToRefs(storeUI);
+const { loading }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const {
-  firstName,
-}: ToRefs<IUser & _StoreWithGetters<{}> & PiniaCustomStateProperties<IUser>> =
-  storeToRefs(storeUser);
+const { firstName }: IStoreUserToRefs = storeToRefs(storeUser);
 
 const router = useRouter();
 

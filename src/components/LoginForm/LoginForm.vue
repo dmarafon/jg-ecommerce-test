@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import {
-  PiniaCustomStateProperties,
-  storeToRefs,
-  _StoreWithGetters,
-} from "pinia";
-import { ILogin } from "../../types/formTypes";
+import { storeToRefs, _StoreWithGetters } from "pinia";
+import { ILoginStore } from "../../types/formTypes";
 import useLoginFormStore from "../../stores/formStore";
 import useUiStore from "../../stores/uiStore";
 import {
   emailInputValidation,
   passwordInputValidation,
 } from "../../utils/loginFormValidation";
-import { ToRefs } from "vue";
-import { IUserInterface } from "../../types/uiTypes";
+import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 import {
   loginTitle,
   loginLabelEmail,
@@ -43,35 +38,18 @@ const {
   emailResponse,
   passwordResponse,
   apiResponse,
-}: ToRefs<
-  IUserInterface &
-    _StoreWithGetters<{}> &
-    PiniaCustomStateProperties<IUserInterface>
-> = storeToRefs(storeUI);
+}: IStoreUIToRefs = storeToRefs(storeUI);
 
 const {
   emailValidationResponse,
   passwordValidationResponse,
   cleanResponse,
-}: {
-  emailValidationResponse: (response: string) => void;
-  passwordValidationResponse: (response: string) => void;
-  responseFromApi(response: string): void;
-  cleanResponse: () => void;
-} = storeUI;
+}: IUserInterfaceStore = storeUI;
 
 const handleSubmit = () => {
   cleanResponse();
 
-  const {
-    email,
-    password,
-    loginPost,
-  }: {
-    email: string;
-    password: string;
-    loginPost: (loginInformation: ILogin) => void;
-  } = storeLogin;
+  const { email, password, loginPost }: ILoginStore = storeLogin;
 
   const validateEmailForm: string = emailInputValidation(email);
   const validatePasswordForm: string = passwordInputValidation(password);

@@ -1,3 +1,5 @@
+import { Ilimit, ISkip } from "../types/productTypes";
+
 export const limitForGetProducts: string = "12";
 
 export const initialSkipForGetProducts: string & "1" = "1";
@@ -6,10 +8,7 @@ export const loginRoute: string = `${
   import.meta.env.VITE_API_USER_URL
 }users/login`;
 
-export const productsRoute = (
-  limit: string | string[] | void | null | undefined,
-  skip: string | void | null | undefined
-): string => {
+export const productsRoute = (limit: Ilimit, skip: ISkip): string => {
   if (limit && skip) {
     return `${
       import.meta.env.VITE_API_PRODUCT_URL

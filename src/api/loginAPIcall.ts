@@ -1,8 +1,7 @@
 import axios, { AxiosError } from "axios";
-import { Store } from "pinia";
 import jwtDecode from "jwt-decode";
 import { IUserToken } from "../types/userTypes";
-import { IUserInterface } from "../types/uiTypes";
+import { IUserInterfaceStore } from "../types/uiTypes";
 import errorLoginValidation from "../utils/errorValidation";
 import router from "../router";
 import useUiStore from "../stores/uiStore";
@@ -15,22 +14,8 @@ import {
 } from "./APIRoutesAndQueryVariables";
 
 const loginAPICall = async (loginInformation: ILogin): Promise<void> => {
-  const {
-    loadingModal,
-    finishedLoadingModal,
-  }: Store<
-    "uiStore",
-    IUserInterface,
-    {},
-    {
-      loadingModal(): void;
-      finishedLoadingModal(): void;
-      responseFromApi(response: string): void;
-      cleanResponse(): void;
-      emailValidationResponse(emailValidationResponse: string): void;
-      passwordValidationResponse(passwordValidationResponse: string): void;
-    }
-  > = useUiStore();
+  const { loadingModal, finishedLoadingModal }: IUserInterfaceStore =
+    useUiStore();
 
   loadingModal();
 
