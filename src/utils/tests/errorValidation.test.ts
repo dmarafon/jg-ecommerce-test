@@ -1,7 +1,8 @@
 import { describe, expect, test, vi } from "vitest";
 import useUiStore from "../../stores/uiStore";
 import errorLoginValidation from "../errorValidation";
-import { setActivePinia, createPinia } from "pinia";
+import { setActivePinia, createPinia, Store } from "pinia";
+import { IUserInterface } from "../../types/uiTypes";
 
 beforeEach(() => {
   setActivePinia(createPinia());
@@ -10,17 +11,30 @@ beforeEach(() => {
 describe("Given a emailInputValidation function", () => {
   describe("When its invoked passing a message that says 'Request failed with status code 403' ", () => {
     test("Then it should call the responseFromApi action with the message string 'Invalid Email or Password'", () => {
-      const storeUI = useUiStore();
+      const storeUI: Store<
+        "uiStore",
+        IUserInterface,
+        {},
+        {
+          loadingModal(): void;
+          finishedLoadingModal(): void;
+          responseFromApi(response: string): void;
+          cleanResponse(): void;
+          emailValidationResponse(emailValidationResponse: string): void;
+          passwordValidationResponse(passwordValidationResponse: string): void;
+        }
+      > = useUiStore();
 
       vi.spyOn(storeUI, "responseFromApi");
 
-      const errorMessage = {
+      const errorMessage: { message: string } = {
         message: "Request failed with status code 403",
       };
 
-      const errorResponse = "Invalid Email or Password";
+      const errorResponse: string = "Invalid Email or Password";
 
-      const expectedAction = storeUI.responseFromApi;
+      const expectedAction: (response: string) => void =
+        storeUI.responseFromApi;
 
       errorLoginValidation(errorMessage);
 
@@ -30,17 +44,32 @@ describe("Given a emailInputValidation function", () => {
 
   describe("When its invoked passing a message that says 'Request failed with status code 400' ", () => {
     test("Then it should call the responseFromApi action with the message string 'Invalid Email or Password'", () => {
-      const storeUI = useUiStore();
+      const storeUI: Store<
+        "uiStore",
+        IUserInterface,
+        {},
+        {
+          loadingModal(): void;
+          finishedLoadingModal(): void;
+          responseFromApi(response: string): void;
+          cleanResponse(): void;
+          emailValidationResponse(emailValidationResponse: string): void;
+          passwordValidationResponse(passwordValidationResponse: string): void;
+        }
+      > = useUiStore();
 
       vi.spyOn(storeUI, "responseFromApi");
 
-      const errorMessage = {
+      const errorMessage: {
+        message: string;
+      } = {
         message: "Request failed with status code 400",
       };
 
-      const errorResponse = "Invalid Email or Password";
+      const errorResponse: string = "Invalid Email or Password";
 
-      const expectedAction = storeUI.responseFromApi;
+      const expectedAction: (response: string) => void =
+        storeUI.responseFromApi;
 
       errorLoginValidation(errorMessage);
 
@@ -50,18 +79,33 @@ describe("Given a emailInputValidation function", () => {
 
   describe("When its invoked passing a message that says 'Request failed with status code 500' ", () => {
     test("Then it should call the responseFromApi action with the message string 'Oops... We're sorry. Something went wrong with our servers. Try again later'", () => {
-      const storeUI = useUiStore();
+      const storeUI: Store<
+        "uiStore",
+        IUserInterface,
+        {},
+        {
+          loadingModal(): void;
+          finishedLoadingModal(): void;
+          responseFromApi(response: string): void;
+          cleanResponse(): void;
+          emailValidationResponse(emailValidationResponse: string): void;
+          passwordValidationResponse(passwordValidationResponse: string): void;
+        }
+      > = useUiStore();
 
       vi.spyOn(storeUI, "responseFromApi");
 
-      const errorMessage = {
+      const errorMessage: {
+        message: string;
+      } = {
         message: "Request failed with status code 500",
       };
 
-      const errorResponse =
+      const errorResponse: string =
         "Oops... We're sorry. Something went wrong with our servers. Try again later";
 
-      const expectedAction = storeUI.responseFromApi;
+      const expectedAction: (response: string) => void =
+        storeUI.responseFromApi;
 
       errorLoginValidation(errorMessage);
 
@@ -71,18 +115,31 @@ describe("Given a emailInputValidation function", () => {
 
   describe("When its invoked passing a message that says 'Network Error' ", () => {
     test("Then it should call the responseFromApi action with the message string 'Oops... We're sorry. Something went wrong with our servers. Try again later'", () => {
-      const storeUI = useUiStore();
+      const storeUI: Store<
+        "uiStore",
+        IUserInterface,
+        {},
+        {
+          loadingModal(): void;
+          finishedLoadingModal(): void;
+          responseFromApi(response: string): void;
+          cleanResponse(): void;
+          emailValidationResponse(emailValidationResponse: string): void;
+          passwordValidationResponse(passwordValidationResponse: string): void;
+        }
+      > = useUiStore();
 
       vi.spyOn(storeUI, "responseFromApi");
 
-      const errorMessage = {
+      const errorMessage: { message: string } = {
         message: "Network Error",
       };
 
-      const errorResponse =
+      const errorResponse: string =
         "Oops... We're sorry, something went wrong. Try again later";
 
-      const expectedAction = storeUI.responseFromApi;
+      const expectedAction: (response: string) => void =
+        storeUI.responseFromApi;
 
       errorLoginValidation(errorMessage);
 
@@ -92,16 +149,29 @@ describe("Given a emailInputValidation function", () => {
 
   describe("When its invoked passing an empty message' ", () => {
     test("Then it shouldn't call the responseFromApi action'", () => {
-      const storeUI = useUiStore();
+      const storeUI: Store<
+        "uiStore",
+        IUserInterface,
+        {},
+        {
+          loadingModal(): void;
+          finishedLoadingModal(): void;
+          responseFromApi(response: string): void;
+          cleanResponse(): void;
+          emailValidationResponse(emailValidationResponse: string): void;
+          passwordValidationResponse(passwordValidationResponse: string): void;
+        }
+      > = useUiStore();
 
       vi.spyOn(storeUI, "responseFromApi");
 
-      const errorMessage = { message: "" };
+      const errorMessage: { message: string } = { message: "" };
 
-      const errorResponse =
+      const errorResponse: string =
         "Oops... We're sorry, something went wrong. Try again later";
 
-      const expectedAction = storeUI.responseFromApi;
+      const expectedAction: (response: string) => void =
+        storeUI.responseFromApi;
 
       errorLoginValidation(errorMessage);
 

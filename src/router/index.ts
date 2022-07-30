@@ -7,7 +7,6 @@ import {
 } from "vue-router";
 import HomeView from "../views/HomeView/HomeView.vue";
 import MarketView from "../views/MarketView/MarketView.vue";
-import "vue-router";
 import jwtDecode from "jwt-decode";
 import { IUserToken } from "../types/userTypes";
 import useUserStore from "../stores/userStore";
@@ -27,6 +26,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/market",
     name: "Market",
+    component: MarketView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/cart",
+    name: "Cart",
     component: MarketView,
     meta: { requiresAuth: true },
   },

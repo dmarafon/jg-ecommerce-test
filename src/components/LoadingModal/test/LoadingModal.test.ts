@@ -8,7 +8,8 @@ describe("Given a LoadingModal component", () => {
     test("Then it should render a loading spinner animation inside a div element", () => {
       render(LoadingModal);
 
-      const divElementSpinner = screen.getByTestId("loading__spinner");
+      const divElementSpinner: HTMLElement =
+        screen.getByTestId("loading__spinner");
 
       expect(divElementSpinner).toBeInTheDocument();
     });
