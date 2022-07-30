@@ -1,14 +1,14 @@
 export const limitForGetProducts: string = "12";
 
-export const initialSkipForGetProducts: string = "0";
+export const initialSkipForGetProducts: string = "1";
 
 export const loginRoute: string = `${
   import.meta.env.VITE_API_USER_URL
 }users/login`;
 
 export const productsRoute = (
-  limit: string | undefined | null | void,
-  skip: string | undefined | null | void
+  limit: string | string[] | void | null | undefined,
+  skip: string | string[] | void | null | undefined
 ): string => {
   if (limit && skip) {
     return `${

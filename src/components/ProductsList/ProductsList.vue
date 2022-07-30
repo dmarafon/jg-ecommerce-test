@@ -8,15 +8,17 @@ import { ToRefs } from "vue";
 import useProductStore from "../../stores/productStore";
 import useUiStore from "../../stores/uiStore";
 import { IUserInterface } from "../../types/uiTypes";
+import { calculateSkip } from "../../utils/calculatePageNavigation";
 
 const route = useRoute();
 
 const storeUI = useUiStore();
 
 const { getProducts } = useProductStore();
-// console.log(route.params)
 watchEffect(() => {
-  const { limit, skip } = route.params;
+  const { limit, page } = route.params;
+
+  const skip = calculateSkip(limit, page);
 
   getProducts(limit, skip);
 });

@@ -28,7 +28,7 @@ const routes: RouteRecordRaw[] = [
     component: HomeView,
   },
   {
-    path: "/market/:limit/:skip",
+    path: "/market/:limit/:page",
     name: "Market",
     component: MarketView,
     meta: { requiresAuth: true },
