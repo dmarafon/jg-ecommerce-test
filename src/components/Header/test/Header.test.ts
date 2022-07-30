@@ -4,7 +4,6 @@ import { render, screen } from "@testing-library/vue";
 import "@testing-library/jest-dom";
 import { createTestingPinia } from "@pinia/testing";
 import router from "../../../router";
-import { _StoreWithGetters } from "pinia";
 import { IUser } from "../../../types/userTypes";
 import { localStorageMock } from "../../../mocks/localStorageMock";
 import { mount } from "@vue/test-utils";
@@ -37,15 +36,16 @@ describe("Given a Header Component", () => {
     value: gettinUpLocalStorage,
   });
 
-  describe("When its called to be rendered and some action triggers the loading modal", () => {
-    test("Then it will render a login modal", async () => {
-      const wrapper = mount(Header, {
+  describe("When its invoked to be rendered with a user logged in", () => {
+    test("Then it should create a Header Component with 3 list components and an image", async () => {
+      const totalListComponents: number = 3;
+
+      render(Header, {
         global: {
           plugins: [
             createTestingPinia({
               initialState: {
                 userData: storeUserInformation,
-                uiStore: { loading: true },
               },
             }),
             router,
@@ -53,11 +53,14 @@ describe("Given a Header Component", () => {
         },
       });
 
-      screen.debug();
+      const displayImage: HTMLElement = screen.getByRole("img", {
+        name: /jgmarket logo/i,
+      });
 
-      const divElementSpinner = wrapper.find("#loading__spinner");
+      const displayHeader: HTMLElement[] = screen.getAllByRole("listitem");
 
-      expect(divElementSpinner).toBeInTheDocument();
+      expect(displayImage).toBeInTheDocument();
+      expect(displayHeader).toHaveLength(totalListComponents);
     });
   });
 
