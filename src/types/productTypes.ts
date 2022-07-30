@@ -1,4 +1,4 @@
-import { Store, _StoreWithGetters } from "pinia";
+import { PiniaCustomStateProperties, Store, _StoreWithGetters } from "pinia";
 import { ToRefs } from "vue";
 
 export type IProducts = {

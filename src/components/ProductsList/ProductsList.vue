@@ -27,7 +27,22 @@ watchEffect(() => {
   getProducts(limit, skip);
 });
 
+const isActive = () => {
+  if (Number(page) <= 1) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
+
+const activeNavigateLeftClass: string = "products__navigate--button_first";
+
+const deactivateNavigateClass: string =
+  "products__navigate--button_deactivated_left";
+
+const activeNavigateRightClass: string = "products__navigate--button_second";
 </script>
 
 <template>
@@ -102,6 +117,9 @@ const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
     <div className="products__navigate--container">
       <svg
         data-testid="back-button"
+        :class="[
+          Number(page) <= 1 ? deactivateNavigateClass : activeNavigateLeftClass,
+        ]"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512"
       >
@@ -115,6 +133,11 @@ const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
         {{ page }}/ {{ totalPages }}
       </p>
       <svg
+        :class="[
+          Number(page) === totalPages
+            ? deactivateNavigateClass
+            : activeNavigateRightClass,
+        ]"
         data-testid="forward-button"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512"

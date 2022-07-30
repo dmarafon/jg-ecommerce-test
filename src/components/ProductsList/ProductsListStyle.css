@@ -29,9 +29,8 @@
   width: 10vh;
   margin-right: 100px;
 }
-
-.products__navigate--button_first {
-  @media (max-width: 995px) {
+@media (max-width: 995px) {
+  .products__navigate--button_first {
     position: fixed;
     left: 5%;
     bottom: 40%;
