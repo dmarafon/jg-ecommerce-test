@@ -4,9 +4,10 @@ import { render, screen } from "@testing-library/vue";
 import "@testing-library/jest-dom";
 import { createTestingPinia } from "@pinia/testing";
 import router from "../../../router";
-import useUserStore from "../../../stores/userStore";
-import { storeToRefs, _StoreWithGetters } from "pinia";
+import { _StoreWithGetters } from "pinia";
 import { IUser } from "../../../types/userTypes";
+import { localStorageMock } from "../../../mocks/localStorageMock";
+import { mount } from "@vue/test-utils";
 
 describe("Given a Header Component", () => {
   beforeEach(() => {
@@ -19,14 +20,25 @@ describe("Given a Header Component", () => {
     document.body.outerHTML = "";
   });
 
-  describe("When its called to be rendered with a user logged in", () => {
-    test("Then it should create a Header Component with 3 list components and an image", async () => {
-      const storeUserInformation = {
-        firstName: "test",
-        email: "test@gmail.com",
-        id: "test",
-      };
+  const storeUserInformation: IUser = {
+    firstName: "test name",
+    email: "test@gmail.com",
+    id: "1234",
+    logged: true,
+  };
 
+  const gettinUpLocalStorage = localStorageMock;
+
+  const saveToStorage = (value: string) => {
+    window.localStorage.setItem("token", value);
+  };
+
+  Object.defineProperty(window, "localStorage", {
+    value: gettinUpLocalStorage,
+  });
+
+  describe("When its invoked to be rendered with a user logged in", () => {
+    test("Then it should create a Header Component with 3 list components and an image", async () => {
       const totalListComponents: number = 3;
 
       render(Header, {
@@ -34,7 +46,7 @@ describe("Given a Header Component", () => {
           plugins: [
             createTestingPinia({
               initialState: {
-                userData: { firstName: "Test Name" },
+                userData: storeUserInformation,
               },
             }),
             router,
@@ -42,31 +54,46 @@ describe("Given a Header Component", () => {
         },
       });
 
-      const displayImage = screen.getByRole("img", {
+      const displayImage: HTMLElement = screen.getByRole("img", {
         name: /jgmarket logo/i,
       });
-      const displayHeader = screen.getAllByRole("listitem");
+
+      const displayHeader: HTMLElement[] = screen.getAllByRole("listitem");
 
       expect(displayImage).toBeInTheDocument();
       expect(displayHeader).toHaveLength(totalListComponents);
     });
   });
 
-  // describe("When its called to be rendered with a user logged in the local storage and the user clicks in the logout button", () => {
-  //   test("Then dispatch the logout action, changing the status of the user login payload to 'false' in the 'logged' property", () => {
-  //     const expectedLoggedStatus = false;
+  describe("When its called to be rendered with a user logged in the local storage and the user clicks in the logout button", () => {
+    saveToStorage(
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJ0ZXN0IiwiZW1haWwiOiJ0ZXN0ZUB0ZXN0ZSIsImlkIjoiMTIzNCIsImlhdCI6MTY1NDAxODg5Nn0.tYg1N6xwNhOSXGJdOHbHhyJcaU6uSTwYUKElRrh-Tbs"
+    );
 
-  //     render(Header);
+    test("Then dispatch the logout action, changing the status of the user login payload to 'false' in the 'logged' property", async () => {
+      const wrapper = mount(Header, {
+        global: {
+          plugins: [
+            createTestingPinia({
+              initialState: {
+                userData: storeUserInformation,
+              },
+            }),
+            router,
+          ],
+        },
+      });
 
-  //     const signOutLink = screen.getByRole("link", {
-  //       name: /sign out/i,
-  //     });
+      const expectedPushNavigation = vi.spyOn(router, "push");
 
-  //     userEvent.click(signOutLink);
+      screen.debug();
 
-  //     const userStatusInStore = store.getState();
+      const signOut = wrapper.findAll("li");
 
-  //     expect(userStatusInStore.user.logged).toBe(expectedLoggedStatus);
-  //   });
-  // });
+      // @ts-ignore
+      signOut[1].wrapperElement._vei.onClick.value();
+
+      expect(expectedPushNavigation).toHaveBeenCalledTimes(1);
+    });
+  });
 });

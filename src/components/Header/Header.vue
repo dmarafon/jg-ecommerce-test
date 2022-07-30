@@ -75,7 +75,7 @@ const submitLogOut = (): void => {
           <li>
             <router-link to="/market">{{ headerFirstLink }}</router-link>
           </li>
-          <li @click="submitLogOut">
+          <li @click="submitLogOut" class="logout__submission">
             <router-link to="/">{{ headerSecondLink }}</router-link>
           </li>
           <li class="menu__logged">
