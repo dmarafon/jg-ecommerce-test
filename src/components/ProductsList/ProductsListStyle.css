@@ -20,6 +20,7 @@
   display: flex;
   margin-top: 50px;
   justify-content: center;
+  gap: 40px;
 }
 
 .products__navigate--button_first {
@@ -139,7 +140,7 @@
   }
 }
 
-.dropbtn {
+.dropdown__button {
   background-color: #00db7f;
   color: black;
   border: none;
@@ -168,7 +169,9 @@
   color: black;
   padding: 12px 16px;
   text-decoration: none;
+  font-family: "Sora", sans-serif;
   display: block;
+  cursor: pointer;
 }
 
 .dropdown-content a:hover {
@@ -179,7 +182,7 @@
   display: block;
 }
 
-.dropdown:hover .dropbtn {
+.dropdown:hover .dropdown__button {
   background-color: #00db7f;
   color: white;
 }

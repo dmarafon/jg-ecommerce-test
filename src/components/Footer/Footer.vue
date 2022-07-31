@@ -5,11 +5,6 @@ import {
   footerPhoneNumber,
   footerCityCountry,
 } from "../../utils/stringVariablesForHTML";
-
-footerAddress;
-footerCityCountry;
-footerZipCode;
-footerPhoneNumber;
 </script>
 
 <template>

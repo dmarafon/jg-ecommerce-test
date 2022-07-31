@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { welcomeText } from "../../utils/stringVariablesForHTML";
-
-welcomeText;
 </script>
 
 <template>
