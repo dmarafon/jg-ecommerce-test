@@ -15,8 +15,7 @@ import {
 const productStore = defineStore("productStore", {
   state: (): IProducts => ({
     products: [],
-    total: 0,
-    totalPages: 0,
+
     productCategories: [],
     allProducts: [],
     detailProduct: {
@@ -32,6 +31,8 @@ const productStore = defineStore("productStore", {
       thumbnail: "",
       images: [],
     },
+    total: 0,
+    totalPages: 0,
   }),
   actions: {
     async getProducts(limit: Ilimit, skip: ISkip) {

@@ -4,6 +4,7 @@
   justify-content: flex-start;
   margin: 20px;
   flex-direction: column;
+  font-family: "Sora", sans-serif;
 }
 
 .cart_buy__text--title {
@@ -46,19 +47,6 @@
   }
 }
 
-.cart__rent--container {
-  display: flex;
-  flex-direction: column;
-  margin-right: 100px;
-  justify-content: space-between;
-}
-@media (max-width: 1150px) {
-  .cart__rent--container {
-    margin-right: 0px;
-    margin-top: 120px;
-  }
-}
-
 .cart__purchase--container {
   display: flex;
   flex-direction: column;
@@ -80,7 +68,7 @@
   justify-content: center;
   height: 50px;
   width: 150px;
-  background-color: #fa803b;
+  background-color: #00db7f;
   color: #ffffff;
   border-radius: 5px;
   border-style: none;
@@ -172,7 +160,7 @@
 }
 
 .cart__buy--color {
-  color: #fa803b;
+  color: #00db7f;
 }
 
 .cart__text--author {
@@ -264,5 +252,5 @@
 }
 
 .cart__text--colored {
-  color: #fa803b;
+  color: #00db7f;
 }

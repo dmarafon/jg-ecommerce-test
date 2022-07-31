@@ -20,7 +20,7 @@ const storeUser = useUserStore();
 
 const { loading }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const { firstName }: IStoreUserToRefs = storeToRefs(storeUser);
+const { userData }: IStoreUserToRefs = storeToRefs(storeUser);
 
 const router = useRouter();
 
@@ -55,7 +55,7 @@ const returnToInitialProducts = () => {
           <div>
             <p class="menu__text--firstname">
               {{ headerWelcome }}
-              {{ `${firstName}!` }}
+              {{ `${userData.firstName}!` }}
             </p>
           </div>
         </div>

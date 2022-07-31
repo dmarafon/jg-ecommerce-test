@@ -31,6 +31,14 @@ watch(
 );
 
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
+
+const { addToCart } = cartStore();
+
+const addToCartAction = () => {
+  const { detailProduct }: IProductStore = useProductStore();
+
+  addToCart(detailProduct);
+};
 </script>
 
 <template>
@@ -95,7 +103,9 @@ const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
       </div>
 
       <div class="detail__button--container">
-        <button class="detail__button--cart">Add To Cart</button>
+        <button @click="addToCartAction" class="detail__button--cart">
+          Add To Cart
+        </button>
       </div>
     </div>
   </section>

@@ -21,13 +21,6 @@ import {
   productsFilterSortSecondOption,
 } from "../../utils/stringVariablesForHTML";
 
-const activeNavigateLeftClass: string = "products__navigate--button_first";
-
-const deactivateNavigateClass: string =
-  "products__navigate--button_deactivated_left";
-
-const activeNavigateRightClass: string = "products__navigate--button_second";
-
 const route: RouteLocationNormalizedLoaded = useRoute();
 
 const storeUI: IUserInterfaceStore = useUiStore();
@@ -57,12 +50,23 @@ watchEffect(() => {
 
   const skip: string = calculateSkip(limit, page);
 
-  if (!category && all === "no") {
-    getProducts(limit, skip);
-  } else if (category && all === "no") {
-    getCategories(limit, skip, category);
-  } else if (all === "ordered" || "reverse") {
-    getAllProducts();
+  switch (true) {
+    case !category && all === "no":
+      getProducts(limit, skip);
+      break;
+
+    case category && all === "no":
+      getCategories(limit, skip, category);
+      break;
+
+    case all === "reverse":
+      getAllProducts();
+      break;
+
+    case all === "ordered":
+      getAllProducts();
+    default:
+      return;
   }
 });
 
@@ -117,6 +121,13 @@ const sortZtoA = () => {
     `/market/reverse/${limitForGetProducts}/${initialSkipForGetProducts}`
   );
 };
+
+const activeNavigateLeftClass: string = "products__navigate--button_first";
+
+const deactivateNavigateClass: string =
+  "products__navigate--button_deactivated_left";
+
+const activeNavigateRightClass: string = "products__navigate--button_second";
 </script>
 
 <template>

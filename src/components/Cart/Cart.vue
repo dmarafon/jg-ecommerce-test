@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const useCartStore = cartStore();
+</script>
 
 <template>
   <section class="cart__container--cart">
@@ -26,51 +28,6 @@
             </p>
           </div>
         </div>
-      </div>
-      <div class="cart__rent--container">
-        <p class="cart__text--title">
-          {" "}
-          <span class="cart__buy--color">RENTING</span> TOTAL PRICE
-        </p>
-        <p class="cartbuy__text">Total Months to Be Rented</p>
-        <p class="cartbuy__text">(MAX 48 Months)</p>
-        <input
-          class="cart__input"
-          id="months"
-          placeholder="MONTHS"
-          value="{inputData}"
-          required
-          autoComplete="off"
-          type="number"
-          min="1"
-          max="48"
-        />{" "}
-        <p class="cartbuy__text--important">
-          {inputData} Months X {monthlyrateprice} € ={" "}
-          <span class="cart__buy--color">
-            {" "} {`${calculateMonthlyPriceRent()} €`}
-          </span>
-        </p>
-        <p class="cartbuy__text">Shipping Costs (5% of Total Price)</p>
-        <p class="cartbuy__text">(Free on Purchases Above 200 €)</p>
-        <p class="cartbuy__text--important">
-          <span class="cart__buy--color"
-            >{`${ calculateShippingPriceRent() === 0 ? `Free Shipping` :
-            `${calculateShippingPriceRent()} €` }`}</span
-          >
-        </p>
-        <p class="cartbuy__text--important">
-          IVA 10% ={" "}
-          <span class="cart__buy--color">{`${calculateIVARent()} €`}</span>
-        </p>
-        <p class="cartbuy__text--important_total">
-          TOTAL =
-          <span class="cart__buy--color">
-            {" "} {`${ calculateMonthlyPriceRent() + calculateIVARent() +
-            calculateShippingPriceRent() } €`}
-          </span>
-        </p>
-        <button class="cart_buy__button">RENT</button>
       </div>
       <div class="cart__purchase--container">
         <p class="cart__text--title">
