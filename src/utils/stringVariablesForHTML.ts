@@ -36,3 +36,7 @@ export const productsTextIntroFirstPart: string = "ALL THE";
 export const productsTextSpecialColored: string = " BEST PRODUCTS";
 
 export const productsTextIntroSecondPart: string = "THAT YOU COULD EVER NEED!";
+
+export const productsFilterFirstButton: string = "SORT BY NAME";
+
+export const productsFilterSecondButton: string = "FILTER BY CATEGORY";

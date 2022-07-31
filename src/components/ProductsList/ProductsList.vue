@@ -15,6 +15,8 @@ import {
   productsTextIntroFirstPart,
   productsTextSpecialColored,
   productsTextIntroSecondPart,
+  productsFilterFirstButton,
+  productsFilterSecondButton,
 } from "../../utils/stringVariablesForHTML";
 
 const activeNavigateLeftClass: string = "products__navigate--button_first";
@@ -128,30 +130,33 @@ const sortZtoA = () => {
     />
   </Teleport>
   <section>
-    <div className="products__text--container">
-      <p className="products__text--intro">
+    <div class="products__text--container">
+      <p class="products__text--intro">
         {{ productsTextIntroFirstPart }}
-        <span className="products__text--colored">{{
+        <span class="products__text--colored">{{
           productsTextSpecialColored
         }}</span>
         {{ productsTextIntroSecondPart }}
       </p>
     </div>
-    <div className="products__filter--container">
-      <div className="dropdown__container">
-        <div className="dropdown">
-          <button className="dropbtn">SORT BY NAME</button>
-          <div className="dropdown-content">
+    <div class="products__filter--container">
+      <div class="dropdown__container">
+        <div class="dropdown">
+          <button class="dropdown__button">
+            {{ productsFilterFirstButton }}
+          </button>
+          <div class="dropdown-content">
             <a @click="sortAtoZ">A to Z</a>
             <a @click="sortZtoA">Z to A</a>
           </div>
         </div>
       </div>
-      <div className="dropdown__container--center"></div>
-      <div className="dropdown__container">
-        <div className="dropdown">
-          <button className="dropbtn">FILTER BY CATEGORY</button>
-          <div className="dropdown-content">
+      <div class="dropdown__container">
+        <div class="dropdown">
+          <button class="dropdown__button">
+            {{ productsFilterSecondButton }}
+          </button>
+          <div class="dropdown-content">
             <a
               v-for="(productCategory, index) in productCategories"
               :key="`${productCategory}${index}`"
@@ -163,12 +168,12 @@ const sortZtoA = () => {
         </div>
       </div>
     </div>
-    <ul v-if="products" className="products__list">
+    <ul v-if="products" class="products__list">
       <li v-for="(product, index) in products[0]" :key="index">
         {{ product }}
       </li>
     </ul>
-    <div className="products__navigate--container">
+    <div class="products__navigate--container">
       <svg
         data-testid="back-button"
         v-on="Number(page) > 1 ? { click: navigateBackwards } : {}"
@@ -185,9 +190,7 @@ const sortZtoA = () => {
         />
       </svg>
 
-      <p className="products__navigate--counter">
-        {{ page }}/ {{ totalPages }}
-      </p>
+      <p class="products__navigate--counter">{{ page }}/ {{ totalPages }}</p>
       <svg
         v-on="Number(page) !== totalPages ? { click: navigateForward } : {}"
         :class="[
