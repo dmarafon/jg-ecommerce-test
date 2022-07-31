@@ -1,16 +1,12 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError } from "axios";
 import { IUserInterfaceStore } from "../types/uiTypes";
 import errorLoginValidation from "../utils/errorValidation";
 import useUiStore from "../stores/uiStore";
 import { allCategoriesRoute } from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";
-import { ICategory, Ilimit, IProductStore, ISkip } from "../types/productTypes";
+import { IProductStore } from "../types/productTypes";
 
-const getAllCategoriesAPICall = async (
-  limit: Ilimit,
-  skip: ISkip,
-  category: ICategory
-): Promise<void> => {
+const getAllCategoriesAPICall = async (): Promise<void> => {
   const { loadingModal, finishedLoadingModal }: IUserInterfaceStore =
     useUiStore();
 

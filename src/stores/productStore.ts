@@ -3,9 +3,9 @@ import getAllCategoriesAPICall from "../api/getAllCategoriesAPICall";
 import getAllProductsAPICall from "../api/getAllProductsAPICall";
 import getCategoriesAPICall from "../api/getCategoriesAPICall";
 import getProductsAPICall from "../api/getProductsAPICall";
-import { IProducts } from "../types/productTypes";
+import { ICategory, Ilimit, IProducts, ISkip } from "../types/productTypes";
 
-const useProductStore = defineStore("productStore", {
+const productStore = defineStore("productStore", {
   state: (): IProducts => ({
     products: [],
     total: 0,
@@ -14,17 +14,10 @@ const useProductStore = defineStore("productStore", {
     allProducts: [],
   }),
   actions: {
-    async getProducts(
-      limit: string | string[] | void | null | undefined,
-      skip: string | void | null | undefined
-    ) {
+    async getProducts(limit: Ilimit, skip: ISkip) {
       await getProductsAPICall(limit, skip);
     },
-    async getCategories(
-      limit: string | string[] | void | null | undefined,
-      skip: string | void | null | undefined,
-      category: string | string[] | void | null | undefined
-    ) {
+    async getCategories(limit: Ilimit, skip: ISkip, category: ICategory) {
       await getCategoriesAPICall(limit, skip, category);
     },
     async getAllCategories() {
@@ -36,4 +29,4 @@ const useProductStore = defineStore("productStore", {
   },
 });
 
-export default useProductStore;
+export default productStore;
