@@ -47,14 +47,14 @@ watch(
 
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const navigateForward = () => {
-  const nextPage = Number(page) + 1;
+const navigateForward = (): void => {
+  const nextPage: number = Number(page) + 1;
 
   router.push(`/market/${limitForGetProducts}/${nextPage}`);
 };
 
-const navigateBackwards = () => {
-  const nextPage = Number(page) - 1;
+const navigateBackwards = (): void => {
+  const nextPage: number = Number(page) - 1;
 
   router.push(`/market/${limitForGetProducts}/${nextPage}`);
 };

@@ -62,4 +62,6 @@ export type IProductStoreToRef = ToRefs<
 
 export type Ilimit = string | string[] | void | null | undefined;
 
+export type IPage = string | string[] | void | null | undefined;
+
 export type ISkip = string | void | null | undefined;
