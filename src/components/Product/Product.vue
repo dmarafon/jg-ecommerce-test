@@ -7,11 +7,18 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const categoryToUpperCase: string = props.product.category.toUpperCase();
+
+const router = useRouter();
+
+const goToDetails = () => {
+  const detailId = props.product.id.toString();
+  router.push(`/detail/${detailId}`);
+};
 </script>
 
 <template>
   <li class="product__list">
-    <div class="product__container">
+    <div class="product__container" @click="goToDetails">
       <div class="product__card">
         <img
           class="product__image"
