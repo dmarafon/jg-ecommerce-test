@@ -30,3 +30,9 @@ export const headerFirstLink: string = "Our Products";
 export const headerSecondLink: string = "Sign Out";
 
 export const headerWelcome: string = "Welcome";
+
+export const productsTextIntroFirstPart: string = "ALL THE";
+
+export const productsTextSpecialColored: string = " BEST PRODUCTS";
+
+export const productsTextIntroSecondPart: string = "THAT YOU COULD EVER NEED!";

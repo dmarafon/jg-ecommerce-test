@@ -14,10 +14,6 @@ import {
   headerWelcome,
 } from "../../utils/stringVariablesForHTML";
 
-headerFirstLink;
-headerSecondLink;
-headerWelcome;
-
 const storeUI = useUiStore();
 
 const storeUser = useUserStore();

@@ -19,15 +19,6 @@ import {
   loginTextSpecial,
 } from "../../utils/stringVariablesForHTML";
 
-loginTitle;
-loginLabelEmail;
-loginLabelPassword;
-loginButton;
-loginTextFirstLine;
-loginTextSecondLine;
-loginTextSpecial;
-loginTextSecondLineContinuation;
-
 const storeLogin = useLoginFormStore();
 
 const storeUI = useUiStore();

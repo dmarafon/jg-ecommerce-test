@@ -11,6 +11,11 @@ import useUiStore from "../../stores/uiStore";
 import { IProductStore, IProductStoreToRef } from "../../types/productTypes";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 import { calculateSkip } from "../../utils/calculatePageNavigation";
+import {
+  productsTextIntroFirstPart,
+  productsTextSpecialColored,
+  productsTextIntroSecondPart,
+} from "../../utils/stringVariablesForHTML";
 
 const activeNavigateLeftClass: string = "products__navigate--button_first";
 
@@ -125,9 +130,11 @@ const sortZtoA = () => {
   <section>
     <div className="products__text--container">
       <p className="products__text--intro">
-        ALL THE
-        <span className="products__text--colored"> BEST PRODUCTS</span> THAT YOU
-        COULD NEED!
+        {{ productsTextIntroFirstPart }}
+        <span className="products__text--colored">{{
+          productsTextSpecialColored
+        }}</span>
+        {{ productsTextIntroSecondPart }}
       </p>
     </div>
     <div className="products__filter--container">
@@ -169,6 +176,7 @@ const sortZtoA = () => {
     </ul>
     <div className="products__navigate--container">
       <svg
+        v-if="Number(page) >= 1"
         data-testid="back-button"
         @click="navigateBackwards"
         :class="[
@@ -187,6 +195,7 @@ const sortZtoA = () => {
         {{ page }}/ {{ totalPages }}
       </p>
       <svg
+        v-if="Number(page) !== totalPages"
         @click="navigateForward"
         :class="[
           Number(page) === totalPages
