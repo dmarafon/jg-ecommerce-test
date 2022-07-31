@@ -6,6 +6,7 @@ import {
   RouteRecordRaw,
 } from "vue-router";
 import HomeView from "../views/HomeView/HomeView.vue";
+import DetailView from "../views/DetailView/DetailView.vue";
 import MarketView from "../views/MarketView/MarketView.vue";
 import jwtDecode from "jwt-decode";
 import { IUserToken } from "../types/userTypes";
@@ -36,7 +37,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/detail/:id",
     name: "Detail",
-    component: MarketView,
+    component: DetailView,
     meta: { requiresAuth: true },
   },
   {

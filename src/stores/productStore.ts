@@ -2,8 +2,15 @@ import { defineStore } from "pinia";
 import getAllCategoriesAPICall from "../api/getAllCategoriesAPICall";
 import getAllProductsAPICall from "../api/getAllProductsAPICall";
 import getCategoriesAPICall from "../api/getCategoriesAPICall";
+import getDetailProductAPICall from "../api/getDetailProductAPICall";
 import getProductsAPICall from "../api/getProductsAPICall";
-import { ICategory, Ilimit, IProducts, ISkip } from "../types/productTypes";
+import {
+  ICategory,
+  IId,
+  Ilimit,
+  IProducts,
+  ISkip,
+} from "../types/productTypes";
 
 const productStore = defineStore("productStore", {
   state: (): IProducts => ({
@@ -12,6 +19,19 @@ const productStore = defineStore("productStore", {
     totalPages: 0,
     productCategories: [],
     allProducts: [],
+    detailProduct: {
+      id: 0,
+      title: "",
+      description: "",
+      price: "",
+      discountPercentage: "",
+      rating: 0,
+      stock: 0,
+      brand: "",
+      category: "",
+      thumbnail: "",
+      images: [],
+    },
   }),
   actions: {
     async getProducts(limit: Ilimit, skip: ISkip) {
@@ -25,6 +45,9 @@ const productStore = defineStore("productStore", {
     },
     async getAllProducts() {
       await getAllProductsAPICall();
+    },
+    async getDetailProduct(id: IId) {
+      await getDetailProductAPICall(id);
     },
   },
 });
