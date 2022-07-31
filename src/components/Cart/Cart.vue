@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const useCartStore = cartStore();
+import { storeToRefs } from "pinia";
+
+const { addedToCart } = cartStore();
+
+const test = storeToRefs(cartStore());
 </script>
 
 <template>
@@ -7,22 +11,23 @@ const useCartStore = cartStore();
     <div>
       <div class="cart__text--container">
         <p class="cart__text--intro">
-          READY TO <span class="cart__text--colored">RENT</span> OR
-        </p>
-        <p class="cart__text--intro">
-          <span class="cart__text--colored">PURCHASE?</span>
+          ARE YOU READY TO <span class="cart__text--colored">BUY?</span>
         </p>
       </div>
     </div>
-    <div class="cart__list--info">
-      <div class="cart__list" key="{id}">
+    <div
+      v-for="(cartItem, index) in addedToCart"
+      :key="index"
+      class="cart__list--info"
+    >
+      <div class="cart__list">
         <div class="cart__container">
-          <img class="cart__image" src="{imagebackup}" alt="{}" />
+          <img class="cart__image" :src="cartItem.images[0]" alt="{}" />
           <div class="cart__text">
             <h2 class="cart__text--author">
               {`${firstnameUpperCase} ${surnameUpperCase}`}
             </h2>
-            <h3 class="cart__text--title">{titleUpperCase}</h3>
+            <h3 class="cart__text--title">{{ cartItem.title }}</h3>
             <p class="cart__text--price">
               {`${monthlyrateprice}€ /month | ${purchaseprice}€ Purchase`}
             </p>
@@ -57,7 +62,10 @@ const useCartStore = cartStore();
             calculateIVABuy() } €`}
           </span>
         </p>
-        <button class="cart_buy__button">BUY</button>
+        <div class="cart__button--container">
+          <button class="cart_buy__button">BUY</button>
+          <button class="cart_buy__button">DROP ITEM</button>
+        </div>
       </div>
     </div>
   </section>
