@@ -40,21 +40,19 @@ export type IProducts = {
         }
       ]
     | void[];
-  detailProduct:
-    | {}
-    | {
-        id: number;
-        title: string;
-        description: string;
-        price: string;
-        discountPercentage: string;
-        rating: number;
-        stock: number;
-        brand: string;
-        category: string;
-        thumbnail: string;
-        images: string[];
-      };
+  detailProduct: {
+    id: number;
+    title: string;
+    description: string;
+    price: string;
+    discountPercentage: string;
+    rating: number;
+    stock: number;
+    brand: string;
+    category: string;
+    thumbnail: string;
+    images: string[];
+  };
 };
 
 export type IProductStore = Store<
@@ -130,9 +128,9 @@ export type IProductStoreToRef = ToRefs<
           brand: string;
           category: string;
           thumbnail: string;
-          images: string[];
+          images: [];
         }
-      | {};
+      | any;
   } & _StoreWithGetters<{}> &
     PiniaCustomStateProperties<IProducts>
 >;
@@ -146,3 +144,17 @@ export type ISkip = string | void | null | undefined;
 export type ICategory = string | string[] | void | null | undefined;
 
 export type IId = string | void | string[] | null | undefined;
+
+export type IDetailProduct = {
+  id: number;
+  title: string;
+  description: string;
+  price: string;
+  discountPercentage: string;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: [];
+};

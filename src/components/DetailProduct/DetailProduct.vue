@@ -5,6 +5,7 @@ import useUiStore from "../../stores/uiStore";
 import { IProductStore, IProductStoreToRef } from "../../types/productTypes";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 import useProductStore from "../../stores/productStore";
+import router from "../../router";
 
 const storeUI: IUserInterfaceStore = useUiStore();
 
@@ -16,13 +17,18 @@ const { getDetailProduct }: IProductStore = useProductStore();
 
 const { detailProduct }: IProductStoreToRef = storeToRefs(useProductStore());
 
-// const { id } = route.params;
-
 watchEffect(() => {
   const { id } = route.params;
 
   getDetailProduct(id);
 });
+
+watch(
+  () => route.params,
+  (toParams, previousParams) => {
+    router.go(0);
+  }
+);
 
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
 </script>
@@ -39,6 +45,60 @@ const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
       :key-event="cleanResponse"
     />
   </Teleport>
+  <section class="detail__section">
+    <div class="detail__container">
+      <h2 class="detail__heading--title">{{ detailProduct.title }}</h2>
+      <p class="detail__paragraph--brand">
+        <span class="detail__paragraph--special">
+          {{ detailProduct.brand }}
+        </span>
+      </p>
+      <ul>
+        <li class="detail__list">
+          Customers Rating:
+          <span class="detail__paragraph--special">
+            {{ detailProduct.rating }}</span
+          >
+        </li>
+        <li class="detail__list">
+          How Many Items in Stock?
+          <span class="detail__paragraph--special">{{
+            detailProduct.stock
+          }}</span>
+        </li>
+        <li class="detail__list">Brand: {{ detailProduct.brand }}</li>
+
+        <li class="detail__list">
+          Price: €
+          <span class="detail__paragraph--special_second">{{
+            detailProduct.price
+          }}</span>
+        </li>
+        <li class="detail__list">
+          What You Save?
+          <span class="detail__paragraph--special_second">
+            {{ detailProduct.discountPercentage }}%</span
+          >
+        </li>
+      </ul>
+      <p class="detail__paragraph--description">
+        {{ detailProduct.description }}
+      </p>
+    </div>
+    <div class="detail__image--container">
+      <div class="detail__image--container_second">
+        <img
+          class="detail__image"
+          :src="detailProduct.images[0]"
+          alt="product available"
+        />
+      </div>
+
+      <div class="detail__button--container">
+        <button>Add To Cart</button>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped src="./DetailProductStyle.css"></style>

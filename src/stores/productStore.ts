@@ -19,7 +19,19 @@ const productStore = defineStore("productStore", {
     totalPages: 0,
     productCategories: [],
     allProducts: [],
-    detailProduct: {},
+    detailProduct: {
+      id: 0,
+      title: "",
+      description: "",
+      price: "",
+      discountPercentage: "",
+      rating: 0,
+      stock: 0,
+      brand: "",
+      category: "",
+      thumbnail: "",
+      images: [],
+    },
   }),
   actions: {
     async getProducts(limit: Ilimit, skip: ISkip) {
