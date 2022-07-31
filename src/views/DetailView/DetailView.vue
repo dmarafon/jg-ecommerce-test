@@ -2,5 +2,6 @@
 
 <template>
   <Header />
+  <DetailProduct />
   <Footer />
 </template>

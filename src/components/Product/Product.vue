@@ -11,7 +11,7 @@ const categoryToUpperCase: string = props.product.category.toUpperCase();
 const router = useRouter();
 
 const goToDetails = () => {
-  const detailId = props.product.id.toString();
+  const detailId: string = props.product.id.toString();
   router.push(`/detail/${detailId}`);
 };
 </script>
