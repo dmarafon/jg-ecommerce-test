@@ -1,4 +1,4 @@
-import { ICategory, Ilimit, ISkip } from "../types/productTypes";
+import { ICategory, IId, Ilimit, ISkip } from "../types/productTypes";
 
 export const limitForGetProducts: string = "12";
 
@@ -43,3 +43,6 @@ export const allCategoriesRoute: string = `${
 export const allProductsRoute: string = `${
   import.meta.env.VITE_API_PRODUCT_URL
 }products/?limit=100`;
+
+export const productDetailRoute = (id: IId): string =>
+  `${import.meta.env.VITE_API_PRODUCT_URL}products/${id}`;
