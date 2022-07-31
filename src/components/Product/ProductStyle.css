@@ -1,14 +1,16 @@
 .product__container {
-  position: relative;
-  margin: 20px;
-  width: 345;
-  text-align: center;
-
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 20px;
   font-family: "Sora", sans-serif;
+}
+
+.product__card {
+  position: relative;
+  margin: 20px;
+  width: 345;
+  text-align: center;
 }
 
 .product__image {
