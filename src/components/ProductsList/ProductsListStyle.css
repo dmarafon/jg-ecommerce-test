@@ -49,8 +49,8 @@
   cursor: default;
 }
 
-.products__navigate--button_deactivated_left {
-  @media (max-width: 995px) {
+@media (max-width: 995px) {
+  .products__navigate--button_deactivated_left {
     position: fixed;
     left: 5%;
     bottom: 40%;

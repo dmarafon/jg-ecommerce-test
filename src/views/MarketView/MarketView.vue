@@ -5,5 +5,3 @@
   <ProductsList />
   <Footer />
 </template>
-
-<style scoped src="./MarketViewStyle.css"></style>
