@@ -1,13 +1,12 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { IUserInterfaceStore } from "../types/uiTypes";
 import errorLoginValidation from "../utils/errorValidation";
 import useUiStore from "../stores/uiStore";
-import { categoriesProductsRoute } from "./APIRoutesAndQueryVariables";
+import { allCategoriesRoute } from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";
-import { calculateTotalPages } from "../utils/calculatePageNavigation";
 import { ICategory, Ilimit, IProductStore, ISkip } from "../types/productTypes";
 
-const getCategoriesAPICall = async (
+const getAllCategoriesAPICall = async (
   limit: Ilimit,
   skip: ISkip,
   category: ICategory
@@ -20,17 +19,11 @@ const getCategoriesAPICall = async (
   loadingModal();
 
   try {
-    const {
-      data: { products, total },
-    }: { data: { products: never; total: number } } = await axios.get(
-      categoriesProductsRoute(limit, skip, category)
+    const { data }: { data: string[] | void[] } = await axios.get(
+      allCategoriesRoute
     );
-    const totalPages: number = calculateTotalPages(total);
-
     productStore.$patch((state) => {
-      state.products.push(products);
-      state.total = total;
-      state.totalPages = totalPages;
+      state.productCategories = data;
     });
 
     finishedLoadingModal();
@@ -43,4 +36,4 @@ const getCategoriesAPICall = async (
   }
 };
 
-export default getCategoriesAPICall;
+export default getAllCategoriesAPICall;

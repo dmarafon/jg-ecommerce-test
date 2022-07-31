@@ -28,8 +28,14 @@ const routes: RouteRecordRaw[] = [
     component: HomeView,
   },
   {
-    path: "/market/:limit/:page",
+    path: "/market/:all/:limit/:page/:category?",
     name: "Market",
+    component: MarketView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/detail/:id",
+    name: "Detail",
     component: MarketView,
     meta: { requiresAuth: true },
   },
@@ -61,7 +67,7 @@ router.beforeEach(
         login(decodeToken);
 
         return {
-          path: `/market/${limitForGetProducts}/${initialSkipForGetProducts}`,
+          path: `/market/no/${limitForGetProducts}/${initialSkipForGetProducts}`,
         };
       } catch (error: any | unknown) {
         localStorage.clear();

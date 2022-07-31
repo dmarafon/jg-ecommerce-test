@@ -35,7 +35,9 @@ const loginAPICall = async (loginInformation: ILogin): Promise<void> => {
 
     login(userData);
 
-    router.push(`/market/${limitForGetProducts}/${initialSkipForGetProducts}`);
+    router.push(
+      `/market/no/${limitForGetProducts}/${initialSkipForGetProducts}`
+    );
 
     finishedLoadingModal();
   } catch (error) {

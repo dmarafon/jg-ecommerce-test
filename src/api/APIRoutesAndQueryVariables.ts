@@ -1,4 +1,4 @@
-import { Ilimit, ISkip } from "../types/productTypes";
+import { ICategory, Ilimit, ISkip } from "../types/productTypes";
 
 export const limitForGetProducts: string = "12";
 
@@ -19,3 +19,27 @@ export const productsRoute = (limit: Ilimit, skip: ISkip): string => {
     }products?limit=${limitForGetProducts}&skip=${initialSkipForGetProducts}`;
   }
 };
+
+export const categoriesProductsRoute = (
+  limit: Ilimit,
+  skip: ISkip,
+  category: ICategory
+): string => {
+  if (limit && skip) {
+    return `${
+      import.meta.env.VITE_API_PRODUCT_URL
+    }products/category/${category}/?limit=${limit}&skip=${skip}`;
+  } else {
+    return `${
+      import.meta.env.VITE_API_PRODUCT_URL
+    }products/category/${category}/?limit=${limitForGetProducts}&skip=${initialSkipForGetProducts}`;
+  }
+};
+
+export const allCategoriesRoute: string = `${
+  import.meta.env.VITE_API_PRODUCT_URL
+}products/categories`;
+
+export const allProductsRoute: string = `${
+  import.meta.env.VITE_API_PRODUCT_URL
+}products/?limit=100`;
