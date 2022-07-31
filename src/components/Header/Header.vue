@@ -1,15 +1,13 @@
 <script setup lang="ts">
+import { storeToRefs, _StoreWithGetters } from "pinia";
 import {
-  PiniaCustomStateProperties,
-  storeToRefs,
-  _StoreWithGetters,
-} from "pinia";
-import { ToRefs } from "vue";
-import router from "../../router";
+  initialSkipForGetProducts,
+  limitForGetProducts,
+} from "../../api/APIRoutesAndQueryVariables";
 import useUiStore from "../../stores/uiStore";
 import useUserStore from "../../stores/userStore";
-import { IUserInterface } from "../../types/uiTypes";
-import { IUser } from "../../types/userTypes";
+import { IStoreUIToRefs } from "../../types/uiTypes";
+import { IStoreUserToRefs } from "../../types/userTypes";
 import {
   headerFirstLink,
   headerSecondLink,
@@ -24,22 +22,19 @@ const storeUI = useUiStore();
 
 const storeUser = useUserStore();
 
-const {
-  loading,
-}: ToRefs<
-  IUserInterface &
-    _StoreWithGetters<{}> &
-    PiniaCustomStateProperties<IUserInterface>
-> = storeToRefs(storeUI);
+const { loading }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const {
-  firstName,
-}: ToRefs<IUser & _StoreWithGetters<{}> & PiniaCustomStateProperties<IUser>> =
-  storeToRefs(storeUser);
+const { firstName }: IStoreUserToRefs = storeToRefs(storeUser);
+
+const router = useRouter();
 
 const submitLogOut = (): void => {
   localStorage.removeItem("token");
   router.push("/");
+};
+
+const returnToInitialProducts = () => {
+  router.push(`/market/${limitForGetProducts}/${initialSkipForGetProducts}`);
 };
 </script>
 
@@ -50,33 +45,32 @@ const submitLogOut = (): void => {
   <header class="navigation__header">
     <div class="navigation__container">
       <nav class="navigation">
-        <div class="navigation__image--container">
-          <router-link to="/"
-            ><img
-              src="/images/jgmarket_logo_314.webp"
-              alt="jgmarket logo"
-              width="200"
-              height="126.08"
-              class="navigation__image--logo"
-            />
-            <div>
-              <p class="menu__text--firstname">
-                {{ headerWelcome }}
-                {{ `${firstName}!` }}
-              </p>
-            </div></router-link
-          >
+        <div
+          @click="returnToInitialProducts"
+          class="navigation__image--container"
+        >
+          <img
+            src="/images/jgmarket_logo_314.webp"
+            alt="jgmarket logo"
+            width="200"
+            height="126.08"
+            class="navigation__image--logo"
+          />
+          <div>
+            <p class="menu__text--firstname">
+              {{ headerWelcome }}
+              {{ `${firstName}!` }}
+            </p>
+          </div>
         </div>
         <input id="menu__toggle" type="checkbox" for="menu__toggle" />
         <label class="menu__button--container" for="menu__toggle">
           <div class="menu__button"></div>
         </label>
         <ul class="menu__container">
-          <li>
-            <router-link to="/market">{{ headerFirstLink }}</router-link>
-          </li>
+          <li @click="returnToInitialProducts">{{ headerFirstLink }}</li>
           <li @click="submitLogOut" class="logout__submission">
-            <router-link to="/">{{ headerSecondLink }}</router-link>
+            {{ headerSecondLink }}
           </li>
           <li class="menu__logged">
             <router-link to="/cart">
@@ -100,4 +94,4 @@ const submitLogOut = (): void => {
   </header>
 </template>
 
-<style src="./HeaderStyle.css"></style>
+<style scoped src="./HeaderStyle.css"></style>

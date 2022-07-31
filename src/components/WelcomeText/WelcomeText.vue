@@ -22,4 +22,4 @@ welcomeText;
   </section>
 </template>
 
-<style src="./WelcomeTextStyle.css"></style>
+<style scoped src="./WelcomeTextStyle.css"></style>

@@ -6,7 +6,7 @@ import { createTestingPinia } from "@pinia/testing";
 import router from "../../../router";
 import { IUser } from "../../../types/userTypes";
 import { localStorageMock } from "../../../mocks/localStorageMock";
-import { mount } from "@vue/test-utils";
+import { DOMWrapper, mount } from "@vue/test-utils";
 
 describe("Given a Header Component", () => {
   beforeEach(() => {
@@ -85,14 +85,17 @@ describe("Given a Header Component", () => {
 
       const expectedPushNavigation = vi.spyOn(router, "push");
 
-      const expectedAddres = "/";
+      const expectedAddres: string = "/";
 
       screen.debug();
 
-      const signOut = wrapper.findAll("li");
+      const findSignOut: DOMWrapper<HTMLLIElement>[] = wrapper.findAll("li");
 
-      // @ts-ignore
-      signOut[1].wrapperElement._vei.onClick.value();
+      const clickSignOut = (): void => {
+        // @ts-ignore
+        findSignOut[1].wrapperElement._vei.onClick.value();
+      };
+      clickSignOut();
 
       expect(expectedPushNavigation).toHaveBeenCalledWith(expectedAddres);
     });

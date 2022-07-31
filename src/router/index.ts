@@ -10,6 +10,10 @@ import MarketView from "../views/MarketView/MarketView.vue";
 import jwtDecode from "jwt-decode";
 import { IUserToken } from "../types/userTypes";
 import useUserStore from "../stores/userStore";
+import {
+  initialSkipForGetProducts,
+  limitForGetProducts,
+} from "../api/APIRoutesAndQueryVariables";
 
 declare module "vue-router" {
   interface RouteMeta {
@@ -24,7 +28,7 @@ const routes: RouteRecordRaw[] = [
     component: HomeView,
   },
   {
-    path: "/market",
+    path: "/market/:limit/:page",
     name: "Market",
     component: MarketView,
     meta: { requiresAuth: true },
@@ -57,7 +61,7 @@ router.beforeEach(
         login(decodeToken);
 
         return {
-          path: "/market",
+          path: `/market/${limitForGetProducts}/${initialSkipForGetProducts}`,
         };
       } catch (error: any | unknown) {
         localStorage.clear();

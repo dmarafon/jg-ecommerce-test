@@ -14,8 +14,9 @@ export const loginTextSpecial: string = " sign up";
 
 export const loginTextSecondLineContinuation: string = " right now";
 
-export const footerAddress: string =
-  "CARRER DEL COMTE D'URGELL, 240, BARCELONA, ES";
+export const footerAddress: string = "CARRER DEL COMTE D'URGELL, 240";
+
+export const footerCityCountry: string = "BARCELONA, SPAIN";
 
 export const footerZipCode: string = "08036";
 
