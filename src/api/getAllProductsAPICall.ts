@@ -5,15 +5,13 @@ import useUiStore from "../stores/uiStore";
 import { allProductsRoute } from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";
 import { calculateTotalPages } from "../utils/calculatePageNavigation";
-import { ICategory, Ilimit, IProductStore, ISkip } from "../types/productTypes";
+import { IProducts, IProductStore } from "../types/productTypes";
+import { RouteLocationNormalizedLoaded } from "vue-router";
 
-const getAllProductsAPICall = async (
-  limit: Ilimit,
-  skip: ISkip,
-  category: ICategory
-): Promise<void> => {
+const getAllProductsAPICall = async (): Promise<void> => {
   const { loadingModal, finishedLoadingModal }: IUserInterfaceStore =
     useUiStore();
+  const route: RouteLocationNormalizedLoaded = useRoute();
 
   const productStore: IProductStore = useProductStore();
 
@@ -22,14 +20,32 @@ const getAllProductsAPICall = async (
   try {
     const {
       data: { products, total },
-    }: { data: { products: never; total: number } } = await axios.get(
+    }: { data: { products: IProducts; total: number } } = await axios.get(
       allProductsRoute
     );
 
     const totalPages: number = calculateTotalPages(total);
 
+    const { all, limit, page } = await route.params;
+
+    let sortedProducts: IProducts | any = [];
+
+    const sortAlphabeticallyByTitle = products.sort(
+      (firstArgument: { title: string }, secondArgument: { title: string }) =>
+        firstArgument.title.localeCompare(secondArgument.title)
+    );
+
+    if (all === "ordered") {
+      sortedProducts.push(sortAlphabeticallyByTitle);
+    } else if (all === "reverse") {
+      sortedProducts.push(sortAlphabeticallyByTitle.reverse());
+    }
+
     productStore.$patch((state) => {
-      state.allProducts.push(products);
+      state.products.push(
+        sortedProducts[0].slice(Number(page) + 1, Number(limit))
+      );
+      state.allProducts.push(sortedProducts);
       state.total = total;
       state.totalPages = totalPages;
     });

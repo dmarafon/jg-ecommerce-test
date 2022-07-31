@@ -32,10 +32,14 @@ const {
   getAllProducts,
 }: IProductStore = useProductStore();
 
-const { products, totalPages, productCategories }: IProductStoreToRef =
-  storeToRefs(useProductStore());
+const {
+  products,
+  totalPages,
+  productCategories,
+  allProducts,
+}: IProductStoreToRef = storeToRefs(useProductStore());
 
-const { page, category, all } = route.params;
+const { page, category } = route.params;
 
 watchEffect(() => {
   const { limit, page, category, all } = route.params;
@@ -48,7 +52,7 @@ watchEffect(() => {
     getProducts(limit, skip);
   } else if (category && all === "no") {
     getCategories(limit, skip, category);
-  } else if (all === "yes") {
+  } else if (all === "ordered" || "reverse") {
     getAllProducts();
   }
 });
@@ -61,22 +65,47 @@ watch(
 );
 
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
+const { all } = route.params;
 
 const navigateForward = (): void => {
   const nextPage: number = Number(page) + 1;
 
-  router.push(`/market/${limitForGetProducts}/${nextPage}/${category}`);
+  if (all === "no") {
+    router.push(`/market/no/${limitForGetProducts}/${nextPage}/${category}`);
+  } else {
+    router.push(
+      `/market/${all}/${limitForGetProducts}/${nextPage}/${category}`
+    );
+  }
 };
 
 const navigateBackwards = (): void => {
   const nextPage: number = Number(page) - 1;
 
-  router.push(`/market/${limitForGetProducts}/${nextPage}/${category}`);
+  if (all === "no") {
+    router.push(`/market/no/${limitForGetProducts}/${nextPage}/${category}`);
+  } else {
+    router.push(
+      `/market/${all}/${limitForGetProducts}/${nextPage}/${category}`
+    );
+  }
 };
 
 const goToCategory = (clickedCategory: string | void): void => {
   router.push(
-    `/market/${limitForGetProducts}/${initialSkipForGetProducts}/${clickedCategory}`
+    `/market/no/${limitForGetProducts}/${initialSkipForGetProducts}/${clickedCategory}`
+  );
+};
+
+const sortAtoZ = () => {
+  router.push(
+    `/market/ordered/${limitForGetProducts}/${initialSkipForGetProducts}`
+  );
+};
+
+const sortZtoA = () => {
+  router.push(
+    `/market/reverse/${limitForGetProducts}/${initialSkipForGetProducts}`
   );
 };
 </script>
@@ -106,8 +135,8 @@ const goToCategory = (clickedCategory: string | void): void => {
         <div className="dropdown">
           <button className="dropbtn">SORT BY NAME</button>
           <div className="dropdown-content">
-            <a @click="">A to Z</a>
-            <a>Z to A</a>
+            <a @click="sortAtoZ">A to Z</a>
+            <a @click="sortZtoA">Z to A</a>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { PiniaCustomStateProperties, Store, _StoreWithGetters } from "pinia";
 import { ToRefs } from "vue";
 
 export type IProducts = {
+  [x: string]: any;
   products:
     | [
         {
@@ -82,6 +83,23 @@ export type IProductStoreToRef = ToRefs<
     total: number;
     totalPages: number;
     productCategories: void[] | string[];
+    allProducts:
+      | [
+          {
+            id: number;
+            title: string;
+            description: string;
+            price: string;
+            discountPercentage: string;
+            rating: number;
+            stock: number;
+            brand: string;
+            category: string;
+            thumbnail: string;
+            images: string[];
+          }
+        ]
+      | void[];
   } & _StoreWithGetters<{}> &
     PiniaCustomStateProperties<IProducts>
 >;
