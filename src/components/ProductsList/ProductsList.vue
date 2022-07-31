@@ -28,7 +28,7 @@ const { products, totalPages }: IProductStoreToRef = storeToRefs(
   useProductStore()
 );
 
-const { limit, page, category } = route.params;
+const { page, category } = route.params;
 
 watchEffect(() => {
   const { limit, page } = route.params;
@@ -62,8 +62,6 @@ const navigateBackwards = (): void => {
 
   router.push(`/market/${limitForGetProducts}/${nextPage}/${category}`);
 };
-
-const filterByName = () => {};
 </script>
 
 <template>
@@ -91,8 +89,8 @@ const filterByName = () => {};
         <div className="dropdown">
           <button className="dropbtn">SORT BY NAME</button>
           <div className="dropdown-content">
-            <a> A to Z</a>
-            <a> Z to A</a>
+            <a @click="">A to Z</a>
+            <a>Z to A</a>
           </div>
         </div>
       </div>

@@ -35,3 +35,11 @@ export const categoriesProductsRoute = (
     }products/category/${category}/?limit=${limitForGetProducts}&skip=${initialSkipForGetProducts}`;
   }
 };
+
+export const allCategoriesRoute: string = `${
+  import.meta.env.VITE_API_PRODUCT_URL
+}products/categories`;
+
+export const allProductsRoute: string = `${
+  import.meta.env.VITE_API_PRODUCT_URL
+}products`;

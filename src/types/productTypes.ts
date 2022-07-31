@@ -37,6 +37,8 @@ export type IProductStore = Store<
       skip: string | void | null | undefined,
       category: string | void | string[] | null | undefined
     ): Promise<void>;
+    getAllCategories(): Promise<void>;
+    getAllProducts(): Promise<void>;
   }
 >;
 
@@ -71,4 +73,4 @@ export type IPage = string | string[] | void | null | undefined;
 
 export type ISkip = string | void | null | undefined;
 
-export type ICategory = string | void | null | undefined;
+export type ICategory = string | string[] | void | null | undefined;
