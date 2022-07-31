@@ -17,6 +17,8 @@ import {
   productsTextIntroSecondPart,
   productsFilterFirstButton,
   productsFilterSecondButton,
+  productsFilterSortFirstOption,
+  productsFilterSortSecondOption,
 } from "../../utils/stringVariablesForHTML";
 
 const activeNavigateLeftClass: string = "products__navigate--button_first";
@@ -146,25 +148,23 @@ const sortZtoA = () => {
             {{ productsFilterFirstButton }}
           </button>
           <div class="dropdown-content">
-            <a @click="sortAtoZ">A to Z</a>
-            <a @click="sortZtoA">Z to A</a>
+            <a @click="sortAtoZ">{{ productsFilterSortFirstOption }}</a>
+            <a @click="sortZtoA">{{ productsFilterSortSecondOption }}</a>
           </div>
         </div>
       </div>
-      <div class="dropdown__container">
-        <div class="dropdown">
-          <button class="dropdown__button">
-            {{ productsFilterSecondButton }}
-          </button>
-          <div class="dropdown-content">
-            <a
-              v-for="(productCategory, index) in productCategories"
-              :key="`${productCategory}${index}`"
-              @click="goToCategory(productCategory)"
-            >
-              {{ productCategory }}
-            </a>
-          </div>
+      <div class="dropdown">
+        <button class="dropdown__button">
+          {{ productsFilterSecondButton }}
+        </button>
+        <div class="dropdown-content">
+          <a
+            v-for="(productCategory, index) in productCategories"
+            :key="`${productCategory}${index}`"
+            @click="goToCategory(productCategory)"
+          >
+            {{ productCategory }}
+          </a>
         </div>
       </div>
     </div>

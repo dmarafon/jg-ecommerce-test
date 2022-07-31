@@ -20,6 +20,7 @@
   display: flex;
   margin-top: 50px;
   justify-content: center;
+  gap: 40px;
 }
 
 .products__navigate--button_first {

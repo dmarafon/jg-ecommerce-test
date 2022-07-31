@@ -40,3 +40,7 @@ export const productsTextIntroSecondPart: string = "THAT YOU COULD EVER NEED!";
 export const productsFilterFirstButton: string = "SORT BY NAME";
 
 export const productsFilterSecondButton: string = "FILTER BY CATEGORY";
+
+export const productsFilterSortFirstOption: string = "A to Z";
+
+export const productsFilterSortSecondOption: string = "Z to A";
