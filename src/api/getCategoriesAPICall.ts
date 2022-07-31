@@ -2,14 +2,18 @@ import axios, { AxiosError } from "axios";
 import { IUserInterfaceStore } from "../types/uiTypes";
 import errorLoginValidation from "../utils/errorValidation";
 import useUiStore from "../stores/uiStore";
-import { productsRoute } from "./APIRoutesAndQueryVariables";
+import {
+  categoriesProductsRoute,
+  productsRoute,
+} from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";
 import { calculateTotalPages } from "../utils/calculatePageNavigation";
-import { Ilimit, IProductStore, ISkip } from "../types/productTypes";
+import { ICategory, Ilimit, IProductStore, ISkip } from "../types/productTypes";
 
-const getProductsAPICall = async (
+const getCategoriesAPICall = async (
   limit: Ilimit,
-  skip: ISkip
+  skip: ISkip,
+  category: ICategory
 ): Promise<void> => {
   const { loadingModal, finishedLoadingModal }: IUserInterfaceStore =
     useUiStore();
@@ -22,7 +26,7 @@ const getProductsAPICall = async (
     const {
       data: { products, total },
     }: { data: { products: never; total: number } } = await axios.get(
-      productsRoute(limit, skip)
+      categoriesProductsRoute(limit, skip, category)
     );
 
     const totalPages: number = await calculateTotalPages(total);
@@ -43,4 +47,4 @@ const getProductsAPICall = async (
   }
 };
 
-export default getProductsAPICall;
+export default getCategoriesAPICall;

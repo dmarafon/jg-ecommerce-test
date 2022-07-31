@@ -32,6 +32,10 @@ export type IProductStore = Store<
       limit: string | void | string[] | null | undefined,
       skip: string | void | null | undefined
     ): Promise<void>;
+    getCategories(
+      limit: string | void | string[] | null | undefined,
+      skip: string | void | null | undefined
+    ): Promise<void>;
   }
 >;
 
@@ -65,3 +69,5 @@ export type Ilimit = string | string[] | void | null | undefined;
 export type IPage = string | string[] | void | null | undefined;
 
 export type ISkip = string | void | null | undefined;
+
+export type ICategory = string | void | null | undefined;
