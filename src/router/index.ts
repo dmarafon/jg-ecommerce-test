@@ -8,6 +8,7 @@ import {
 import HomeView from "../views/HomeView/HomeView.vue";
 import DetailView from "../views/DetailView/DetailView.vue";
 import MarketView from "../views/MarketView/MarketView.vue";
+import CartView from "../views/CartView/CartView.vue";
 import jwtDecode from "jwt-decode";
 import { IUserToken } from "../types/userTypes";
 import useUserStore from "../stores/userStore";
@@ -43,7 +44,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/cart",
     name: "Cart",
-    component: MarketView,
+    component: CartView,
     meta: { requiresAuth: true },
   },
 ];
