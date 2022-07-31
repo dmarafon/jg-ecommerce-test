@@ -127,7 +127,6 @@
 
 .dropdown__container--right_responsive {
   display: flex;
-  margin-right: 300px;
   margin-top: 50px;
   margin-left: 0;
   margin-right: 0;
@@ -333,6 +332,7 @@
   color: #000000;
   font-size: 100%;
   font-family: "Sora", sans-serif;
+  word-spacing: 5px;
 
   text-align: center;
   margin-left: 0.006%;
@@ -342,5 +342,6 @@
 }
 
 .products__text--colored {
+  word-spacing: 5px;
   color: #00db7f;
 }

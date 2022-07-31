@@ -76,8 +76,8 @@ const navigateBackwards = (): void => {
     <div className="products__text--container">
       <p className="products__text--intro">
         ALL THE
-        <span className="products__text--colored"> DES TERRA</span> ARTISTS
-        WORKS
+        <span className="products__text--colored"> BEST PRODUCTS</span> THAT YOU
+        COULD NEED!
       </p>
     </div>
     <div className="products__filter--container">
@@ -85,36 +85,16 @@ const navigateBackwards = (): void => {
         <div className="dropdown">
           <button className="dropbtn">SORT BY NAME</button>
           <div className="dropdown-content">
-            <!-- <NavLink to={`/artwork/1/sortOrderPurchase=-1`}>
-                      Biggest to Smallest Price
-                    </NavLink>
-                    <NavLink to={`/artwork/1/sortOrderPurchase=1`}>
-                      Smallest to Biggest Price
-                    </NavLink> -->
+            <a> A to Z</a>
+            <a> Z to A</a>
           </div>
         </div>
       </div>
-      <div className="dropdown__container--center">
-        <div className="dropdown">
-          <button className="dropbtn">SORT BY RENT PRICE</button>
-          <div className="dropdown-content">
-            <!-- 
-                    <NavLink to={`/artwork/1/sortOrderRent=-1`}>
-                      Biggest to Smallest Price
-                    </NavLink>
-                    <NavLink to={`/artwork/1/${filterStyle}/sortOrderRent=1`}>
-                      Smallest to Biggest Price
-                    </NavLink>
-                    <NavLink to={`/artwork/1/sortOrderRent=1`}>
-                      Smallest to Biggest Price
-                    </NavLink> -->
-          </div>
-        </div>
-      </div>
+      <div className="dropdown__container--center"></div>
       <div className="dropdown__container--right">
         <div className="dropdown">
-          <button className="dropbtn">SELECT YOUR STYLE</button>
-          <div className="dropdown-content"></div>
+          <button className="dropbtn">FILTER BY CATEGORY</button>
+          <div className="dropdown-content"><a> A to Z</a> <a> Z to A</a></div>
         </div>
       </div>
     </div>
