@@ -149,6 +149,7 @@
   padding: 12px;
   font-family: "Sora", sans-serif;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .dropdown {
@@ -331,6 +332,8 @@
 .products__text--intro {
   color: #000000;
   font-size: 100%;
+  font-family: "Sora", sans-serif;
+
   text-align: center;
   margin-left: 0.006%;
   margin-bottom: 0;
