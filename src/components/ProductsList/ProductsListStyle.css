@@ -191,7 +191,7 @@
 }
 
 .dropdown:hover .dropdown__button {
-  background-color: #00db7f;
+  background-color: #03b66b;
   color: white;
 }
 
@@ -256,88 +256,6 @@
   .products__text--container {
     margin-left: 25vw;
     margin-right: 25vw;
-  }
-}
-
-.general__button--orange {
-  margin-left: 79vw;
-  margin-top: 45px;
-}
-
-@media (min-width: 1712px) and (max-width: 1860px) {
-  .general__button--orange {
-    margin-left: 81vw;
-  }
-}
-@media (min-width: 1651px) and (max-width: 1711px) {
-  .general__button--orange {
-    margin-left: 82vw;
-  }
-}
-
-@media (min-width: 1555px) and (max-width: 1650px) {
-  .general__button--orange {
-    margin-left: 84vw;
-  }
-}
-
-@media (min-width: 1493px) and (max-width: 1554px) {
-  .general__button--orange {
-    margin-left: 85vw;
-  }
-}
-
-@media (min-width: 1392px) and (max-width: 1492px) {
-  .general__button--orange {
-    margin-left: 70vw;
-  }
-}
-
-@media (min-width: 1354px) and (max-width: 1393px) {
-  .general__button--orange {
-    margin-left: 71vw;
-  }
-}
-
-@media (min-width: 1289px) and (max-width: 1353px) {
-  .general__button--orange {
-    margin-left: 72vw;
-  }
-}
-@media (min-width: 1210px) and (max-width: 1289px) {
-  .general__button--orange {
-    margin-left: 73vw;
-  }
-}
-
-@media (min-width: 1150px) and (max-width: 1209px) {
-  .general__button--orange {
-    margin-left: 74vw;
-  }
-}
-
-@media (min-width: 1110px) and (max-width: 1149px) {
-  .general__button--orange {
-    margin-left: 75vw;
-  }
-}
-
-@media (min-width: 1055px) and (max-width: 1109px) {
-  .general__button--orange {
-    margin-left: 76vw;
-  }
-}
-
-@media (min-width: 1023px) and (max-width: 1054px) {
-  .general__button--orange {
-    margin-left: 77vw;
-  }
-}
-
-@media (max-width: 1022px) {
-  .general__button--orange {
-    margin: auto;
-    display: block;
   }
 }
 

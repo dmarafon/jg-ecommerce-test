@@ -265,3 +265,19 @@ a {
   color: #00db7f;
   font-weight: bold;
 }
+
+.detail__button--cart {
+  background-color: #00db7f;
+  color: black;
+  border: none;
+  font-weight: bolder;
+  border-radius: 5px;
+  padding: 12px;
+  font-family: "Sora", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+.detail__button--cart:hover {
+  background-color: #03b66b;
+  color: white;
+}

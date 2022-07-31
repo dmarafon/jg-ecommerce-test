@@ -95,7 +95,7 @@ const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
       </div>
 
       <div class="detail__button--container">
-        <button>Add To Cart</button>
+        <button class="detail__button--cart">Add To Cart</button>
       </div>
     </div>
   </section>
