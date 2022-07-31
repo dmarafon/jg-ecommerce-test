@@ -34,7 +34,8 @@ export type IProductStore = Store<
     ): Promise<void>;
     getCategories(
       limit: string | void | string[] | null | undefined,
-      skip: string | void | null | undefined
+      skip: string | void | null | undefined,
+      category: string | void | string[] | null | undefined
     ): Promise<void>;
   }
 >;

@@ -28,8 +28,14 @@ const routes: RouteRecordRaw[] = [
     component: HomeView,
   },
   {
-    path: "/market/:limit/:page",
+    path: "/market/:limit/:page/:category?",
     name: "Market",
+    component: MarketView,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/detail/:id",
+    name: "Detail",
     component: MarketView,
     meta: { requiresAuth: true },
   },

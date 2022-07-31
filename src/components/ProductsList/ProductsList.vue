@@ -22,20 +22,24 @@ const storeUI: IUserInterfaceStore = useUiStore();
 
 const { cleanResponse }: IUserInterfaceStore = storeUI;
 
-const { getProducts }: IProductStore = useProductStore();
+const { getProducts, getCategories }: IProductStore = useProductStore();
 
 const { products, totalPages }: IProductStoreToRef = storeToRefs(
   useProductStore()
 );
 
-const { limit, page } = route.params;
+const { limit, page, category } = route.params;
 
 watchEffect(() => {
   const { limit, page } = route.params;
 
   const skip: string = calculateSkip(limit, page);
 
-  getProducts(limit, skip);
+  if (!category) {
+    getProducts(limit, skip);
+  } else {
+    getCategories(limit, skip, category);
+  }
 });
 
 watch(
@@ -50,14 +54,16 @@ const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
 const navigateForward = (): void => {
   const nextPage: number = Number(page) + 1;
 
-  router.push(`/market/${limitForGetProducts}/${nextPage}`);
+  router.push(`/market/${limitForGetProducts}/${nextPage}/${category}`);
 };
 
 const navigateBackwards = (): void => {
   const nextPage: number = Number(page) - 1;
 
-  router.push(`/market/${limitForGetProducts}/${nextPage}`);
+  router.push(`/market/${limitForGetProducts}/${nextPage}/${category}`);
 };
+
+const filterByName = () => {};
 </script>
 
 <template>
