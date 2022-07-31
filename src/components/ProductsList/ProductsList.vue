@@ -148,7 +148,7 @@ const sortZtoA = () => {
         </div>
       </div>
       <div className="dropdown__container--center"></div>
-      <div className="dropdown__container--right">
+      <div className="dropdown__container">
         <div className="dropdown">
           <button className="dropbtn">FILTER BY CATEGORY</button>
           <div className="dropdown-content">
@@ -161,12 +161,6 @@ const sortZtoA = () => {
             </a>
           </div>
         </div>
-      </div>
-    </div>
-    <div className="dropdown__container--right_responsive">
-      <div className="dropdown">
-        <button className="dropbtn">SELECT YOUR STYLE</button>
-        <div className="dropdown-content"></div>
       </div>
     </div>
     <ul v-if="products" className="products__list">
