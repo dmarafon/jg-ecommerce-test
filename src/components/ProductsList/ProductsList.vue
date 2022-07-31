@@ -169,9 +169,12 @@ const sortZtoA = () => {
       </div>
     </div>
     <ul v-if="products" class="products__list">
-      <li v-for="(product, index) in products[0]" :key="index">
-        {{ product }}
-      </li>
+      <Product
+        v-for="(product, index) in products[0]"
+        :key="index"
+        :product="product"
+      >
+      </Product>
     </ul>
     <div class="products__navigate--container">
       <svg
