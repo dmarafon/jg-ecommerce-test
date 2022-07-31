@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { storeToRefs, _StoreWithGetters } from "pinia";
 import { RouteLocationNormalizedLoaded } from "vue-router";
-import { limitForGetProducts } from "../../api/APIRoutesAndQueryVariables";
+import {
+  initialSkipForGetProducts,
+  limitForGetProducts,
+} from "../../api/APIRoutesAndQueryVariables";
 import router from "../../router";
 import useProductStore from "../../stores/productStore";
 import useUiStore from "../../stores/uiStore";
@@ -22,23 +25,31 @@ const storeUI: IUserInterfaceStore = useUiStore();
 
 const { cleanResponse }: IUserInterfaceStore = storeUI;
 
-const { getProducts, getCategories }: IProductStore = useProductStore();
+const {
+  getProducts,
+  getCategories,
+  getAllCategories,
+  getAllProducts,
+}: IProductStore = useProductStore();
 
-const { products, totalPages }: IProductStoreToRef = storeToRefs(
-  useProductStore()
-);
+const { products, totalPages, productCategories }: IProductStoreToRef =
+  storeToRefs(useProductStore());
 
-const { page, category } = route.params;
+const { page, category, all } = route.params;
 
 watchEffect(() => {
-  const { limit, page } = route.params;
+  const { limit, page, category, all } = route.params;
+
+  getAllCategories();
 
   const skip: string = calculateSkip(limit, page);
 
-  if (!category) {
+  if (!category && all === "no") {
     getProducts(limit, skip);
-  } else {
+  } else if (category && all === "no") {
     getCategories(limit, skip, category);
+  } else if (all === "yes") {
+    getAllProducts();
   }
 });
 
@@ -61,6 +72,12 @@ const navigateBackwards = (): void => {
   const nextPage: number = Number(page) - 1;
 
   router.push(`/market/${limitForGetProducts}/${nextPage}/${category}`);
+};
+
+const goToCategory = (clickedCategory: string | void): void => {
+  router.push(
+    `/market/${limitForGetProducts}/${initialSkipForGetProducts}/${clickedCategory}`
+  );
 };
 </script>
 
@@ -98,7 +115,15 @@ const navigateBackwards = (): void => {
       <div className="dropdown__container--right">
         <div className="dropdown">
           <button className="dropbtn">FILTER BY CATEGORY</button>
-          <div className="dropdown-content"><a> A to Z</a> <a> Z to A</a></div>
+          <div className="dropdown-content">
+            <a
+              v-for="(productCategory, index) in productCategories"
+              :key="`${productCategory}${index}`"
+              @click="goToCategory(productCategory)"
+            >
+              {{ productCategory }}
+            </a>
+          </div>
         </div>
       </div>
     </div>

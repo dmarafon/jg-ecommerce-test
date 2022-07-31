@@ -6,7 +6,13 @@ import getProductsAPICall from "../api/getProductsAPICall";
 import { IProducts } from "../types/productTypes";
 
 const useProductStore = defineStore("productStore", {
-  state: (): IProducts => ({ products: [], total: 0, totalPages: 0 }),
+  state: (): IProducts => ({
+    products: [],
+    total: 0,
+    totalPages: 0,
+    productCategories: [],
+    allProducts: [],
+  }),
   actions: {
     async getProducts(
       limit: string | string[] | void | null | undefined,

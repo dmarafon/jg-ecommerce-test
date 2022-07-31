@@ -2,10 +2,7 @@ import axios, { AxiosError } from "axios";
 import { IUserInterfaceStore } from "../types/uiTypes";
 import errorLoginValidation from "../utils/errorValidation";
 import useUiStore from "../stores/uiStore";
-import {
-  categoriesProductsRoute,
-  productsRoute,
-} from "./APIRoutesAndQueryVariables";
+import { categoriesProductsRoute } from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";
 import { calculateTotalPages } from "../utils/calculatePageNavigation";
 import { ICategory, Ilimit, IProductStore, ISkip } from "../types/productTypes";
@@ -28,8 +25,7 @@ const getCategoriesAPICall = async (
     }: { data: { products: never; total: number } } = await axios.get(
       categoriesProductsRoute(limit, skip, category)
     );
-
-    const totalPages: number = await calculateTotalPages(total);
+    const totalPages: number = calculateTotalPages(total);
 
     productStore.$patch((state) => {
       state.products.push(products);

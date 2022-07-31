@@ -25,7 +25,7 @@ const getProductsAPICall = async (
       productsRoute(limit, skip)
     );
 
-    const totalPages: number = await calculateTotalPages(total);
+    const totalPages: number = calculateTotalPages(total);
 
     productStore.$patch((state) => {
       state.products.push(products);

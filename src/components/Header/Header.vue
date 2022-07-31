@@ -34,7 +34,7 @@ const submitLogOut = (): void => {
 };
 
 const returnToInitialProducts = () => {
-  router.push(`/market/${limitForGetProducts}/${initialSkipForGetProducts}`);
+  router.push(`/market/no/${limitForGetProducts}/${initialSkipForGetProducts}`);
 };
 </script>
 

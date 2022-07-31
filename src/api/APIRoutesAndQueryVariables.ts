@@ -42,4 +42,4 @@ export const allCategoriesRoute: string = `${
 
 export const allProductsRoute: string = `${
   import.meta.env.VITE_API_PRODUCT_URL
-}products`;
+}products/?limit=100`;

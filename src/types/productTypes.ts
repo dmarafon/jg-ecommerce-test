@@ -21,6 +21,24 @@ export type IProducts = {
     | void[];
   total: number;
   totalPages: number;
+  productCategories: void[] | string[];
+  allProducts:
+    | [
+        {
+          id: number;
+          title: string;
+          description: string;
+          price: string;
+          discountPercentage: string;
+          rating: number;
+          stock: number;
+          brand: string;
+          category: string;
+          thumbnail: string;
+          images: string[];
+        }
+      ]
+    | void[];
 };
 
 export type IProductStore = Store<
@@ -63,6 +81,7 @@ export type IProductStoreToRef = ToRefs<
         ];
     total: number;
     totalPages: number;
+    productCategories: void[] | string[];
   } & _StoreWithGetters<{}> &
     PiniaCustomStateProperties<IProducts>
 >;
