@@ -19,9 +19,9 @@ import {
   loginTextSpecial,
 } from "../../utils/stringVariablesForHTML";
 
-const storeLogin = useLoginFormStore();
+const storeLogin: ILoginStore = useLoginFormStore();
 
-const storeUI = useUiStore();
+const storeUI: IUserInterfaceStore = useUiStore();
 
 const {
   loading,
@@ -37,7 +37,7 @@ const {
   cleanResponse,
 }: IUserInterfaceStore = storeUI;
 
-const handleSubmit = () => {
+const handleSubmit = (): void => {
   cleanResponse();
 
   const { email, password, loginPost }: ILoginStore = storeLogin;

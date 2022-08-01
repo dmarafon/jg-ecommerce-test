@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs, _StoreWithGetters } from "pinia";
+import { RouteLocationNormalizedLoaded, RouteParams, Router } from "vue-router";
 import {
   initialSkipForGetProducts,
   limitForGetProducts,
@@ -19,8 +20,8 @@ import {
   productsFilterSortSecondOption,
 } from "../../utils/stringVariablesForHTML";
 
-const router = useRouter();
-const route = useRoute();
+const router: Router = useRouter();
+const route: RouteLocationNormalizedLoaded = useRoute();
 
 const storeUI: IUserInterfaceStore = useUiStore();
 
@@ -40,10 +41,8 @@ const {
   productCategories,
 }: IProductStoreToRef = storeToRefs(useProductStore());
 
-const { page, category } = route.params;
-
 watchEffect(() => {
-  const { limit, page, category, all } = route.params;
+  const { limit, page, category, all }: RouteParams = route.params;
 
   getAllCategories();
 
@@ -72,7 +71,7 @@ watchEffect(() => {
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
 
 const navigateForward = (): void => {
-  const { category, page, all } = route.params;
+  const { category, page, all }: RouteParams = route.params;
 
   const nextPage: number = Number(page) + 1;
 
@@ -88,7 +87,7 @@ const navigateForward = (): void => {
 };
 
 const navigateBackwards = (): void => {
-  const { category, page, all } = route.params;
+  const { category, page, all }: RouteParams = route.params;
 
   const nextPage: number = Number(page) - 1;
 
@@ -109,13 +108,13 @@ const goToCategory = (clickedCategory: string | void): void => {
   });
 };
 
-const sortAtoZ = () => {
+const sortAtoZ = (): void => {
   router.push({
     path: `/market/ordered/${limitForGetProducts}/${initialSkipForGetProducts}`,
   });
 };
 
-const sortZtoA = () => {
+const sortZtoA = (): void => {
   router.push({
     path: `/market/reverse/${limitForGetProducts}/${initialSkipForGetProducts}`,
   });

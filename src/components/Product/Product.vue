@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Router } from "vue-router";
+
 interface Props {
   product: any;
 }
@@ -8,9 +10,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 const categoryToUpperCase: string = props.product.category.toUpperCase();
 
-const router = useRouter();
+const router: Router = useRouter();
 
-const goToDetails = () => {
+const goToDetails = (): void => {
   const detailId: string = props.product.id.toString();
   router.push({ path: `/detail/${detailId}` });
 };

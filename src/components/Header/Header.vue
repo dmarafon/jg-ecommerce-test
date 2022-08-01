@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs, _StoreWithGetters } from "pinia";
+import { Router } from "vue-router";
 import {
   initialSkipForGetProducts,
   limitForGetProducts,
@@ -7,36 +8,37 @@ import {
 import useCartStore from "../../stores/cartStore";
 import useUiStore from "../../stores/uiStore";
 import useUserStore from "../../stores/userStore";
-import { IStoreUIToRefs } from "../../types/uiTypes";
-import { IStoreUserToRefs } from "../../types/userTypes";
+import { ICartRef } from "../../types/cartTypes";
+import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
+import { IStoreUserToRefs, IUserStore } from "../../types/userTypes";
 import {
   headerFirstLink,
   headerSecondLink,
   headerWelcome,
 } from "../../utils/stringVariablesForHTML";
 
-const storeUI = useUiStore();
+const storeUI: IUserInterfaceStore = useUiStore();
 
-const storeUser = useUserStore();
+const storeUser: IUserStore = useUserStore();
 
 const { loading }: IStoreUIToRefs = storeToRefs(storeUI);
 
 const { userData }: IStoreUserToRefs = storeToRefs(storeUser);
 
-const router = useRouter();
+const router: Router = useRouter();
 
 const submitLogOut = (): void => {
   localStorage.removeItem("token");
   router.push({ path: "/" });
 };
 
-const returnToInitialProducts = () => {
+const returnToInitialProducts = (): void => {
   router.push({
     path: `/market/no/${limitForGetProducts}/${initialSkipForGetProducts}`,
   });
 };
 
-const { totalItems } = storeToRefs(useCartStore());
+const { totalItems }: ICartRef = storeToRefs(useCartStore());
 </script>
 
 <template>

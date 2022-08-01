@@ -10,7 +10,7 @@ defineEmits<{
   (event: "button-on-click"): void;
 }>();
 
-onKeyStroke(["Escape", "Enter"], (event: KeyboardEvent) => {
+onKeyStroke(["Escape", "Enter"], (event: KeyboardEvent): void => {
   props.keyEvent();
   event.preventDefault();
 });
