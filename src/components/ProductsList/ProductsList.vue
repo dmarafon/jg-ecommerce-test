@@ -63,6 +63,7 @@ watchEffect(() => {
 
     case all === "ordered":
       getAllProducts(all, page, limit);
+      break;
     default:
       return;
   }

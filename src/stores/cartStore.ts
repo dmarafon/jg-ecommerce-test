@@ -10,9 +10,14 @@ const useCartStore = defineStore("cartStore", {
   }),
   actions: {
     calculateAllTotalItems() {
-      this.addedToCart.reduce((previousProduct, currrentProduct) => {
-        return (this.totalItems = previousProduct + currrentProduct.total);
-      }, 0);
+      const getAllTotalItems: number = this.addedToCart.reduce(
+        (previousProduct, currrentProduct) => {
+          return previousProduct + currrentProduct.total;
+        },
+        0
+      );
+
+      this.totalItems = getAllTotalItems;
     },
     addToCart(product: ICart) {
       const rawProductData = toRaw(product);
