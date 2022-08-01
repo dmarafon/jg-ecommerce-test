@@ -15,7 +15,7 @@ const getDetailProductAPICall = async (id: IId): Promise<void> => {
 
   try {
     if (!id) {
-      throw new Error("No id Preset");
+      throw new Error("No id Present");
     }
 
     const { data } = await axios.get(productDetailRoute(id));

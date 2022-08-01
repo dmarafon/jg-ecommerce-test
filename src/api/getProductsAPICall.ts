@@ -10,7 +10,7 @@ import { Ilimit, IPage, IProductStore, ISkip } from "../types/productTypes";
 const getProductsAPICall = async (
   limit: Ilimit,
   skip: ISkip,
-  page: string | number | void | string[] | null
+  page: IPage
 ): Promise<void> => {
   const { loadingModal, finishedLoadingModal }: IUserInterfaceStore =
     useUiStore();
