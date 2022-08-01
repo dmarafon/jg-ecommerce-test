@@ -12,7 +12,7 @@ export type IDetailProduct = {
   brand: string;
   category: string;
   thumbnail: string;
-  images: [];
+  images: string[];
 };
 
 export type IProducts = {
