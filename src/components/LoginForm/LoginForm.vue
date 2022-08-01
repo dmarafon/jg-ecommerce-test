@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs, _StoreWithGetters } from "pinia";
 import { ILoginStore } from "../../types/formTypes";
-import useLoginFormStore from "../../stores/formStore";
+import useLoginFormStore from "../../stores/loginFormStore";
 import useUiStore from "../../stores/uiStore";
 import {
   emailInputValidation,
@@ -22,6 +22,7 @@ import {
 defineEmits<{
   (event: "toogle-component"): void;
 }>();
+
 const storeLogin: ILoginStore = useLoginFormStore();
 
 const storeUI: IUserInterfaceStore = useUiStore();

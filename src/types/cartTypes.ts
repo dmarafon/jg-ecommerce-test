@@ -1,6 +1,10 @@
-import { PiniaCustomStateProperties, _StoreWithGetters, Store } from "pinia";
+import {
+  PiniaCustomStateProperties,
+  _StoreWithGetters,
+  Store,
+  StoreDefinition,
+} from "pinia";
 import { ToRefs } from "vue";
-import { IDetailProduct } from "./productTypes";
 
 export type ICart = {
   brand: string;
@@ -17,17 +21,14 @@ export type ICart = {
   total?: number | any;
 };
 
-export type ICartStore = Store<
-  "cartStore",
-  ICartState,
-  {},
-  {
-    calculateAllTotalItems(): void;
-    addToCart(product: ICart): void;
-    removeFromCart(id: number): void;
-    buyFromCart(id: number): void;
-  }
->;
+export type ICartStoreActions = {
+  calculateAllTotalItems(): void;
+  addToCart(product: ICart): void;
+  removeFromCart(id: number): void;
+  buyFromCart(id: number): void;
+};
+
+export type ICartStore = Store<"cartStore", ICartState, {}, ICartStoreActions>;
 
 export type ICartState = {
   addedToCart: ICart[];
@@ -37,4 +38,11 @@ export type ICartState = {
 
 export type ICartRef = ToRefs<
   ICartState & _StoreWithGetters<{}> & PiniaCustomStateProperties<ICartState>
+>;
+
+export type ICartStateType = StoreDefinition<
+  "cartStore",
+  ICartState,
+  {},
+  ICartStoreActions
 >;

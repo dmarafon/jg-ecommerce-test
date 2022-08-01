@@ -3,6 +3,7 @@ import { storeToRefs } from "pinia";
 import useRegisterFormStore from "../../stores/registerFormStore.js";
 import useUiStore from "../../stores/uiStore.js";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes.js";
+import { IRegisterStore } from "../../types/formTypes";
 
 defineEmits<{
   (event: "toogle-component"): void;
@@ -10,7 +11,7 @@ defineEmits<{
 
 const storeUI: IUserInterfaceStore = useUiStore();
 
-const storeRegister = useRegisterFormStore();
+const storeRegister: IRegisterStore = useRegisterFormStore();
 
 const {
   loading,
@@ -25,13 +26,18 @@ const {
   cleanResponse,
 }: IUserInterfaceStore = storeUI;
 
-const handleSubmit = () => {
+const handleSubmit = (): void => {
   cleanResponse();
 
-  const { firstname, surname, email, password, city, country, registerPost } =
-    storeRegister;
-  debugger;
-
+  const {
+    firstname,
+    surname,
+    email,
+    password,
+    city,
+    country,
+    registerPost,
+  }: IRegisterStore = storeRegister;
   // const validateEmailForm: string = emailInputValidation(email);
   // const validatePasswordForm: string = passwordInputValidation(password);
 

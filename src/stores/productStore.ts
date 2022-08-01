@@ -12,10 +12,11 @@ import {
   Ilimit,
   IPage,
   IProducts,
+  IProductStoreDef,
   ISkip,
 } from "../types/productTypes";
 
-const productStore = defineStore("productStore", {
+const productStore: IProductStoreDef = defineStore("productStore", {
   state: (): IProducts => ({
     products: [],
 

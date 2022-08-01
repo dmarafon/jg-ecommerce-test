@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
 import registerAPICall from "../api/registerApiCall";
+import { IRegister, IRegisterStoreDef } from "../types/formTypes";
 
-const useRegisterFormStore = defineStore("registerForm", {
-  state: () => ({
+const useRegisterFormStore: IRegisterStoreDef = defineStore("registerForm", {
+  state: (): IRegister => ({
     firstname: "",
     surname: "",
     email: "",

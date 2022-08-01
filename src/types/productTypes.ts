@@ -27,6 +27,19 @@ export type IProducts = {
   detailProduct: IDetailProduct;
 };
 
+export type IProductActions = {
+  getProducts(limit: Ilimit, skip: ISkip, page: ICurrentPage): Promise<void>;
+  getCategories(
+    limit: Ilimit,
+    skip: ISkip,
+    category: ICategory,
+    page: IPage
+  ): Promise<void>;
+  getAllCategories(): Promise<void>;
+  getAllProducts(all: IAll, limit: Ilimit, page: IPage): Promise<void>;
+  getDetailProduct(id: IId): Promise<void>;
+};
+
 export type IAll = string | string[] | void | null | undefined;
 
 export type Ilimit = string | string[] | void | null | undefined;
@@ -45,18 +58,14 @@ export type IProductStore = Store<
   "productStore",
   IProducts,
   {},
-  {
-    getProducts(limit: Ilimit, skip: ISkip, page: ICurrentPage): Promise<void>;
-    getCategories(
-      limit: Ilimit,
-      skip: ISkip,
-      category: ICategory,
-      page: IPage
-    ): Promise<void>;
-    getAllCategories(): Promise<void>;
-    getAllProducts(all: IAll, limit: Ilimit, page: IPage): Promise<void>;
-    getDetailProduct(id: IId): Promise<void>;
-  }
+  IProductActions
+>;
+
+export type IProductStoreDef = StoreDefinition<
+  "productStore",
+  IProducts,
+  {},
+  IProductActions
 >;
 
 export type IProductStoreToRef = ToRefs<
