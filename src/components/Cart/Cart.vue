@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import { ICartRef } from "../../types/cartTypes";
 
 const { removeFromCart, buyFromCart } = cartStore();
 
