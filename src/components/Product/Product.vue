@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Router } from "vue-router";
+
 interface Props {
   product: any;
 }
@@ -8,11 +10,11 @@ const props = withDefaults(defineProps<Props>(), {
 
 const categoryToUpperCase: string = props.product.category.toUpperCase();
 
-const router = useRouter();
+const router: Router = useRouter();
 
-const goToDetails = () => {
+const goToDetails = (): void => {
   const detailId: string = props.product.id.toString();
-  router.push(`/detail/${detailId}`);
+  router.push({ path: `/detail/${detailId}` });
 };
 </script>
 
@@ -22,7 +24,7 @@ const goToDetails = () => {
       <div class="product__card">
         <img
           class="product__image"
-          :src="props.product.images[0]"
+          :src="props?.product?.images[0]"
           alt="marketplace product image"
           width="417.44"
           height="465"

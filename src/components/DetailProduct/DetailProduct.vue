@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { RouteLocationNormalizedLoaded } from "vue-router";
+import { RouteLocationNormalizedLoaded, RouteParams } from "vue-router";
 import useUiStore from "../../stores/uiStore";
 import { IProductStore, IProductStoreToRef } from "../../types/productTypes";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 import useProductStore from "../../stores/productStore";
-import router from "../../router";
+import useCartStore from "../../stores/cartStore";
+import { ICartStore } from "../../types/cartTypes";
 
 const storeUI: IUserInterfaceStore = useUiStore();
 
@@ -18,19 +19,20 @@ const { getDetailProduct }: IProductStore = useProductStore();
 const { detailProduct }: IProductStoreToRef = storeToRefs(useProductStore());
 
 watchEffect(() => {
-  const { id } = route.params;
+  const { id }: RouteParams = route.params;
 
   getDetailProduct(id);
 });
 
-watch(
-  () => route.params,
-  (toParams, previousParams) => {
-    router.go(0);
-  }
-);
-
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
+
+const { addToCart }: ICartStore = useCartStore();
+
+const addToCartAction = (): void => {
+  const { detailProduct }: IProductStore = useProductStore();
+
+  addToCart(detailProduct);
+};
 </script>
 
 <template>
@@ -47,17 +49,17 @@ const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
   </Teleport>
   <section class="detail__section">
     <div class="detail__container">
-      <h2 class="detail__heading--title">{{ detailProduct.title }}</h2>
+      <h2 class="detail__heading--title">{{ detailProduct?.title }}</h2>
       <p class="detail__paragraph--brand">
         <span class="detail__paragraph--special">
-          {{ detailProduct.brand }}
+          {{ detailProduct?.brand }}
         </span>
       </p>
       <ul>
         <li class="detail__list">
           Customers Rating:
           <span class="detail__paragraph--special">
-            {{ detailProduct.rating }}</span
+            {{ detailProduct?.rating }}</span
           >
         </li>
         <li class="detail__list">
@@ -66,36 +68,38 @@ const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
             detailProduct.stock
           }}</span>
         </li>
-        <li class="detail__list">Brand: {{ detailProduct.brand }}</li>
+        <li class="detail__list">Brand: {{ detailProduct?.brand }}</li>
 
         <li class="detail__list">
           Price: €
           <span class="detail__paragraph--special_second">{{
-            detailProduct.price
+            detailProduct?.price
           }}</span>
         </li>
         <li class="detail__list">
           What You Save?
           <span class="detail__paragraph--special_second">
-            {{ detailProduct.discountPercentage }}%</span
+            {{ detailProduct?.discountPercentage }}%</span
           >
         </li>
       </ul>
       <p class="detail__paragraph--description">
-        {{ detailProduct.description }}
+        {{ detailProduct?.description }}
       </p>
     </div>
     <div class="detail__image--container">
       <div class="detail__image--container_second">
         <img
           class="detail__image"
-          :src="detailProduct.images[0]"
+          :src="detailProduct?.images[0]"
           alt="product available"
         />
       </div>
 
       <div class="detail__button--container">
-        <button class="detail__button--cart">Add To Cart</button>
+        <button @click="addToCartAction" class="detail__button--cart">
+          Add To Cart
+        </button>
       </div>
     </div>
   </section>

@@ -1,4 +1,4 @@
-import { PiniaCustomStateProperties, _StoreWithGetters } from "pinia";
+import { PiniaCustomStateProperties, Store, _StoreWithGetters } from "pinia";
 import { ToRefs } from "vue";
 
 export type IUser = {
@@ -15,5 +15,31 @@ export type IUserToken = {
 };
 
 export type IStoreUserToRefs = ToRefs<
-  IUser & _StoreWithGetters<{}> & PiniaCustomStateProperties<IUser>
+  { userData: IUserToken } & _StoreWithGetters<{}> &
+    PiniaCustomStateProperties<{ userData: IUserToken }>
+>;
+
+export type IUserStore = Store<
+  "userData",
+  {
+    userData: {
+      id: string;
+      firstName: string;
+      email: string;
+      logged: boolean;
+    };
+  },
+  {},
+  {
+    login({
+      id,
+      firstName,
+      email,
+    }: {
+      id: string;
+      firstName: string;
+      email: string;
+    }): void;
+    logout(): void;
+  }
 >;

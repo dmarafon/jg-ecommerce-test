@@ -5,16 +5,22 @@ import useUiStore from "../stores/uiStore";
 import { allProductsRoute } from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";
 import { calculateTotalPages } from "../utils/calculatePageNavigation";
-import { IProducts, IProductStore } from "../types/productTypes";
-import { RouteLocationNormalizedLoaded } from "vue-router";
+import {
+  IAll,
+  Ilimit,
+  IPage,
+  IProducts,
+  IProductStore,
+} from "../types/productTypes";
 
-const getAllProductsAPICall = async (): Promise<void> => {
+const getAllProductsAPICall = async (
+  all: IAll,
+  page: IPage,
+  limit: Ilimit
+): Promise<void> => {
   const { loadingModal, finishedLoadingModal }: IUserInterfaceStore =
     useUiStore();
-  const route: RouteLocationNormalizedLoaded = useRoute();
-
   const productStore: IProductStore = useProductStore();
-
   loadingModal();
 
   try {
@@ -25,8 +31,6 @@ const getAllProductsAPICall = async (): Promise<void> => {
     );
 
     const totalPages: number = calculateTotalPages(total);
-
-    const { all, limit, page } = await route.params;
 
     let sortedProducts: IProducts | any = [];
 
@@ -40,14 +44,19 @@ const getAllProductsAPICall = async (): Promise<void> => {
     } else if (all === "reverse") {
       sortedProducts.push(sortAlphabeticallyByTitle.reverse());
     }
-
     productStore.$patch((state) => {
+      state.products.shift();
+      state.allProducts.shift();
       state.products.push(
-        sortedProducts[0].slice(Number(page) + 1, Number(limit))
+        sortedProducts[0].slice(
+          (Number(page) - 1) * Number(limit) + 1,
+          Number(limit) * Number(page) + 1
+        )
       );
       state.allProducts.push(sortedProducts);
       state.total = total;
       state.totalPages = totalPages;
+      state.currentPage = Number(page);
     });
 
     finishedLoadingModal();

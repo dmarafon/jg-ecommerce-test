@@ -11,10 +11,13 @@ const getDetailProductAPICall = async (id: IId): Promise<void> => {
     useUiStore();
 
   const productStore: IProductStore = useProductStore();
-
   loadingModal();
 
   try {
+    if (!id) {
+      throw new Error("No id Present");
+    }
+
     const { data } = await axios.get(productDetailRoute(id));
 
     productStore.$patch((state) => {

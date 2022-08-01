@@ -5,17 +5,16 @@ import useUiStore from "../stores/uiStore";
 import { productsRoute } from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";
 import { calculateTotalPages } from "../utils/calculatePageNavigation";
-import { Ilimit, IProductStore, ISkip } from "../types/productTypes";
+import { Ilimit, IPage, IProductStore, ISkip } from "../types/productTypes";
 
 const getProductsAPICall = async (
   limit: Ilimit,
-  skip: ISkip
+  skip: ISkip,
+  page: IPage
 ): Promise<void> => {
   const { loadingModal, finishedLoadingModal }: IUserInterfaceStore =
     useUiStore();
-
   const productStore: IProductStore = useProductStore();
-
   loadingModal();
 
   try {
@@ -26,11 +25,12 @@ const getProductsAPICall = async (
     );
 
     const totalPages: number = calculateTotalPages(total);
-
     productStore.$patch((state) => {
+      state.products.shift();
       state.products.push(products);
       state.total = total;
       state.totalPages = totalPages;
+      state.currentPage = Number(page);
     });
 
     finishedLoadingModal();

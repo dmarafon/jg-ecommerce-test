@@ -1,10 +1,10 @@
 .detail__section {
   display: flex;
   text-decoration: none;
-  display: flex;
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
+
   justify-content: space-evenly;
   word-spacing: 2px;
 }
@@ -98,7 +98,6 @@ a {
 .detail__image--container {
   display: flex;
   padding: 0 1.2em 1.2em;
-  display: flex;
   flex-direction: column;
   margin-right: 5vw;
   object-fit: cover;
@@ -251,7 +250,6 @@ a {
 }
 
 .detail__register--navigation {
-  font-weight: 400;
   font-size: 23px;
   cursor: pointer;
   text-decoration: none;
@@ -259,7 +257,6 @@ a {
 }
 
 .details__text--colored {
-  font-weight: 400;
   font-size: 23px;
   cursor: pointer;
   color: #00db7f;

@@ -1,14 +1,16 @@
-import { defineStore } from "pinia";
+import { defineStore, state } from "pinia";
 import { IUser } from "../types/userTypes";
 
 const useUserStore = defineStore("userData", {
-  state: (): IUser => ({
-    id: "",
-    firstName: "",
-    email: "",
-    logged: false,
+  state: () => ({
+    userData: {
+      id: "",
+      firstName: "",
+      email: "",
+      logged: false,
+    },
   }),
-  persist: true,
+  persist: { storage: sessionStorage, paths: ["username"] },
   actions: {
     login({
       id,
@@ -19,16 +21,14 @@ const useUserStore = defineStore("userData", {
       firstName: string;
       email: string;
     }): void {
-      (this.id = id),
-        (this.firstName = firstName),
-        (this.email = email),
-        (this.logged = true);
+      const logged = true;
+      this.userData = { ...this.$state.userData, id, firstName, email, logged };
     },
     logout(): void {
-      (this.id = ""),
-        (this.firstName = ""),
-        (this.email = ""),
-        (this.logged = false);
+      (this.userData.id = ""),
+        (this.userData.firstName = ""),
+        (this.userData.email = ""),
+        (this.userData.logged = false);
     },
   },
 });
