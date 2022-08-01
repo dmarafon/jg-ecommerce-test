@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { storeToRefs, _StoreWithGetters } from "pinia";
-import { RouteLocationNormalizedLoaded } from "vue-router";
 import {
   initialSkipForGetProducts,
   limitForGetProducts,
 } from "../../api/APIRoutesAndQueryVariables";
-import router from "../../router";
 import useProductStore from "../../stores/productStore";
 import useUiStore from "../../stores/uiStore";
 import { IProductStore, IProductStoreToRef } from "../../types/productTypes";
@@ -21,7 +19,8 @@ import {
   productsFilterSortSecondOption,
 } from "../../utils/stringVariablesForHTML";
 
-const route: RouteLocationNormalizedLoaded = useRoute();
+const router = useRouter();
+const route = useRoute();
 
 const storeUI: IUserInterfaceStore = useUiStore();
 
@@ -37,6 +36,7 @@ const {
 const {
   products,
   totalPages,
+  currentPage,
   productCategories,
   allProducts,
 }: IProductStoreToRef = storeToRefs(useProductStore());
@@ -52,67 +52,74 @@ watchEffect(() => {
 
   switch (true) {
     case !category && all === "no":
-      getProducts(limit, skip);
+      getProducts(limit, skip, page);
       break;
 
     case category && all === "no":
-      getCategories(limit, skip, category);
+      getCategories(limit, skip, category, page);
       break;
 
     case all === "reverse":
-      getAllProducts();
+      getAllProducts(all, page, limit);
       break;
 
     case all === "ordered":
-      getAllProducts();
+      getAllProducts(all, page, limit);
     default:
       return;
   }
 });
 
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
-const { all } = route.params;
 
 const navigateForward = (): void => {
+  const { category, page, all } = route.params;
+
   const nextPage: number = Number(page) + 1;
 
   if (all === "no") {
-    router.push(`/market/no/${limitForGetProducts}/${nextPage}/${category}`);
+    router.push({
+      path: `/market/no/${limitForGetProducts}/${nextPage}/${category}`,
+    });
   } else {
-    router.push(
-      `/market/${all}/${limitForGetProducts}/${nextPage}/${category}`
-    );
+    router.push({
+      path: `/market/${all}/${limitForGetProducts}/${nextPage}/${category}`,
+    });
   }
 };
 
 const navigateBackwards = (): void => {
+  const { category, page, all } = route.params;
+
   const nextPage: number = Number(page) - 1;
 
   if (all === "no") {
-    router.push(`/market/no/${limitForGetProducts}/${nextPage}/${category}`);
+    router.push({
+      path: `/market/no/${limitForGetProducts}/${nextPage}/${category}`,
+    });
   } else {
-    router.push(
-      `/market/${all}/${limitForGetProducts}/${nextPage}/${category}`
-    );
+    router.push({
+      path: `/market/${all}/${limitForGetProducts}/${nextPage}/${category}`,
+    });
   }
 };
 
 const goToCategory = (clickedCategory: string | void): void => {
-  router.push(
-    `/market/no/${limitForGetProducts}/${initialSkipForGetProducts}/${clickedCategory}`
-  );
+  router.push({
+    path: `/market/no/${limitForGetProducts}/${initialSkipForGetProducts}/${clickedCategory}`,
+  });
 };
 
 const sortAtoZ = () => {
-  router.push(
-    `/market/ordered/${limitForGetProducts}/${initialSkipForGetProducts}`
-  );
+  router.push({
+    path: `/market/ordered/${limitForGetProducts}/${initialSkipForGetProducts}`,
+  });
 };
 
 const sortZtoA = () => {
-  router.push(
-    `/market/reverse/${limitForGetProducts}/${initialSkipForGetProducts}`
-  );
+  router.push({
+    path: `/market/reverse/${limitForGetProducts}/${initialSkipForGetProducts}`,
+  });
 };
 
 const activeNavigateLeftClass: string = "products__navigate--button_first";
@@ -183,25 +190,27 @@ const activeNavigateRightClass: string = "products__navigate--button_second";
     <div class="products__navigate--container">
       <svg
         data-testid="back-button"
-        v-on="Number(page) > 1 ? { click: navigateBackwards } : {}"
+        v-on="currentPage > 1 ? { click: navigateBackwards } : {}"
         :class="[
-          Number(page) <= 1 ? deactivateNavigateClass : activeNavigateLeftClass,
+          currentPage <= 1 ? deactivateNavigateClass : activeNavigateLeftClass,
         ]"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512"
       >
         <path
-          v-if="Number(page) > 1"
+          v-if="currentPage > 1"
           fillOpacity="0"
           d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"
         />
       </svg>
 
-      <p class="products__navigate--counter">{{ page }}/ {{ totalPages }}</p>
+      <p class="products__navigate--counter">
+        {{ currentPage }}/ {{ totalPages }}
+      </p>
       <svg
-        v-on="Number(page) !== totalPages ? { click: navigateForward } : {}"
+        v-on="currentPage !== totalPages ? { click: navigateForward } : {}"
         :class="[
-          Number(page) === totalPages
+          currentPage === totalPages
             ? deactivateNavigateClass
             : activeNavigateRightClass,
         ]"
@@ -210,7 +219,7 @@ const activeNavigateRightClass: string = "products__navigate--button_second";
         viewBox="0 0 448 512"
       >
         <path
-          v-if="Number(page) !== totalPages"
+          v-if="currentPage !== totalPages"
           fillOpacity="0"
           d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"
         />

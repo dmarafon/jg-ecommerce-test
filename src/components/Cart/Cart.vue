@@ -9,7 +9,9 @@ const calculateShippingPriceBuy = (totalToBePaid: number): string => {
   if (totalToBePaid > 200) {
     return "FREE SHIPPING!";
   } else {
-    return `€ ${totalToBePaid * 0.5}`;
+    const total: string = (totalToBePaid * 0.05).toString();
+    const shippingValue: string = parseFloat(total).toFixed(2).toString();
+    return `€ ${shippingValue}`;
   }
 };
 
@@ -17,7 +19,11 @@ const calculateTotalPriceWithShipping = (totalToBePaid: number): number => {
   if (totalToBePaid > 200) {
     return totalToBePaid;
   } else {
-    return totalToBePaid + totalToBePaid * 0.5;
+    const total: string = (totalToBePaid * 5).toString();
+
+    const shippingValue: number = Number(parseFloat(total).toFixed(2));
+
+    return totalToBePaid + shippingValue;
   }
 };
 </script>

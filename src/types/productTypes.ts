@@ -21,6 +21,7 @@ export type IProducts = {
       ]
     | void[];
   total: number;
+  currentPage: number;
   totalPages: number;
   productCategories: void[] | string[];
   allProducts:
@@ -62,15 +63,21 @@ export type IProductStore = Store<
   {
     getProducts(
       limit: string | void | string[] | null | undefined,
-      skip: string | void | null | undefined
+      skip: string | void | null | undefined,
+      page: string | string[] | void | null | undefined
     ): Promise<void>;
     getCategories(
       limit: string | void | string[] | null | undefined,
       skip: string | void | null | undefined,
-      category: string | void | string[] | null | undefined
+      category: string | void | string[] | null | undefined,
+      page: string | string[] | void | null | undefined
     ): Promise<void>;
     getAllCategories(): Promise<void>;
-    getAllProducts(): Promise<void>;
+    getAllProducts(
+      all: string | void | string[] | null | undefined,
+      limit: string | void | string[] | null | undefined,
+      page: string | void | string[] | null | undefined
+    ): Promise<void>;
     getDetailProduct(
       id: string | void | string[] | null | undefined
     ): Promise<void>;
@@ -97,6 +104,7 @@ export type IProductStoreToRef = ToRefs<
           }
         ];
     total: number;
+    currentPage: number;
     totalPages: number;
     productCategories: void[] | string[];
     allProducts:
@@ -135,6 +143,8 @@ export type IProductStoreToRef = ToRefs<
     PiniaCustomStateProperties<IProducts>
 >;
 
+export type IAll = string | string[] | void | null | undefined;
+
 export type Ilimit = string | string[] | void | null | undefined;
 
 export type IPage = string | string[] | void | null | undefined;
@@ -144,6 +154,8 @@ export type ISkip = string | void | null | undefined;
 export type ICategory = string | string[] | void | null | undefined;
 
 export type IId = string | void | string[] | null | undefined;
+
+export type ICurrentPage = string | string[] | void | null | undefined;
 
 export type IDetailProduct = {
   id: number;
