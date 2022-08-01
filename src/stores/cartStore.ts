@@ -8,6 +8,7 @@ const useCartStore = defineStore("cartStore", {
     totalItems: 0,
     totalPrice: 0,
   }),
+  persist: true,
   actions: {
     calculateAllTotalItems() {
       const getAllTotalItems: number = this.addedToCart.reduce(
