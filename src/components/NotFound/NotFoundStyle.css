@@ -1,0 +1,45 @@
+.not-found__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.not-found__title {
+  color: #00db7f;
+  font-weight: 800;
+  font-size: 700%;
+}
+@media (max-width: 1055px) {
+  .not-found__title {
+    font-size: 650%;
+  }
+}
+
+.not-found__text--line-first {
+  margin-top: -3%;
+
+  color: black;
+  font-weight: 800;
+  font-size: 500%;
+}
+@media (max-width: 1055px) {
+  .not-found__text--line-first {
+    margin-top: -5%;
+    font-size: 400%;
+  }
+}
+
+.not-found__text--line-second {
+  margin-top: -3%;
+
+  color: black;
+  font-weight: 800;
+  font-size: 500%;
+}
+
+@media (max-width: 1055px) {
+  .not-found__text--line-second {
+    margin-top: -5%;
+    font-size: 400%;
+  }
+}
