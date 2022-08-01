@@ -3,7 +3,8 @@
 <template>
   <div class="welcome__container">
     <WelcomeText />
-    <LoginForm />
+    <!-- <LoginForm /> -->
+    <RegisterForm />
   </div>
   <Footer />
 </template>

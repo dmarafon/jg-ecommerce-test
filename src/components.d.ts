@@ -23,6 +23,7 @@ declare module '@vue/runtime-core' {
     Product: typeof import('./components/Product/Product.vue')['default']
     ProductList: typeof import("./components/ProductsList/ProductsList.vue")["default"]
     ProductsList: typeof import('./components/ProductsList/ProductsList.vue')['default']
+    RegisterForm: typeof import('./components/RegisterForm/RegisterForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TextModal: typeof import('./components/TextModal/TextModal.vue')['default']
