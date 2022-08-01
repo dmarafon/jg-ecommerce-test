@@ -3,7 +3,7 @@ import { storeToRefs } from "pinia";
 
 const { removeFromCart, buyFromCart } = cartStore();
 
-const { addedToCart } = storeToRefs(cartStore());
+const { addedToCart }: ICartRef = storeToRefs(cartStore());
 
 const calculateShippingPriceBuy = (totalToBePaid: number): string => {
   if (totalToBePaid > 200) {

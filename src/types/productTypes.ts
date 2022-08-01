@@ -1,92 +1,30 @@
 import { PiniaCustomStateProperties, Store, _StoreWithGetters } from "pinia";
 import { ToRefs } from "vue";
 
+export type IDetailProduct = {
+  id: number;
+  title: string;
+  description: string;
+  price: string;
+  discountPercentage: string;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: [];
+};
+
 export type IProducts = {
   [x: string]: any;
-  products:
-    | [
-        {
-          id: number;
-          title: string;
-          description: string;
-          price: string;
-          discountPercentage: number;
-          rating: number;
-          stock: number;
-          brand: string;
-          category: string;
-          thumbnail: string;
-          images: string[];
-        }
-      ]
-    | void[];
+  products: [IDetailProduct] | void[];
   total: number;
   currentPage: number;
   totalPages: number;
   productCategories: void[] | string[];
-  allProducts:
-    | [
-        {
-          id: number;
-          title: string;
-          description: string;
-          price: string;
-          discountPercentage: number;
-          rating: number;
-          stock: number;
-          brand: string;
-          category: string;
-          thumbnail: string;
-          images: string[];
-        }
-      ]
-    | void[];
-  detailProduct: {
-    id: number;
-    title: string;
-    description: string;
-    price: string;
-    discountPercentage: string;
-    rating: number;
-    stock: number;
-    brand: string;
-    category: string;
-    thumbnail: string;
-    images: string[];
-  };
+  allProducts: [IDetailProduct] | void[];
+  detailProduct: IDetailProduct;
 };
-
-export type IProductStore = Store<
-  "productStore",
-  IProducts,
-  {},
-  {
-    getProducts(
-      limit: string | void | string[] | null | undefined,
-      skip: string | void | null | undefined,
-      page: string | string[] | void | null | undefined
-    ): Promise<void>;
-    getCategories(
-      limit: string | void | string[] | null | undefined,
-      skip: string | void | null | undefined,
-      category: string | void | string[] | null | undefined,
-      page: string | string[] | void | null | undefined
-    ): Promise<void>;
-    getAllCategories(): Promise<void>;
-    getAllProducts(
-      all: string | void | string[] | null | undefined,
-      limit: string | void | string[] | null | undefined,
-      page: string | void | string[] | null | undefined
-    ): Promise<void>;
-    getDetailProduct(
-      id: string | void | string[] | null | undefined
-    ): Promise<void>;
-  }
->;
-
-export type IProductStoreToRef = ToRefs<
-  IProducts & _StoreWithGetters<{}> & PiniaCustomStateProperties<IProducts>
->;
 
 export type IAll = string | string[] | void | null | undefined;
 
@@ -102,16 +40,24 @@ export type IId = string | void | string[] | null | undefined;
 
 export type ICurrentPage = string | string[] | void | null | undefined;
 
-export type IDetailProduct = {
-  id: number;
-  title: string;
-  description: string;
-  price: string;
-  discountPercentage: string;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: [];
-};
+export type IProductStore = Store<
+  "productStore",
+  IProducts,
+  {},
+  {
+    getProducts(limit: Ilimit, skip: ISkip, page: ICurrentPage): Promise<void>;
+    getCategories(
+      limit: Ilimit,
+      skip: ISkip,
+      category: ICategory,
+      page: IPage
+    ): Promise<void>;
+    getAllCategories(): Promise<void>;
+    getAllProducts(all: IAll, limit: Ilimit, page: IPage): Promise<void>;
+    getDetailProduct(id: IId): Promise<void>;
+  }
+>;
+
+export type IProductStoreToRef = ToRefs<
+  IProducts & _StoreWithGetters<{}> & PiniaCustomStateProperties<IProducts>
+>;

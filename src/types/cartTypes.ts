@@ -1,3 +1,6 @@
+import { PiniaCustomStateProperties, _StoreWithGetters } from "pinia";
+import { ToRefs } from "vue";
+
 export type ICart = {
   brand: string;
   category: string;
@@ -18,3 +21,7 @@ export type ICartState = {
   totalItems: number;
   totalPrice: number;
 };
+
+export type ICartRef = ToRefs<
+  ICartState & _StoreWithGetters<{}> & PiniaCustomStateProperties<ICartState>
+>;
