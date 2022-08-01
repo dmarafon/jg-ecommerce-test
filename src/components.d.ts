@@ -18,6 +18,8 @@ declare module '@vue/runtime-core' {
     LoadingModal: typeof import('./components/LoadingModal/LoadingModal.vue')['default']
     LoginForm: typeof import('./components/LoginForm/LoginForm.vue')['default']
     MarketView: typeof import('./views/MarketView/MarketView.vue')['default']
+    NotFound: typeof import('./components/NotFound/NotFound.vue')['default']
+    NotFoundView: typeof import('./views/NotFoundView/NotFoundView.vue')['default']
     Product: typeof import('./components/Product/Product.vue')['default']
     ProductList: typeof import("./components/ProductsList/ProductsList.vue")["default"]
     ProductsList: typeof import('./components/ProductsList/ProductsList.vue')['default']

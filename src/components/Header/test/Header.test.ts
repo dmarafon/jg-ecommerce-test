@@ -85,7 +85,9 @@ describe("Given a Header Component", () => {
 
       const expectedPushNavigation = vi.spyOn(router, "push");
 
-      const expectedAddres: string = "/";
+      const expectedAddres: { path: string } = {
+        path: "/",
+      };
 
       screen.debug();
 

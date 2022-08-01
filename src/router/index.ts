@@ -7,6 +7,7 @@ import {
 } from "vue-router";
 import HomeView from "../views/HomeView/HomeView.vue";
 import DetailView from "../views/DetailView/DetailView.vue";
+import NotFoundView from "../views/NotFoundView/NotFoundView.vue";
 import MarketView from "../views/MarketView/MarketView.vue";
 import CartView from "../views/CartView/CartView.vue";
 import jwtDecode from "jwt-decode";
@@ -47,6 +48,12 @@ const routes: RouteRecordRaw[] = [
     component: CartView,
     meta: { requiresAuth: true },
   },
+  {
+    path: "/:pathMatch(.*)",
+    name: "NotFound",
+    component: NotFoundView,
+    meta: { requiresAuth: false },
+  },
 ];
 
 const router: Router = createRouter({ history: createWebHistory(), routes });
@@ -59,7 +66,7 @@ router.beforeEach(
       return {
         path: "/",
       };
-    } else if (!to.meta.requiresAuth && token) {
+    } else if (!to.meta.requiresAuth && token && to.name === "Home") {
       try {
         const decodeToken: IUserToken = jwtDecode(token);
 

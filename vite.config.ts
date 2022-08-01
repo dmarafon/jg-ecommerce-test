@@ -28,7 +28,7 @@ export default defineConfig({
     include: ["**/*.test.ts"],
     exclude: [
       "src/utils/stringVariablesForHTML.ts",
-      "src/mocks/localStorageMock.tsx",
+      "src/mocks/localStorageMock.ts",
     ],
     environment: "jsdom",
     deps: {
