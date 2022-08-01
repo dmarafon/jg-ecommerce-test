@@ -7,6 +7,7 @@ import {
 } from "vue-router";
 import HomeView from "../views/HomeView/HomeView.vue";
 import DetailView from "../views/DetailView/DetailView.vue";
+import NotFoundView from "../views/NotFoundView/NotFoundView.vue";
 import MarketView from "../views/MarketView/MarketView.vue";
 import CartView from "../views/CartView/CartView.vue";
 import jwtDecode from "jwt-decode";
@@ -46,6 +47,12 @@ const routes: RouteRecordRaw[] = [
     name: "Cart",
     component: CartView,
     meta: { requiresAuth: true },
+  },
+  {
+    path: "/:pathMatch(.*)",
+    name: "NotFound",
+    component: NotFoundView,
+    meta: { requiresAuth: false },
   },
 ];
 
