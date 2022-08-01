@@ -51,10 +51,6 @@
 
 @media (max-width: 1022px) {
   .welcome__container {
-  }
-}
-@media (max-width: 1022px) {
-  .welcome__container {
     display: flex;
     flex-direction: column;
     align-items: center;

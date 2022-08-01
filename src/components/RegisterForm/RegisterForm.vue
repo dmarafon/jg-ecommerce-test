@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import useRegisterFormStore from "../../stores/registerFormStore.js";
 import useUiStore from "../../stores/uiStore.js";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes.js";
 
@@ -10,9 +11,6 @@ defineEmits<{
 const storeUI: IUserInterfaceStore = useUiStore();
 
 const storeRegister = useRegisterFormStore();
-
-const { firstName, surname, email, password, city, country, registerPost } =
-  storeRegister;
 
 const {
   loading,
@@ -28,7 +26,25 @@ const {
 }: IUserInterfaceStore = storeUI;
 
 const handleSubmit = () => {
-  console.log("test");
+  cleanResponse();
+
+  const { firstname, surname, email, password, city, country, registerPost } =
+    storeRegister;
+  debugger;
+
+  // const validateEmailForm: string = emailInputValidation(email);
+  // const validatePasswordForm: string = passwordInputValidation(password);
+
+  // if (!validateEmailForm && !validatePasswordForm) {
+  //   loginPost({ email, password });
+
+  //   storeLogin.$reset();
+  // } else {
+  //   emailValidationResponse(validateEmailForm);
+  //   passwordValidationResponse(validatePasswordForm);
+  // }
+
+  registerPost({ firstname, surname, email, password, city, country });
 };
 </script>
 
@@ -51,7 +67,7 @@ const handleSubmit = () => {
         <div class="register__input--first_column">
           <input
             id="firstname"
-            v-model="storeRegister.firstName"
+            v-model="storeRegister.firstname"
             required
             placeholder="FIRST NAME"
             class="register__input--firstname"
@@ -95,7 +111,7 @@ const handleSubmit = () => {
             required
             placeholder="PASSWORD"
             class="register__input--password"
-            maxLength="{15}"
+            maxLength="15"
           />
           <label class="register__label--password" htmlFor="password">
             PASSWORD
@@ -127,9 +143,7 @@ const handleSubmit = () => {
         </div>
       </div>
       <div class="register__button--container">
-        <button class="register__button" type="submit" disabled="false">
-          REGISTER
-        </button>
+        <button class="register__button" type="submit">REGISTER</button>
       </div>
       <div class="register__text--container" @click="$emit('toogle-component')">
         <p class="register__text--login_access_first">

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs, _StoreWithGetters } from "pinia";
 import { ILoginStore } from "../../types/formTypes";
-import { useLoginFormStore } from "../../stores/formStore";
+import useLoginFormStore from "../../stores/formStore";
 import useUiStore from "../../stores/uiStore";
 import {
   emailInputValidation,
@@ -26,8 +26,6 @@ const storeLogin: ILoginStore = useLoginFormStore();
 
 const storeUI: IUserInterfaceStore = useUiStore();
 
-const { email, password, loginPost }: ILoginStore = storeLogin;
-
 const {
   loading,
   feedback,
@@ -44,6 +42,8 @@ const {
 
 const handleSubmit = (): void => {
   cleanResponse();
+
+  const { email, password, loginPost }: ILoginStore = storeLogin;
 
   const validateEmailForm: string = emailInputValidation(email);
   const validatePasswordForm: string = passwordInputValidation(password);
