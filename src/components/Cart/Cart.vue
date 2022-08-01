@@ -1,9 +1,25 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 
-const { addedToCart } = cartStore();
+const { removeFromCart } = cartStore();
 
-const test = storeToRefs(cartStore());
+const { addedToCart } = storeToRefs(cartStore());
+
+const calculateShippingPriceBuy = (totalToBePaid: number): string => {
+  if (totalToBePaid > 200) {
+    return "FREE SHIPPING!";
+  } else {
+    return `€ ${totalToBePaid * 0.5}`;
+  }
+};
+
+const calculateTotalPriceWithShipping = (totalToBePaid: number): number => {
+  if (totalToBePaid > 200) {
+    return totalToBePaid;
+  } else {
+    return totalToBePaid + totalToBePaid * 0.5;
+  }
+};
 </script>
 
 <template>
@@ -24,47 +40,41 @@ const test = storeToRefs(cartStore());
         <div class="cart__container">
           <img class="cart__image" :src="cartItem.images[0]" alt="{}" />
           <div class="cart__text">
-            <h2 class="cart__text--author">
-              {`${firstnameUpperCase} ${surnameUpperCase}`}
+            <h2 class="cart__text--brand">
+              {{ cartItem.brand }}
             </h2>
             <h3 class="cart__text--title">{{ cartItem.title }}</h3>
-            <p class="cart__text--price">
-              {`${monthlyrateprice}€ /month | ${purchaseprice}€ Purchase`}
-            </p>
+            <p class="cart__text--price">Unity Price: € {{ cartItem.price }}</p>
           </div>
         </div>
       </div>
       <div class="cart__purchase--container">
         <p class="cart__text--title">
-          {" "}
-          <span class="cart__buy--color">BUY</span> TOTAL PRICE
-        </p>
-        <p class="cartbuy__text--important">
-          Purchase Price ={" "}
-          <span class="cart__buy--color"> {purchaseprice} €</span>
+          TOTAL
+          <span class="cart__buy--color">ITEMS </span> = {{ cartItem.total }}
         </p>
         <p class="cartbuy__text">Shipping Costs (5% of Total Price)</p>
         <p class="cartbuy__text">(Free on Purchases Above 200 €)</p>
         <p class="cartbuy__text--important">
-          <span class="cart__buy--color"
-            >{`${ calculateShippingPriceBuy() === 0 ? `Free Shipping` :
-            `${calculateShippingPriceBuy()} €` }`}</span
-          >
+          SHIPPING =
+          <span class="cart__buy--color">{{
+            calculateShippingPriceBuy(cartItem.price * cartItem.total)
+          }}</span>
         </p>
-        <p class="cartbuy__text--important">
-          IVA 10% ={" "}
-          <span class="cart__buy--color">{`${calculateIVABuy()} €`}</span>
-        </p>
+        <p class="cartbuy__text--important">*10% OF IVA Included</p>
         <p class="cartbuy__text--important_total">
-          TOTAL ={" "}
           <span class="cart__buy--color">
-            {" "} {`${ Number(purchaseprice) + calculateShippingPriceBuy() +
-            calculateIVABuy() } €`}
+            €
+            {{
+              calculateTotalPriceWithShipping(cartItem.price * cartItem.total)
+            }}
           </span>
         </p>
         <div class="cart__button--container">
           <button class="cart_buy__button">BUY</button>
-          <button class="cart_buy__button">DROP ITEM</button>
+          <button @click="removeFromCart(cartItem.id)" class="cart_buy__button">
+            DROP ITEM
+          </button>
         </div>
       </div>
     </div>

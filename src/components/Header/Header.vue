@@ -23,7 +23,7 @@ const { loading }: IStoreUIToRefs = storeToRefs(storeUI);
 
 const { userData }: IStoreUserToRefs = storeToRefs(storeUser);
 
-const { totalItems } = useCartStore();
+const { totalItems } = storeToRefs(useCartStore());
 
 const router = useRouter();
 

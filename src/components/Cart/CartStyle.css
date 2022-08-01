@@ -71,6 +71,7 @@
 .cart__button--container {
   display: flex;
   gap: 30px;
+  font-family: "Sora", sans-serif;
 }
 
 @media (max-width: 1150px) {
@@ -182,7 +183,7 @@
   color: #00db7f;
 }
 
-.cart__text--author {
+.cart__text--brand {
   font-weight: lighter;
   font-size: 120%;
 }

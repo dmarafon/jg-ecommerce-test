@@ -22,7 +22,7 @@ const goToDetails = () => {
       <div class="product__card">
         <img
           class="product__image"
-          :src="props.product.images[0]"
+          :src="props?.product?.images[0]"
           alt="marketplace product image"
           width="417.44"
           height="465"
