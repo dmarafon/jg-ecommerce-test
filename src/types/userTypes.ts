@@ -15,20 +15,5 @@ export type IUserToken = {
 };
 
 export type IStoreUserToRefs = ToRefs<
-  {
-    userData: {
-      id: string;
-      firstName: string;
-      email: string;
-      logged: boolean;
-    };
-  } & _StoreWithGetters<{}> &
-    PiniaCustomStateProperties<{
-      userData: {
-        id: string;
-        firstName: string;
-        email: string;
-        logged: boolean;
-      };
-    }>
+  IUserToken & _StoreWithGetters<{}> & PiniaCustomStateProperties<IUserToken>
 >;

@@ -85,62 +85,7 @@ export type IProductStore = Store<
 >;
 
 export type IProductStoreToRef = ToRefs<
-  {
-    products:
-      | void[]
-      | [
-          {
-            id: number;
-            title: string;
-            description: string;
-            price: string;
-            discountPercentage: string;
-            rating: number;
-            stock: number;
-            brand: string;
-            category: string;
-            thumbnail: string;
-            images: string[];
-          }
-        ];
-    total: number;
-    currentPage: number;
-    totalPages: number;
-    productCategories: void[] | string[];
-    allProducts:
-      | [
-          {
-            id: number;
-            title: string;
-            description: string;
-            price: string;
-            discountPercentage: string;
-            rating: number;
-            stock: number;
-            brand: string;
-            category: string;
-            thumbnail: string;
-            images: string[];
-          }
-        ]
-      | void[];
-    detailProduct:
-      | {
-          id: number;
-          title: string;
-          description: string;
-          price: string;
-          discountPercentage: string;
-          rating: number;
-          stock: number;
-          brand: string;
-          category: string;
-          thumbnail: string;
-          images: [];
-        }
-      | any;
-  } & _StoreWithGetters<{}> &
-    PiniaCustomStateProperties<IProducts>
+  IProducts & _StoreWithGetters<{}> & PiniaCustomStateProperties<IProducts>
 >;
 
 export type IAll = string | string[] | void | null | undefined;

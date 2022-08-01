@@ -38,7 +38,6 @@ const {
   totalPages,
   currentPage,
   productCategories,
-  allProducts,
 }: IProductStoreToRef = storeToRefs(useProductStore());
 
 const { page, category } = route.params;
