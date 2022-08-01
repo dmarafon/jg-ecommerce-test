@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 
-const { removeFromCart } = cartStore();
+const { removeFromCart, buyFromCart } = cartStore();
 
 const { addedToCart } = storeToRefs(cartStore());
 
@@ -71,7 +71,9 @@ const calculateTotalPriceWithShipping = (totalToBePaid: number): number => {
           </span>
         </p>
         <div class="cart__button--container">
-          <button class="cart_buy__button">BUY</button>
+          <button @click="buyFromCart(cartItem.id)" class="cart_buy__button">
+            BUY
+          </button>
           <button @click="removeFromCart(cartItem.id)" class="cart_buy__button">
             DROP ITEM
           </button>

@@ -12,7 +12,7 @@ const router = useRouter();
 
 const goToDetails = () => {
   const detailId: string = props.product.id.toString();
-  router.push(`/detail/${detailId}`);
+  router.push({ path: `/detail/${detailId}` });
 };
 </script>
 

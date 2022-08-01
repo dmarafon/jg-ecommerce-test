@@ -10,7 +10,7 @@ const useUserStore = defineStore("userData", {
       logged: false,
     },
   }),
-  persist: true,
+  persist: { storage: sessionStorage, paths: ["username"] },
   actions: {
     login({
       id,

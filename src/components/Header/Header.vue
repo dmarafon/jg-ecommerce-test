@@ -23,18 +23,20 @@ const { loading }: IStoreUIToRefs = storeToRefs(storeUI);
 
 const { userData }: IStoreUserToRefs = storeToRefs(storeUser);
 
-const { totalItems } = storeToRefs(useCartStore());
-
 const router = useRouter();
 
 const submitLogOut = (): void => {
   localStorage.removeItem("token");
-  router.push("/");
+  router.push({ path: "/" });
 };
 
 const returnToInitialProducts = () => {
-  router.push(`/market/no/${limitForGetProducts}/${initialSkipForGetProducts}`);
+  router.push({
+    path: `/market/no/${limitForGetProducts}/${initialSkipForGetProducts}`,
+  });
 };
+
+const { totalItems } = storeToRefs(useCartStore());
 </script>
 
 <template>

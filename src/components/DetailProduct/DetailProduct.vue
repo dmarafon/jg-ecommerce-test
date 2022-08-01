@@ -5,7 +5,7 @@ import useUiStore from "../../stores/uiStore";
 import { IProductStore, IProductStoreToRef } from "../../types/productTypes";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 import useProductStore from "../../stores/productStore";
-import router from "../../router";
+import useCartStore from "../../stores/cartStore";
 
 const storeUI: IUserInterfaceStore = useUiStore();
 
@@ -23,16 +23,9 @@ watchEffect(() => {
   getDetailProduct(id);
 });
 
-watch(
-  () => route.params,
-  (toParams, previousParams) => {
-    router.go(0);
-  }
-);
-
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const { addToCart } = cartStore();
+const { addToCart } = useCartStore();
 
 const addToCartAction = () => {
   const { detailProduct }: IProductStore = useProductStore();

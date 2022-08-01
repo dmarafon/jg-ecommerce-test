@@ -10,7 +10,7 @@ export type IProducts = {
           title: string;
           description: string;
           price: string;
-          discountPercentage: string;
+          discountPercentage: number;
           rating: number;
           stock: number;
           brand: string;
@@ -30,7 +30,7 @@ export type IProducts = {
           title: string;
           description: string;
           price: string;
-          discountPercentage: string;
+          discountPercentage: number;
           rating: number;
           stock: number;
           brand: string;

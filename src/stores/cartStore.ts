@@ -8,15 +8,12 @@ const useCartStore = defineStore("cartStore", {
     totalItems: 0,
     totalPrice: 0,
   }),
-  persist: true,
-  getters: {
-    countAllCartItems: (state) => {
-      state.addedToCart.reduce((previousProduct, currrentProduct) => {
-        return (state.totalItems = previousProduct + currrentProduct.total);
+  actions: {
+    calculateAllTotalItems() {
+      this.addedToCart.reduce((previousProduct, currrentProduct) => {
+        return (this.totalItems = previousProduct + currrentProduct.total);
       }, 0);
     },
-  },
-  actions: {
     addToCart(product: ICart) {
       const rawProductData = toRaw(product);
       const duplicatedIndexItem: number = this.addedToCart.findIndex(
@@ -26,7 +23,7 @@ const useCartStore = defineStore("cartStore", {
       const productInCart: ICart = this.addedToCart[duplicatedIndexItem];
 
       if (duplicatedIndexItem !== -1) {
-        const total: number = toRaw(productInCart.total + 1);
+        const total: number = productInCart.total + 1;
 
         productInCart.total = total;
       } else {
@@ -34,9 +31,9 @@ const useCartStore = defineStore("cartStore", {
         const adding: ICart = { ...toRaw(product), total };
 
         this.addedToCart.push(adding);
-
-        this.totalItems = toRaw(productInCart.total) + 1;
       }
+
+      this.calculateAllTotalItems();
     },
     removeFromCart(id: number) {
       const findCartProductIndex: number = this.addedToCart.findIndex(
@@ -52,6 +49,22 @@ const useCartStore = defineStore("cartStore", {
 
         this.addedToCart.splice(findCartProductIndex, 1);
       }
+      this.calculateAllTotalItems();
+    },
+    buyFromCart(id: number) {
+      const findToBuyCartProduct: number = this.addedToCart.findIndex(
+        (product) => product.id === id
+      );
+
+      const cartProductToBeBought: ICart =
+        this.addedToCart[findToBuyCartProduct];
+
+      this.totalItems =
+        toRaw(this.totalItems) - toRaw(cartProductToBeBought.total);
+
+      this.addedToCart.splice(findToBuyCartProduct, 1);
+
+      this.calculateAllTotalItems();
     },
   },
 });

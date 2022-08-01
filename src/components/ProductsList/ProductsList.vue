@@ -70,13 +70,6 @@ watchEffect(() => {
   }
 });
 
-watch(
-  () => route.params,
-  (toParams, previousParams) => {
-    router.go(0);
-  }
-);
-
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
 const { all } = route.params;
 
