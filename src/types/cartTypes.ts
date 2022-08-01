@@ -1,4 +1,4 @@
-import { PiniaCustomStateProperties, _StoreWithGetters } from "pinia";
+import { PiniaCustomStateProperties, _StoreWithGetters, Store } from "pinia";
 import { ToRefs } from "vue";
 
 export type ICart = {
