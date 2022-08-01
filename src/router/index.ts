@@ -66,7 +66,7 @@ router.beforeEach(
       return {
         path: "/",
       };
-    } else if (!to.meta.requiresAuth && token) {
+    } else if (!to.meta.requiresAuth && token && to.name === "Home") {
       try {
         const decodeToken: IUserToken = jwtDecode(token);
 
