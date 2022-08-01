@@ -1,5 +1,6 @@
 import { PiniaCustomStateProperties, _StoreWithGetters, Store } from "pinia";
 import { ToRefs } from "vue";
+import { IDetailProduct } from "./productTypes";
 
 export type ICart = {
   brand: string;
@@ -12,8 +13,8 @@ export type ICart = {
   stock: number;
   thumbnail: string;
   id: number;
-  title: "";
-  total: number | never;
+  title: string;
+  total?: number | any;
 };
 
 export type ICartStore = Store<

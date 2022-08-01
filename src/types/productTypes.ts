@@ -5,14 +5,15 @@ export type IDetailProduct = {
   id: number;
   title: string;
   description: string;
-  price: string;
-  discountPercentage: string;
+  price: number;
+  discountPercentage: number;
   rating: number;
   stock: number;
   brand: string;
   category: string;
   thumbnail: string;
   images: string[];
+  total?: number;
 };
 
 export type IProducts = {
