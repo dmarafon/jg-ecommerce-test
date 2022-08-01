@@ -13,8 +13,20 @@ export type ICart = {
   thumbnail: string;
   id: number;
   title: "";
-  total: number;
+  total: number | never;
 };
+
+export type ICartStore = Store<
+  "cartStore",
+  ICartState,
+  {},
+  {
+    calculateAllTotalItems(): void;
+    addToCart(product: ICart): void;
+    removeFromCart(id: number): void;
+    buyFromCart(id: number): void;
+  }
+>;
 
 export type ICartState = {
   addedToCart: ICart[];

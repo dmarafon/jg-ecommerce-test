@@ -6,6 +6,7 @@ import { IProductStore, IProductStoreToRef } from "../../types/productTypes";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 import useProductStore from "../../stores/productStore";
 import useCartStore from "../../stores/cartStore";
+import { ICartStore } from "../../types/cartTypes";
 
 const storeUI: IUserInterfaceStore = useUiStore();
 
@@ -25,7 +26,7 @@ watchEffect(() => {
 
 const { loading, apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const { addToCart } = useCartStore();
+const { addToCart }: ICartStore = useCartStore();
 
 const addToCartAction = () => {
   const { detailProduct }: IProductStore = useProductStore();
