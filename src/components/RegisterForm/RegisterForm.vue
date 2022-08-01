@@ -1,20 +1,61 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { storeToRefs } from "pinia";
+import useUiStore from "../../stores/uiStore.js";
+import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes.js";
+
+defineEmits<{
+  (event: "toogle-component"): void;
+}>();
+
+const storeUI: IUserInterfaceStore = useUiStore();
+
+const storeRegister = useRegisterFormStore();
+
+const { firstName, surname, email, password, city, country, registerPost } =
+  storeRegister;
+
+const {
+  loading,
+  feedback,
+
+  apiResponse,
+}: IStoreUIToRefs = storeToRefs(storeUI);
+
+const {
+  emailValidationResponse,
+  passwordValidationResponse,
+  cleanResponse,
+}: IUserInterfaceStore = storeUI;
+
+const handleSubmit = () => {
+  console.log("test");
+};
+</script>
 
 <template>
+  <Teleport to="#modal__container">
+    <LoadingModal v-if="loading" />
+  </Teleport>
+  <Teleport to="#modal__container">
+    <TextModal
+      :text-message="apiResponse"
+      @button-on-click="cleanResponse"
+      v-if="apiResponse"
+      :key-event="cleanResponse"
+    />
+  </Teleport>
   <div class="register__form--container">
-    <form onSubmit="{submitForm}" noValidate autoComplete="off">
+    <form noValidate autoComplete="off" @submit.prevent="handleSubmit">
       <h2 class="register__title">Sign Up</h2>
       <div class="register__input--container">
         <div class="register__input--first_column">
           <input
             id="firstname"
-            value=""
-            type="text"
-            onChange="{changeRegisterData}"
+            v-model="storeRegister.firstName"
             required
             placeholder="FIRST NAME"
             class="register__input--firstname"
-            maxLength="{33}"
+            maxLength="33"
           />
           <label class="register__label--firstname" htmlFor="firstname">
             FIRST NAME
@@ -22,9 +63,8 @@
           <!-- <p class="register__paragraph--warning">Empty Firstname field</p> -->
           <input
             id="surname"
-            value=""
+            v-model="storeRegister.surname"
             type="text"
-            onChange="{changeRegisterData}"
             required
             placeholder="SURNAME"
             class="register__input--surname"
@@ -35,9 +75,8 @@
           <!-- <p class="register__paragraph--warning">Empty Surname field</p> -->
           <input
             id="email"
-            value=""
+            v-model="storeRegister.email"
             type="text"
-            onChange="{changeRegisterData}"
             required
             placeholder="EMAIL"
             class="register__input--email"
@@ -52,8 +91,7 @@
             autoComplete="current-password"
             id="password"
             type="password"
-            value="{registerFormData.password}"
-            onChange="{changeRegisterData}"
+            v-model="storeRegister.password"
             required
             placeholder="PASSWORD"
             class="register__input--password"
@@ -63,14 +101,11 @@
             PASSWORD
           </label>
           <!-- <p class="register__paragraph--warning">Empty Password field</p> -->
-
           <!-- <p class="register__paragraph--warning">Minimun 5 Char.</p> -->
-          ) : ( "" )}
           <input
             id="city"
-            value="{registerFormData.city}"
             type="text"
-            onChange="{changeRegisterData}"
+            v-model="storeRegister.city"
             required
             placeholder="CITY"
             class="register__input--city"
@@ -79,9 +114,8 @@
           <!-- <p class="register__paragraph--warning">Empty City field</p> -->
           <input
             id="country"
-            value="{registerFormData.country}"
+            v-model="storeRegister.country"
             type="text"
-            onChange="{changeRegisterData}"
             required
             placeholder="COUNTRY"
             class="register__input--country"
@@ -93,11 +127,11 @@
         </div>
       </div>
       <div class="register__button--container">
-        <button class="register__button" type="submit" disabled="{false}">
+        <button class="register__button" type="submit" disabled="false">
           REGISTER
         </button>
       </div>
-      <div class="register__text--container" onClick="{changeForm}">
+      <div class="register__text--container" @click="$emit('toogle-component')">
         <p class="register__text--login_access_first">
           Already have an Account?
         </p>
