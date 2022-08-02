@@ -14,6 +14,8 @@ const useUiStore = defineStore("uiStore", {
     surnameResponse: "",
     emailResponse: "",
     passwordResponse: "",
+    emailRegisterResponse: "",
+    passwordRegisterResponse: "",
     cityResponse: "",
     countryResponse: "",
   }),
@@ -53,11 +55,11 @@ const useUiStore = defineStore("uiStore", {
         cityValidation,
         countryValidation,
       }: IUserInterfaceRegisterValidation = registerFormValidations;
-
+      this.feedback = true;
       this.firstnameResponse = firstnameValidation;
       this.surnameResponse = surnameValidation;
-      this.emailResponse = emailValidation;
-      this.passwordResponse = passwordValidation;
+      this.emailRegisterResponse = emailValidation;
+      this.passwordRegisterResponse = passwordValidation;
       this.cityResponse = cityValidation;
       this.countryResponse = countryValidation;
     },

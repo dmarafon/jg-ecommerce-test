@@ -9,6 +9,8 @@ export type IUserInterface = {
   surnameResponse: string;
   emailResponse: string;
   passwordResponse: string;
+  emailRegisterResponse: string;
+  passwordRegisterResponse: string;
   cityResponse: string;
   countryResponse: string;
 };
