@@ -41,9 +41,12 @@ const useUiStore = defineStore("uiStore", {
     cleanResponseAndLogin(): void {
       if (this.registerValidated) {
         const { loginPost } = useLoginFormStore();
-        const { email, password } = useRegisterFormStore();
+        const registerStore = useRegisterFormStore();
+        const { email, password } = registerStore;
 
         loginPost({ email, password });
+        this.registerValidated = false;
+        registerStore.$reset();
       }
 
       this.firstnameResponse = "";
@@ -52,6 +55,8 @@ const useUiStore = defineStore("uiStore", {
       this.passwordRegisterResponse = "";
       this.cityResponse = "";
       this.countryResponse = "";
+      this.feedback = false;
+      this.apiResponse = "";
     },
     emailValidationResponse(emailValidationResponse: string): void {
       this.feedback = true;
