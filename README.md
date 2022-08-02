@@ -74,7 +74,7 @@ You can check the Backend Repository used for Sign In and Sign Up here:
 
 - Create a .env file
 
-- Request the following keys to the .env file
+- Paste the following keys to the .env file
 
 ```
 VITE_API_USER_URL=https://jg-ecommerce-api.onrender.com/
