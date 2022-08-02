@@ -51,3 +51,12 @@ export type IRegisterStoreDef = StoreDefinition<
     registerPost(registerInformation: any): Promise<void>;
   }
 >;
+
+export type IRegisterValidation = {
+  firstnameValidation: string;
+  surnameValidation: string;
+  emailValidation: string;
+  passwordValidation: string;
+  cityValidation: string;
+  countryValidation: string;
+};

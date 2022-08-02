@@ -3,7 +3,8 @@ import { storeToRefs } from "pinia";
 import useRegisterFormStore from "../../stores/registerFormStore.js";
 import useUiStore from "../../stores/uiStore.js";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes.js";
-import { IRegisterStore } from "../../types/formTypes";
+import { IRegisterStore, IRegisterValidation } from "../../types/formTypes";
+import { registerInputValidation } from "../../utils/registerFormValidation";
 
 defineEmits<{
   (event: "toogle-component"): void;
@@ -16,15 +17,17 @@ const storeRegister: IRegisterStore = useRegisterFormStore();
 const {
   loading,
   feedback,
-
+  firstnameResponse,
+  surnameResponse,
+  emailRegisterResponse,
+  passwordRegisterResponse,
+  cityResponse,
+  countryResponse,
   apiResponse,
 }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const {
-  emailValidationResponse,
-  passwordValidationResponse,
-  cleanResponse,
-}: IUserInterfaceStore = storeUI;
+const { registerFormValidationResponse, cleanResponse }: IUserInterfaceStore =
+  storeUI;
 
 const handleSubmit = (): void => {
   cleanResponse();
@@ -38,19 +41,44 @@ const handleSubmit = (): void => {
     country,
     registerPost,
   }: IRegisterStore = storeRegister;
-  // const validateEmailForm: string = emailInputValidation(email);
-  // const validatePasswordForm: string = passwordInputValidation(password);
 
-  // if (!validateEmailForm && !validatePasswordForm) {
-  //   loginPost({ email, password });
+  const {
+    firstnameValidation,
+    surnameValidation,
+    emailValidation,
+    passwordValidation,
+    cityValidation,
+    countryValidation,
+  }: IRegisterValidation = registerInputValidation(
+    firstname,
+    surname,
+    email,
+    password,
+    city,
+    country
+  );
 
-  //   storeLogin.$reset();
-  // } else {
-  //   emailValidationResponse(validateEmailForm);
-  //   passwordValidationResponse(validatePasswordForm);
-  // }
+  if (
+    !firstnameValidation &&
+    !surnameValidation &&
+    !emailValidation &&
+    !passwordValidation &&
+    !cityValidation &&
+    !countryValidation
+  ) {
+    registerPost({ firstname, surname, email, password, city, country });
 
-  registerPost({ firstname, surname, email, password, city, country });
+    storeRegister.$reset();
+  } else {
+    registerFormValidationResponse({
+      firstnameValidation,
+      surnameValidation,
+      emailValidation,
+      passwordValidation,
+      cityValidation,
+      countryValidation,
+    });
+  }
 };
 </script>
 
@@ -82,7 +110,9 @@ const handleSubmit = (): void => {
           <label class="register__label--firstname" htmlFor="firstname">
             FIRST NAME
           </label>
-          <!-- <p class="register__paragraph--warning">Empty Firstname field</p> -->
+          <p class="register__paragraph--warning" v-if="feedback">
+            {{ firstnameResponse }}
+          </p>
           <input
             id="surname"
             v-model="storeRegister.surname"
@@ -94,7 +124,9 @@ const handleSubmit = (): void => {
           <label class="register__label--surname" htmlFor="surname">
             SURNAME
           </label>
-          <!-- <p class="register__paragraph--warning">Empty Surname field</p> -->
+          <p class="register__paragraph--warning" v-if="feedback">
+            {{ surnameResponse }}
+          </p>
           <input
             id="email"
             v-model="storeRegister.email"
@@ -104,9 +136,9 @@ const handleSubmit = (): void => {
             class="register__input--email"
           />
           <label class="register__label--email" htmlFor="email"> EMAIL </label>
-          <!-- <p class="register__paragraph--warning">Empty Email field</p> -->
-
-          <!-- <p class="register__paragraph--warning">Invalid Email Address</p> -->
+          <p class="register__paragraph--warning" v-if="feedback">
+            {{ emailRegisterResponse }}
+          </p>
         </div>
         <div class="register__input--second_column">
           <input
@@ -122,8 +154,9 @@ const handleSubmit = (): void => {
           <label class="register__label--password" htmlFor="password">
             PASSWORD
           </label>
-          <!-- <p class="register__paragraph--warning">Empty Password field</p> -->
-          <!-- <p class="register__paragraph--warning">Minimun 5 Char.</p> -->
+          <p class="register__paragraph--warning" v-if="feedback">
+            {{ passwordRegisterResponse }}
+          </p>
           <input
             id="city"
             type="text"
@@ -133,7 +166,9 @@ const handleSubmit = (): void => {
             class="register__input--city"
           />
           <label class="register__label--city" htmlFor="city"> CITY </label>
-          <!-- <p class="register__paragraph--warning">Empty City field</p> -->
+          <p class="register__paragraph--warning" v-if="feedback">
+            {{ cityResponse }}
+          </p>
           <input
             id="country"
             v-model="storeRegister.country"
@@ -145,7 +180,9 @@ const handleSubmit = (): void => {
           <label class="register__label--country" htmlFor="country">
             COUNTRY
           </label>
-          <!-- <p class="register__paragraph--warning">Empty Country field</p> -->
+          <p class="register__paragraph--warning" v-if="feedback">
+            {{ countryResponse }}
+          </p>
         </div>
       </div>
       <div class="register__button--container">

@@ -5,8 +5,14 @@ export type IUserInterface = {
   loading: boolean;
   feedback: boolean;
   apiResponse: string;
+  firstnameResponse: string;
+  surnameResponse: string;
   emailResponse: string;
   passwordResponse: string;
+  emailRegisterResponse: string;
+  passwordRegisterResponse: string;
+  cityResponse: string;
+  countryResponse: string;
 };
 
 export type IUserInterfaceStore = Store<
@@ -20,6 +26,9 @@ export type IUserInterfaceStore = Store<
     cleanResponse(): void;
     emailValidationResponse(emailValidationResponse: string): void;
     passwordValidationResponse(passwordValidationResponse: string): void;
+    registerFormValidationResponse(
+      registerFormValidations: IUserInterfaceRegisterValidation
+    ): void;
   }
 >;
 
@@ -28,3 +37,12 @@ export type IStoreUIToRefs = ToRefs<
     _StoreWithGetters<{}> &
     PiniaCustomStateProperties<IUserInterface>
 >;
+
+export type IUserInterfaceRegisterValidation = {
+  firstnameValidation: string;
+  surnameValidation: string;
+  emailValidation: string;
+  passwordValidation: string;
+  cityValidation: string;
+  countryValidation: string;
+};
