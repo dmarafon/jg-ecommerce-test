@@ -26,11 +26,13 @@ const {
   apiResponse,
 }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const { registerFormValidationResponse, cleanResponse }: IUserInterfaceStore =
-  storeUI;
+const {
+  registerFormValidationResponse,
+  cleanResponseAndLogin,
+}: IUserInterfaceStore = storeUI;
 
 const handleSubmit = (): void => {
-  cleanResponse();
+  cleanResponseAndLogin();
 
   const {
     firstname,
@@ -67,8 +69,6 @@ const handleSubmit = (): void => {
     !countryValidation
   ) {
     registerPost({ firstname, surname, email, password, city, country });
-
-    storeRegister.$reset();
   } else {
     registerFormValidationResponse({
       firstnameValidation,
@@ -89,9 +89,9 @@ const handleSubmit = (): void => {
   <Teleport to="#modal__container">
     <TextModal
       :text-message="apiResponse"
-      @button-on-click="cleanResponse"
+      @button-on-click="cleanResponseAndLogin"
       v-if="apiResponse"
-      :key-event="cleanResponse"
+      :key-event="cleanResponseAndLogin"
     />
   </Teleport>
   <div class="register__form--container">

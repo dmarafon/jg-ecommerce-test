@@ -16,6 +16,16 @@ const registerAPICall = async (
     await axios.post(registerRoute, registerInformation);
 
     finishedLoadingModal();
+
+    const storeUI = useUiStore();
+
+    const useStoreUI: IUserInterfaceStore = storeUI;
+
+    useStoreUI.$patch({ registerValidated: true });
+
+    useStoreUI.responseFromApi(
+      "You Registered Successfully! Close this message to sign in"
+    );
   } catch (error) {
     const err = error as AxiosError;
     errorRegisterValidation(err);

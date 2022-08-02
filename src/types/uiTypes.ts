@@ -13,6 +13,7 @@ export type IUserInterface = {
   passwordRegisterResponse: string;
   cityResponse: string;
   countryResponse: string;
+  registerValidated: boolean;
 };
 
 export type IUserInterfaceStore = Store<
@@ -24,6 +25,7 @@ export type IUserInterfaceStore = Store<
     finishedLoadingModal(): void;
     responseFromApi(response: string): void;
     cleanResponse(): void;
+    cleanResponseAndLogin(): void;
     emailValidationResponse(emailValidationResponse: string): void;
     passwordValidationResponse(passwordValidationResponse: string): void;
     registerFormValidationResponse(
