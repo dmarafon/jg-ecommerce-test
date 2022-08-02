@@ -18,7 +18,6 @@ const registerAPICall = async (
     finishedLoadingModal();
   } catch (error) {
     const err = error as AxiosError;
-    console.log(error);
     errorRegisterValidation(err);
 
     finishedLoadingModal();
