@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import useUiStore from "../stores/uiStore";
 import { IRegister } from "../types/formTypes";
 import { IUserInterfaceStore } from "../types/uiTypes";
-import errorLoginValidation from "../utils/errorValidation";
+import { errorRegisterValidation } from "../utils/errorValidation";
 import { registerRoute } from "./APIRoutesAndQueryVariables";
 
 const registerAPICall = async (
@@ -18,8 +18,8 @@ const registerAPICall = async (
     finishedLoadingModal();
   } catch (error) {
     const err = error as AxiosError;
-
-    errorLoginValidation(err);
+    console.log(error);
+    errorRegisterValidation(err);
 
     finishedLoadingModal();
   }

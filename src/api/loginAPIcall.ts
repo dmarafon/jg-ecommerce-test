@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import jwtDecode from "jwt-decode";
 import { IUserToken } from "../types/userTypes";
 import { IUserInterfaceStore } from "../types/uiTypes";
-import errorLoginValidation from "../utils/errorValidation";
+import { errorLoginValidation } from "../utils/errorValidation";
 import router from "../router";
 import useUiStore from "../stores/uiStore";
 import useUserStore from "../stores/userStore";
