@@ -8,10 +8,9 @@
 
 ## 🎯 About
 
-A very simple an straightforward e-commerce made with Typescript, Vue 3, Pinia and Vite as a Demo test.
+A very simple and straightforward e-commerce made with Typescript, Vue 3, Pinia and Vite as a Demo test.
 
 <br/>
-
 
 ### Test credentials (if you don't want to Register yourself 😓)
 
