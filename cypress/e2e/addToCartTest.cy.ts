@@ -1,4 +1,4 @@
-describe("Give a Products Page ", () => {
+describe("Given a Products Page ", () => {
   describe("When the user Test user logs in and navigates to the Products page, clicks in a products, then clicks on 'Add to Cart' three times, eacht time will increase the number of added items in the cart menu in the Header component", () => {
     const email: string = "test@test.com";
     const password: string = "12345";

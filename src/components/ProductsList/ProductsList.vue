@@ -80,10 +80,12 @@ const navigateForward = (): void => {
     router.push({
       path: `/market/no/${limitForGetProducts}/${nextPage}/${category}`,
     });
+    window.scrollTo(0, 0);
   } else {
     router.push({
       path: `/market/${all}/${limitForGetProducts}/${nextPage}/${category}`,
     });
+    window.scrollTo(0, 0);
   }
 };
 
@@ -96,10 +98,12 @@ const navigateBackwards = (): void => {
     router.push({
       path: `/market/no/${limitForGetProducts}/${nextPage}/${category}`,
     });
+    window.scrollTo(0, 0);
   } else {
     router.push({
       path: `/market/${all}/${limitForGetProducts}/${nextPage}/${category}`,
     });
+    window.scrollTo(0, 0);
   }
 };
 

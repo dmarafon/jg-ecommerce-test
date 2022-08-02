@@ -74,7 +74,7 @@ const handleSubmit = (): void => {
   </Teleport>
   <section class="login__container">
     <h2 class="login__title">{{ loginTitle }}</h2>
-    <form noValidate autoComplete="off" @submit.prevent="handleSubmit">
+    <form noValidate autoComplete="on" @submit.prevent="handleSubmit">
       <div class="login__input--container">
         <input
           class="login__input--email"
@@ -84,6 +84,7 @@ const handleSubmit = (): void => {
           required
           placeholder="EMAIL"
           maxLength="33"
+          autoComplete="on"
         />
         <label for="email" class="login__label--email">{{
           loginLabelEmail
@@ -101,6 +102,7 @@ const handleSubmit = (): void => {
           required
           placeholder="PASSWORD"
           maxlength="15"
+          autoComplete="on"
         />
         <label class="login__label--password" for="password">{{
           loginLabelPassword
