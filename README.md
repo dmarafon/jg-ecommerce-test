@@ -9,12 +9,7 @@
 ## 🎯 About
 
 A very simple an straightforward e-commerce made with Typescript, Vue 3, Pinia and Vite as a Demo test.
-<br/>
 
-Also is worth mentioning that this web App was fully tested with 100% coverage in the frontend and backend, with Jest and Cypress as well.
-<br/>
-
-If you enjoyed, please rate it with a ⭐️!
 <br/>
 
 
