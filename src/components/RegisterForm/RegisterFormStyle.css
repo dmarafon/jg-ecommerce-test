@@ -378,20 +378,6 @@
   font-size: 15px;
 }
 
-.register__input--city {
-  width: 100%;
-  padding: 10px 0;
-  margin-bottom: 30px;
-
-  font-size: 16px;
-  color: #000;
-
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  background: transparent;
-}
-
 .register__input--country::-webkit-input-placeholder {
   color: transparent;
   font-family: "Sora", sans-serif;
