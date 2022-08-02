@@ -46,6 +46,7 @@ You can check the Backend Repository used for Sign In and Sign Up here:
 - [Unplugin Vue Components](https://github.com/antfu/unplugin-vue-components)
 - [Unplugin Auto Import](https://github.com/antfu/unplugin-auto-import)
 - [Axios](https://axios-http.com/es/docs/intro)
+- [Mock Service Worker](https://mswjs.io/)
 - [JWT](https://jwt.io/)
 - [Vitest](https://vitest.dev/)
 - [Testing-Library](https://testing-library.com/)
