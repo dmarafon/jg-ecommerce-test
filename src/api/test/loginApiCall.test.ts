@@ -21,7 +21,7 @@ describe("Given an loginAPICall function", () => {
       password: "1234",
       email: "test@test.com",
     };
-    test("Then it should ", async () => {
+    test("Then it should invoke the loadingModal action", async () => {
       const storeUI: IUserInterfaceStore = useUiStore();
 
       const userStore: IUserStore = useUserStore();
