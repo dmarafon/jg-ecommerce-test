@@ -1,7 +1,7 @@
 import { describe, expect, test, vi } from "vitest";
 import useUiStore from "../../stores/uiStore";
 import { errorLoginValidation } from "../errorValidation";
-import { setActivePinia, createPinia, Store } from "pinia";
+import { setActivePinia, createPinia } from "pinia";
 import { IUserInterfaceStore } from "../../types/uiTypes";
 
 beforeEach(() => {
