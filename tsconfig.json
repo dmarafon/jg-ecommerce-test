@@ -12,8 +12,9 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
-    "types": ["vitest", "vite/client", "vue/ref-macros"]
+    "types": ["vitest", "vite/client", "vue/ref-macros", "cypress"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": ["dist", "node_modules", "cypress"]
 }
