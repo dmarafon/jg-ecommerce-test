@@ -80,6 +80,3 @@ You can check the Backend Repository used for Sign In and Sign Up here:
 VITE_API_USER_URL=https://jg-ecommerce-api.onrender.com/
 
 VITE_API_PRODUCT_URL=https://dummyjson.com/
-
-
-
