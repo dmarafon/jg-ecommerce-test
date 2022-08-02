@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { IUserInterfaceStore } from "../types/uiTypes";
-import errorLoginValidation from "../utils/errorValidation";
+import { errorLoginValidation } from "../utils/errorValidation";
 import useUiStore from "../stores/uiStore";
 import { allCategoriesRoute } from "./APIRoutesAndQueryVariables";
 import useProductStore from "../stores/productStore";

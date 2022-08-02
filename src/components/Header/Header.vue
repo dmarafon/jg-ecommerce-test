@@ -8,7 +8,7 @@ import {
 import useCartStore from "../../stores/cartStore";
 import useUiStore from "../../stores/uiStore";
 import useUserStore from "../../stores/userStore";
-import { ICartRef } from "../../types/cartTypes";
+import { ICartRef, ICartStore } from "../../types/cartTypes";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 import { IStoreUserToRefs, IUserStore } from "../../types/userTypes";
 import {
@@ -29,6 +29,13 @@ const router: Router = useRouter();
 
 const submitLogOut = (): void => {
   localStorage.removeItem("token");
+
+  const cartStore: ICartStore = useCartStore();
+
+  cartStore.$patch({
+    totalItems: 0,
+  });
+
   router.push({ path: "/" });
 };
 

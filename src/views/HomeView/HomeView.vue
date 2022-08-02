@@ -1,9 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const toggleLoginAndRegisterForm = ref(false);
+
+const registerAndLoginToggle = () =>
+  (toggleLoginAndRegisterForm.value = !toggleLoginAndRegisterForm.value);
+</script>
 
 <template>
   <div class="welcome__container">
     <WelcomeText />
-    <LoginForm />
+    <LoginForm
+      @toogle-component="registerAndLoginToggle"
+      v-if="!toggleLoginAndRegisterForm"
+    />
+    <RegisterForm
+      @toogle-component="registerAndLoginToggle"
+      v-if="toggleLoginAndRegisterForm"
+    />
   </div>
   <Footer />
 </template>

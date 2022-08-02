@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs, _StoreWithGetters } from "pinia";
 import { ILoginStore } from "../../types/formTypes";
-import useLoginFormStore from "../../stores/formStore";
+import useLoginFormStore from "../../stores/loginFormStore";
 import useUiStore from "../../stores/uiStore";
 import {
   emailInputValidation,
@@ -18,6 +18,10 @@ import {
   loginTextSecondLineContinuation,
   loginTextSpecial,
 } from "../../utils/stringVariablesForHTML";
+
+defineEmits<{
+  (event: "toogle-component"): void;
+}>();
 
 const storeLogin: ILoginStore = useLoginFormStore();
 
@@ -108,7 +112,7 @@ const handleSubmit = (): void => {
       <div class="login__button--container">
         <button class="login__button" type="submit">{{ loginButton }}</button>
       </div>
-      <div class="login__text--container">
+      <div class="login__text--container" @click="$emit('toogle-component')">
         <p class="login__text--register_access_first">
           {{ loginTextFirstLine }}
         </p>

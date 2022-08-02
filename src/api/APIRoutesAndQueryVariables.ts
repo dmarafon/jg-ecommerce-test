@@ -8,6 +8,10 @@ export const loginRoute: string = `${
   import.meta.env.VITE_API_USER_URL
 }users/login`;
 
+export const registerRoute: string = `${
+  import.meta.env.VITE_API_USER_URL
+}users/register`;
+
 export const productsRoute = (limit: Ilimit, skip: ISkip): string => {
   if (limit && skip) {
     return `${

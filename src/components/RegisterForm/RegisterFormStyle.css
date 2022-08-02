@@ -1,0 +1,514 @@
+.register__form--container {
+  width: 420px;
+  height: 600px;
+  padding: 40px;
+  margin-top: 120px;
+  margin-right: 80px;
+
+  background: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px #00000099;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  animation: move-left 1.5s forwards;
+}
+
+@media (max-width: 1022px) {
+  .register__form--container {
+    width: 350px;
+    height: 900px;
+    display: inline-block;
+    margin-right: 0;
+    gap: 0;
+  }
+}
+
+@keyframes move-left {
+  0% {
+    opacity: 0;
+    transform: translateX(5vw);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.register__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: "Sora", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+
+  color: #00db7f;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 13px;
+}
+
+.register__label--firstname {
+  color: #00db7f;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+
+  transition: all 200ms ease-in-out;
+
+  position: relative;
+  pointer-events: none;
+  top: -60px;
+  transition: 0.2s ease all;
+}
+
+.register__label--surname {
+  color: #00db7f;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+
+  transition: all 200ms ease-in-out;
+
+  position: relative;
+  pointer-events: none;
+  top: -60px;
+  transition: 0.2s ease all;
+}
+
+.register__label--email {
+  color: #00db7f;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+
+  transition: all 200ms ease-in-out;
+
+  position: relative;
+  pointer-events: none;
+  top: -60px;
+  transition: 0.2s ease all;
+}
+
+.register__label--password {
+  color: #00db7f;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+
+  transition: all 200ms ease-in-out;
+
+  position: relative;
+  pointer-events: none;
+  top: -60px;
+  transition: 0.2s ease all;
+}
+
+.register__label--city {
+  color: #00db7f;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+
+  transition: all 200ms ease-in-out;
+
+  position: relative;
+  pointer-events: none;
+  top: -60px;
+  transition: 0.2s ease all;
+}
+
+.register__label--country {
+  color: #00db7f;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+
+  transition: all 200ms ease-in-out;
+
+  position: relative;
+  pointer-events: none;
+  top: -60px;
+  transition: 0.2s ease all;
+}
+
+.register__input--firstname:focus ~ .register__label--firstname,
+.register__input--firstname:not(:focus):valid ~ .register__label--firstname {
+  top: -80px;
+  padding-bottom: 3px;
+  font-size: 10px;
+}
+
+.register__input--surname:focus ~ .register__label--surname,
+.register__input--surname:not(:focus):valid ~ .register__label--surname {
+  top: -80px;
+  padding-bottom: 3px;
+  font-size: 10px;
+}
+
+.register__input--email:focus ~ .register__label--email,
+.register__input--email:not(:focus):valid ~ .register__label--email {
+  top: -80px;
+  padding-bottom: 3px;
+  font-size: 10px;
+}
+
+.register__input--password:focus ~ .register__label--password,
+.register__input--password:not(:focus):valid ~ .register__label--password {
+  top: -80px;
+  padding-bottom: 3px;
+  font-size: 10px;
+}
+
+.register__input--city:focus ~ .register__label--city,
+.register__input--city:not(:focus):valid ~ .register__label--city {
+  top: -80px;
+  padding-bottom: 3px;
+  font-size: 10px;
+}
+
+.register__input--country:focus ~ .register__label--country,
+.register__input--country:not(:focus):valid ~ .register__label--country {
+  top: -80px;
+  padding-bottom: 3px;
+  font-size: 10px;
+}
+
+.register__input--container {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  align-items: flex-start;
+  width: 350px;
+
+  color: #00db7f;
+}
+
+@media (max-width: 1022px) {
+  .register__input--container {
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    gap: 0;
+  }
+}
+
+.register__input--firstname:focus {
+  outline: none;
+  border-bottom: 1px solid #00db7f;
+}
+
+.register__input--surname:focus {
+  outline: none;
+  border-bottom: 1px solid #00db7f;
+}
+
+.register__input--email:focus {
+  outline: none;
+  border-bottom: 1px solid #00db7f;
+}
+
+.register__input--password:focus {
+  outline: none;
+  border-bottom: 1px solid #00db7f;
+}
+
+.register__input--city:focus {
+  outline: none;
+  border-bottom: 1px solid #00db7f;
+}
+
+.register__input--country:focus {
+  outline: none;
+  border-bottom: 1px solid #00db7f;
+}
+
+.register__paragraph--warning {
+  color: #db2500;
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  margin-top: -40px;
+  position: absolute;
+  z-index: 10;
+}
+
+.register__input--firstname {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 30px;
+
+  font-size: 16px;
+  color: #000;
+
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.register__input--firstname::-webkit-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--firstname::-ms-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--firstname::placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--surname {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 30px;
+
+  font-size: 16px;
+  color: #000;
+
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.register__input--surname::-webkit-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--surname::-ms-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--surname::placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--email {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 30px;
+
+  font-size: 16px;
+  color: #000;
+
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.register__input--email::-webkit-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--email::-ms-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--email::placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--password {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 30px;
+
+  font-size: 16px;
+  color: #000;
+
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.register__input--password::-webkit-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--password::-ms-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--password::placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--city {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 30px;
+
+  font-size: 16px;
+  color: #000;
+
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.register__input--city::-webkit-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--city::-ms-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--city::placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--city {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 30px;
+
+  font-size: 16px;
+  color: #000;
+
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.register__input--country::-webkit-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--country::-ms-input-placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--country::placeholder {
+  color: transparent;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.register__input--country {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 30px;
+
+  font-size: 16px;
+  color: #000;
+
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.register__button--container {
+  display: flex;
+  justify-content: center;
+}
+
+.register__button {
+  border-radius: 4px;
+  height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 40px;
+
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+  padding: 0 30px;
+  letter-spacing: 1px;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  text-align: center;
+
+  border: none;
+
+  background-color: #00db7f;
+  color: #000000;
+  box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
+
+  cursor: pointer;
+}
+
+.register__button:hover {
+  background-color: #000000;
+  color: #ffffff;
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
+}
+
+.register__button:active {
+  opacity: 0.4;
+}
+
+.register__text--container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.register__text--login_access_first {
+  font-family: "Sora", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+
+.register__text--login_access_second {
+  font-family: "Sora", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.register__text--special_color {
+  color: #00db7f;
+}

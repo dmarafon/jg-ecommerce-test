@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 import { toRaw } from "vue";
-import { ICart, ICartState } from "../types/cartTypes";
+import { ICart, ICartState, ICartStateType } from "../types/cartTypes";
 
-const useCartStore = defineStore("cartStore", {
+const useCartStore: ICartStateType = defineStore("cartStore", {
   state: (): ICartState => ({
     addedToCart: [],
     totalItems: 0,

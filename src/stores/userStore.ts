@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
+import { IUserStoreDef } from "../types/userTypes";
 
-const useUserStore = defineStore("userData", {
+const useUserStore: IUserStoreDef = defineStore("userData", {
   state: () => ({
     userData: {
       id: "",
