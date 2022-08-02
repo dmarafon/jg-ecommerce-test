@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { toRaw } from "vue";
 import { ICart, ICartState, ICartStateType } from "../types/cartTypes";
+import { IUserInterfaceStore } from "../types/uiTypes";
+import useUiStore from "./uiStore";
 
 const useCartStore: ICartStateType = defineStore("cartStore", {
   state: (): ICartState => ({
@@ -71,6 +73,11 @@ const useCartStore: ICartStateType = defineStore("cartStore", {
       this.addedToCart.splice(findToBuyCartProduct, 1);
 
       this.calculateAllTotalItems();
+      const { responseFromApi }: IUserInterfaceStore = useUiStore();
+
+      responseFromApi(
+        "Thank you for buying! We're going to get in touch in 24 hours on regards of delivery details"
+      );
     },
   },
 });

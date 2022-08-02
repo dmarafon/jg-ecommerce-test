@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import useUiStore from "../../stores/uiStore";
 import { ICartRef } from "../../types/cartTypes";
+import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes";
 
 const { removeFromCart, buyFromCart } = cartStore();
 
 const { addedToCart }: ICartRef = storeToRefs(cartStore());
+
+const storeUI: IUserInterfaceStore = useUiStore();
+
+const { apiResponse }: IStoreUIToRefs = storeToRefs(storeUI);
+
+const { cleanResponse }: IUserInterfaceStore = storeUI;
 
 const calculateShippingPriceBuy = (totalToBePaid: number): string => {
   if (totalToBePaid > 200) {
@@ -30,6 +38,14 @@ const calculateTotalPriceWithShipping = (totalToBePaid: number): number => {
 </script>
 
 <template>
+  <Teleport to="#modal__container">
+    <TextModal
+      :text-message="apiResponse"
+      @button-on-click="cleanResponse"
+      v-if="apiResponse"
+      :key-event="cleanResponse"
+    />
+  </Teleport>
   <section class="cart__container--cart">
     <div>
       <div class="cart__text--container">
