@@ -21,11 +21,8 @@ const {
   apiResponse,
 }: IStoreUIToRefs = storeToRefs(storeUI);
 
-const {
-  emailValidationResponse,
-  passwordValidationResponse,
-  cleanResponse,
-}: IUserInterfaceStore = storeUI;
+const { registerFormValidationResponse, cleanResponse }: IUserInterfaceStore =
+  storeUI;
 
 const handleSubmit = (): void => {
   cleanResponse();
@@ -68,8 +65,14 @@ const handleSubmit = (): void => {
 
     storeRegister.$reset();
   } else {
-    emailValidationResponse(validateEmailForm);
-    passwordValidationResponse(validatePasswordForm);
+    registerFormValidationResponse({
+      firstnameValidation,
+      surnameValidation,
+      emailValidation,
+      passwordValidation,
+      cityValidation,
+      countryValidation,
+    });
   }
 };
 </script>

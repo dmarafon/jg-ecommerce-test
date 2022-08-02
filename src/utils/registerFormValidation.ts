@@ -46,7 +46,7 @@ const cityInputValidation = (city: string): string => {
 const countryInputValidation = (country: string): string => {
   switch (true) {
     case country === "":
-      return "Empty City Field";
+      return "Empty Country Field";
 
     case country.length >= 33:
       return "This field allows only 33 char.";
