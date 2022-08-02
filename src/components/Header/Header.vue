@@ -29,6 +29,13 @@ const router: Router = useRouter();
 
 const submitLogOut = (): void => {
   localStorage.removeItem("token");
+
+  const cartStore = useCartStore();
+
+  cartStore.$patch({
+    totalItems: 0,
+  });
+
   router.push({ path: "/" });
 };
 
