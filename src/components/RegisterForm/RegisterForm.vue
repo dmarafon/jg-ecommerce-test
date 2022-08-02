@@ -95,7 +95,7 @@ const handleSubmit = (): void => {
     />
   </Teleport>
   <div class="register__form--container">
-    <form noValidate autoComplete="off" @submit.prevent="handleSubmit">
+    <form noValidate autoComplete="on" @submit.prevent="handleSubmit">
       <h2 class="register__title">Sign Up</h2>
       <div class="register__input--container">
         <div class="register__input--first_column">
@@ -134,6 +134,7 @@ const handleSubmit = (): void => {
             required
             placeholder="EMAIL"
             class="register__input--email"
+            autoComplete="on"
           />
           <label class="register__label--email" htmlFor="email"> EMAIL </label>
           <p class="register__paragraph--warning" v-if="feedback">
