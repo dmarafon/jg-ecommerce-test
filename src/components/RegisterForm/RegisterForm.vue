@@ -3,7 +3,8 @@ import { storeToRefs } from "pinia";
 import useRegisterFormStore from "../../stores/registerFormStore.js";
 import useUiStore from "../../stores/uiStore.js";
 import { IStoreUIToRefs, IUserInterfaceStore } from "../../types/uiTypes.js";
-import { IRegisterStore } from "../../types/formTypes";
+import { IRegisterStore, IRegisterValidation } from "../../types/formTypes";
+import { registerInputValidation } from "../../utils/registerFormValidation";
 
 defineEmits<{
   (event: "toogle-component"): void;
@@ -38,19 +39,38 @@ const handleSubmit = (): void => {
     country,
     registerPost,
   }: IRegisterStore = storeRegister;
-  // const validateEmailForm: string = emailInputValidation(email);
-  // const validatePasswordForm: string = passwordInputValidation(password);
 
-  // if (!validateEmailForm && !validatePasswordForm) {
-  //   loginPost({ email, password });
+  const {
+    firstnameValidation,
+    surnameValidation,
+    emailValidation,
+    passwordValidation,
+    cityValidation,
+    countryValidation,
+  }: IRegisterValidation = registerInputValidation(
+    firstname,
+    surname,
+    email,
+    password,
+    city,
+    country
+  );
 
-  //   storeLogin.$reset();
-  // } else {
-  //   emailValidationResponse(validateEmailForm);
-  //   passwordValidationResponse(validatePasswordForm);
-  // }
+  if (
+    !firstnameValidation &&
+    !surnameValidation &&
+    !emailValidation &&
+    !passwordValidation &&
+    !cityValidation &&
+    !countryValidation
+  ) {
+    registerPost({ firstname, surname, email, password, city, country });
 
-  registerPost({ firstname, surname, email, password, city, country });
+    storeRegister.$reset();
+  } else {
+    emailValidationResponse(validateEmailForm);
+    passwordValidationResponse(validatePasswordForm);
+  }
 };
 </script>
 
