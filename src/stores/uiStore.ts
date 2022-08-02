@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
-import { IRegisterValidation } from "../types/formTypes";
 import {
   IUserInterface,
   IUserInterfaceRegisterValidation,
 } from "../types/uiTypes";
+import useLoginFormStore from "./loginFormStore";
+import useRegisterFormStore from "./registerFormStore";
 
 const useUiStore = defineStore("uiStore", {
   state: (): IUserInterface => ({
@@ -18,6 +19,7 @@ const useUiStore = defineStore("uiStore", {
     passwordRegisterResponse: "",
     cityResponse: "",
     countryResponse: "",
+    registerValidated: false,
   }),
   actions: {
     loadingModal(): void {
@@ -35,6 +37,21 @@ const useUiStore = defineStore("uiStore", {
       this.apiResponse = "";
       this.emailResponse = "";
       this.passwordResponse = "";
+    },
+    cleanResponseAndLogin(): void {
+      if (this.registerValidated) {
+        const { loginPost } = useLoginFormStore();
+        const { email, password } = useRegisterFormStore();
+
+        loginPost({ email, password });
+      }
+
+      this.firstnameResponse = "";
+      this.surnameResponse = "";
+      this.emailRegisterResponse = "";
+      this.passwordRegisterResponse = "";
+      this.cityResponse = "";
+      this.countryResponse = "";
     },
     emailValidationResponse(emailValidationResponse: string): void {
       this.feedback = true;

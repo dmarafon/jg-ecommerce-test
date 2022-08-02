@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 40%;
-  background-color: rgb(11, 11, 11);
 
   background: rgb(11, 11, 11);
   padding-bottom: 50px;
