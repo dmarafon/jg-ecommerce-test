@@ -1,7 +1,7 @@
 {
   "name": "jg-ecommerce-test",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000 --open",
@@ -23,7 +23,6 @@
     "cypress": "^10.3.1",
     "jwt-decode": "^3.1.2",
     "msw": "^0.44.2",
-    "mws": "^2.0.8",
     "pinia": "^2.0.17",
     "pinia-plugin-persistedstate": "^1.6.3",
     "vue": "^3.2.37",
